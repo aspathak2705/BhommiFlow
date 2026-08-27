@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getClasses, getTasks, fetchHealth, fetchDbHealth } from "../lib/api";
+import { getTeacher, getClasses, getTasks, fetchHealth, fetchDbHealth } from "../lib/api";
 import { Class, TeachingTask } from "../types/task";
 
 export default function Workspace() {
   const navigate = useNavigate();
+  const [teacherName, setTeacherName] = useState<string>("Teacher");
   const [classes, setClasses] = useState<Class[]>([]);
   const [tasks, setTasks] = useState<TeachingTask[]>([]);
   const [apiOnline, setApiOnline] = useState<boolean | null>(null);
@@ -26,6 +27,13 @@ export default function Workspace() {
         setDbConnected(dbHealth.database === "connected");
       } catch {
         setDbConnected(false);
+      }
+
+      try {
+        const teacherData = await getTeacher("teacher-demo-001");
+        setTeacherName(teacherData.name);
+      } catch {
+        setTeacherName("Guest Teacher");
       }
 
       try {
@@ -111,7 +119,7 @@ export default function Workspace() {
           <div className="w-20 h-20 rounded-full bg-primary-container text-on-primary-container mb-6 flex items-center justify-center overflow-hidden shiksha-shadow">
             <span className="material-symbols-outlined text-4xl">person</span>
           </div>
-          <h2 className="font-display-lg text-display-lg text-primary mb-4">Good morning, Priya Sharma</h2>
+          <h2 className="font-display-lg text-display-lg text-primary mb-4">Good morning, {teacherName}</h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
             What would you like to explore today? Your AI assistant is ready to help you plan your next lesson.
           </p>
@@ -149,25 +157,34 @@ export default function Workspace() {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             {/* Class Cards */}
-            <div className="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shiksha-shadow relative overflow-hidden group border border-outline-variant/30 flex flex-col justify-between min-h-[280px]">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-              <div>
-                <span className="bg-diksha-blue/10 text-diksha-blue text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 border border-diksha-blue/20 w-fit mb-4">
-                  <span className="material-symbols-outlined text-[14px]">school</span> Active Now
-                </span>
-                <h4 className="font-headline-lg text-headline-lg text-primary mb-2">Class 7A Mathematics</h4>
-                <p className="font-body-lg text-body-lg text-on-surface-variant">Grade 7 • Section A • Marathi Medium</p>
+            {classes.length > 0 ? (
+              classes.map((cls) => (
+                <div key={cls.id} className="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shiksha-shadow relative overflow-hidden group border border-outline-variant/30 flex flex-col justify-between min-h-[280px]">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                  <div>
+                    <span className="bg-diksha-blue/10 text-diksha-blue text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 border border-diksha-blue/20 w-fit mb-4">
+                      <span className="material-symbols-outlined text-[14px]">school</span> Classroom
+                    </span>
+                    <h4 className="font-headline-lg text-headline-lg text-primary mb-2">{cls.name}</h4>
+                    <p className="font-body-lg text-body-lg text-on-surface-variant">Grade {cls.grade} • Section {cls.section} • {cls.primary_language === "mr" ? "Marathi" : cls.primary_language === "hi" ? "Hindi" : "English"} Medium</p>
+                  </div>
+                  <div className="flex gap-4 items-center mt-6">
+                    <button
+                      onClick={() => navigate("/create-task")}
+                      className="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-transform active:scale-95 flex items-center gap-2 shadow-md"
+                    >
+                      <span className="material-symbols-outlined">add</span> Create New Task
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-2xl p-8 shiksha-shadow border border-outline-variant/30 border-dashed flex flex-col justify-center items-center text-center min-h-[280px]">
+                <span className="material-symbols-outlined text-4xl text-outline mb-4">school</span>
+                <h4 className="font-headline-md text-headline-md text-primary mb-2">No classes available</h4>
+                <p className="text-on-surface-variant max-w-sm">No classrooms have been assigned to your profile in PostgreSQL yet.</p>
               </div>
-
-              <div className="flex gap-4 items-center mt-6">
-                <button
-                  onClick={() => navigate("/create-task")}
-                  className="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-primary/90 transition-transform active:scale-95 flex items-center gap-2 shadow-md"
-                >
-                  <span className="material-symbols-outlined">add</span> Create New Task
-                </button>
-              </div>
-            </div>
+            )}
 
             {/* Side column */}
             <div className="col-span-1 md:col-span-4 flex flex-col gap-gutter">
