@@ -5,9 +5,49 @@ from fastapi.testclient import TestClient
 # Add backend directory to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import pytest
 from app.main import app
+from app.core.database import SessionLocal
+from app.models.teacher import Teacher
+from app.models.class_ import Class
+from app.models.task import TeachingTask
 
 client = TestClient(app)
+
+@pytest.fixture(scope="module", autouse=True)
+def setup_test_data():
+    db = SessionLocal()
+    # Cleanup any leftovers
+    db.query(TeachingTask).filter(TeachingTask.teacher_id == "teacher-demo-001").delete()
+    db.query(Class).filter(Class.id == "class-7a").delete()
+    db.query(Teacher).filter(Teacher.id == "teacher-demo-001").delete()
+    db.commit()
+
+    # Add test data
+    teacher = Teacher(id="teacher-demo-001", name="Priya Sharma")
+    db.add(teacher)
+    db.commit()
+
+    class_obj = Class(
+        id="class-7a",
+        teacher_id="teacher-demo-001",
+        name="Class 7A",
+        grade="7",
+        section="A",
+        primary_language="mr"
+    )
+    db.add(class_obj)
+    db.commit()
+    db.close()
+
+    yield
+
+    db = SessionLocal()
+    db.query(TeachingTask).filter(TeachingTask.teacher_id == "teacher-demo-001").delete()
+    db.query(Class).filter(Class.id == "class-7a").delete()
+    db.query(Teacher).filter(Teacher.id == "teacher-demo-001").delete()
+    db.commit()
+    db.close()
 
 def test_health():
     response = client.get("/api/v1/health")
