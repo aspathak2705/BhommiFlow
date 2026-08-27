@@ -57,3 +57,5 @@ share/python-wheels/
 # OS
 .DS_Store
 Thumbs.db
+
+stitch_project_build_framework
