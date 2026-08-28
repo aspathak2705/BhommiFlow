@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCase } from "../lib/api";
+import { useLanguage } from "../lib/LanguageContext";
 
 const CASE_TYPES = [
   "Inheritance / succession",
@@ -19,6 +20,7 @@ const CASE_TYPES = [
 export default function CreateCase() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const { t } = useLanguage();
 
   // Form states
   const [caseType, setCaseType] = useState(CASE_TYPES[0]);
@@ -115,7 +117,7 @@ export default function CreateCase() {
         <div className="flex items-center gap-3">
           <span className="text-xl font-bold text-indigo-700">BhoomiFlow</span>
           <span className="text-slate-400 font-semibold">|</span>
-          <span className="text-sm text-slate-600 font-semibold">New Case Intake</span>
+          <span className="text-sm text-slate-600 font-semibold">{t("newCaseTitle")}</span>
         </div>
         <button
           onClick={() => navigate("/citizen")}
@@ -144,9 +146,10 @@ export default function CreateCase() {
           {/* STEP 1: Case Identity and Type */}
           {step === 1 && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Define Issue / Category</h3>
+              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">{t("newCaseTitle")}</h3>
+              <p className="text-xs text-slate-500">{t("newCaseDesc")}</p>
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Case Category</label>
+                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("docCategory")}</label>
                 <select
                   className="w-full p-2.5 border rounded-lg bg-white"
                   value={caseType}
@@ -161,10 +164,10 @@ export default function CreateCase() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Short Title</label>
+                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldTitle")}</label>
                 <input
                   type="text"
-                  placeholder="e.g. Discrepancy in Mutation Entry for Survey 41"
+                  placeholder={t("fieldDesc")}
                   required
                   className="w-full p-2.5 border rounded-lg bg-white"
                   value={title}
@@ -173,10 +176,10 @@ export default function CreateCase() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Original Description</label>
+                <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("originalDescription")}</label>
                 <textarea
                   rows={5}
-                  placeholder="Explain your situation in plain language. Your original description is saved exactly as entered to ensure evidence and provenance integrity."
+                  placeholder={t("fieldDesc")}
                   required
                   className="w-full p-2.5 border rounded-lg bg-white"
                   value={description}
@@ -189,10 +192,10 @@ export default function CreateCase() {
           {/* STEP 2: Land Context */}
           {step === 2 && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Land & Property Context</h3>
+              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">{t("landPropertyContext")}</h3>
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">District</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldDistrict")}</label>
                   <input
                     type="text"
                     required
@@ -202,7 +205,7 @@ export default function CreateCase() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Taluka</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldTaluka")}</label>
                   <input
                     type="text"
                     required
@@ -212,7 +215,7 @@ export default function CreateCase() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Village</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldVillage")}</label>
                   <input
                     type="text"
                     required
@@ -225,17 +228,17 @@ export default function CreateCase() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Survey Number</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldSurvey")}</label>
                   <input
                     type="text"
-                    placeholder="Enter survey no. (or 'Not available')"
+                    placeholder={t("fieldSurvey")}
                     className="w-full p-2.5 border rounded-lg bg-white"
                     value={surveyNumber}
                     onChange={(e) => setSurveyNumber(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Subdivision Number</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldSubdivision")}</label>
                   <input
                     type="text"
                     placeholder="e.g. 2A"
@@ -248,7 +251,7 @@ export default function CreateCase() {
 
               <div className="grid grid-cols-3 gap-3">
                 <div className="col-span-1">
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Property Type</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("docType")}</label>
                   <select
                     className="w-full p-2.5 border rounded-lg bg-white"
                     value={propertyType}
@@ -261,7 +264,7 @@ export default function CreateCase() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Area</label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t("fieldArea")}</label>
                   <input
                     type="number"
                     step="any"
@@ -463,7 +466,7 @@ export default function CreateCase() {
                 onClick={handleSubmit}
                 className="px-8 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow disabled:opacity-50"
               >
-                {loading ? "Submitting..." : "Submit Case"}
+                {loading ? t("submitting") : t("btnSubmit")}
               </button>
             )}
           </div>

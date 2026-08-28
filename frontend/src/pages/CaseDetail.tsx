@@ -17,6 +17,7 @@ import {
   fetchNotifications
 } from "../lib/api";
 import { Case, CaseEvent, Evidence } from "../types/types";
+import { useLanguage } from "../lib/LanguageContext";
 
 const DOCUMENT_TYPES = [
   "Land Record",
@@ -48,6 +49,7 @@ interface GraphEdge {
 export default function CaseDetail() {
   const { caseId } = useParams<{ caseId: string }>();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const [caseObj, setCaseObj] = useState<Case | null>(null);
   const [events, setEvents] = useState<CaseEvent[]>([]);
@@ -300,11 +302,11 @@ export default function CaseDetail() {
             onClick={() => navigate(userRole === "officer" ? "/officer" : "/citizen")}
             className="text-sm font-semibold text-indigo-600 hover:underline"
           >
-            ← Back to Dashboard
+            ← {t("backDashboard")}
           </button>
         </div>
         <div className="text-sm font-bold text-slate-500">
-          Case: {caseObj.case_reference}
+          {t("caseLabel")}: {caseObj.case_reference}
         </div>
       </header>
 
@@ -313,7 +315,7 @@ export default function CaseDetail() {
         <div className="lg:col-span-2 space-y-6">
           {/* Action Required Widget (Always Visible at Top when requested) */}
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
-            <h3 className="text-lg font-bold border-b pb-2 text-rose-700">Requested Evidence / Actions</h3>
+            <h3 className="text-lg font-bold border-b pb-2 text-rose-700">{t("requestedEvidence")}</h3>
             {evidenceRequests.length > 0 ? (
               <div className="space-y-3">
                 {evidenceRequests.map((req) => (
@@ -330,14 +332,14 @@ export default function CaseDetail() {
                         disabled={fulfillingRequestId === req.request_id}
                         className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-bold transition-all disabled:opacity-50"
                       >
-                        {fulfillingRequestId === req.request_id ? "Fulfilling..." : "Mark Fulfilled"}
+                        {fulfillingRequestId === req.request_id ? t("btnFulfilling") : t("btnFulfill")}
                       </button>
                     )}
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-slate-500 italic">No additional evidence is currently requested for this case.</p>
+              <p className="text-sm text-slate-500 italic">{t("noRequestedEvidence")}</p>
             )}
 
             {/* Officer Action: Request Evidence Form */}
