@@ -1,6 +1,16 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchCase, fetchCaseEvents, updateCaseStatus, uploadDocument, fetchEvidence, compareDocuments } from "../lib/api";
+import { 
+  fetchCase, 
+  fetchCaseEvents, 
+  updateCaseStatus, 
+  uploadDocument, 
+  fetchEvidence, 
+  compareDocuments,
+  fetchCaseGraph,
+  fetchCaseConflicts,
+  updateConflictStatus
+} from "../lib/api";
 import { Case, CaseEvent, Evidence } from "../types/types";
 
 const DOCUMENT_TYPES = [
@@ -16,6 +26,19 @@ const DOCUMENT_TYPES = [
   "Application",
   "Other"
 ];
+
+interface GraphNode {
+  id: string;
+  type: string;
+  label: string;
+  details: Record<string, any>;
+}
+
+interface GraphEdge {
+  source: string;
+  target: string;
+  type: string;
+}
 
 export default function CaseDetail() {
   const { caseId } = useParams<{ caseId: string }>();
@@ -43,6 +66,14 @@ export default function CaseDetail() {
   const [comparing, setComparing] = useState(false);
   const [compareResult, setCompareResult] = useState<any | null>(null);
 
+  // Phase 3 Graph & Conflict states
+  const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
+  const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
+  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
+  
+  const [conflicts, setConflicts] = useState<any[]>([]);
+  const [resolvingConflictId, setResolvingConflictId] = useState("");
+
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -64,6 +95,15 @@ export default function CaseDetail() {
 
       const evidence = await fetchEvidence(caseId);
       setEvidenceList(evidence);
+
+      // Load Case Graph representation
+      const graphData = await fetchCaseGraph(caseId);
+      setGraphNodes(graphData.nodes);
+      setGraphEdges(graphData.edges);
+
+      // Load Potential Conflicts
+      const conflictList = await fetchCaseConflicts(caseId);
+      setConflicts(conflictList);
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || "Failed to load case details.");
@@ -135,6 +175,19 @@ export default function CaseDetail() {
     }
   };
 
+  const handleConflictStatus = async (conflictId: string, status: string) => {
+    setResolvingConflictId(conflictId);
+    try {
+      await updateConflictStatus(conflictId, status);
+      await loadData();
+    } catch (err: any) {
+      console.error(err);
+      alert(err.message || "Failed to update conflict status.");
+    } finally {
+      setResolvingConflictId("");
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-800">
@@ -178,8 +231,8 @@ export default function CaseDetail() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto w-full mt-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left/Middle Column: Details, Uploads, Verification */}
+      <main className="max-w-7xl mx-auto w-full mt-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left/Middle Column: Overview, Documents, Case Graph, and Potential Conflicts */}
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
             <div className="flex justify-between items-start">
@@ -216,7 +269,7 @@ export default function CaseDetail() {
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Land / Property Context</h4>
               {caseObj.land_parcels.length > 0 ? (
                 caseObj.land_parcels.map((lp) => (
-                  <div key={lp.id} className="text-sm bg-slate-50 p-3 rounded border space-y-1.5">
+                  <div key={lp.id} className="text-sm bg-slate-50 p-3 rounded border space-y-1.5 mb-2">
                     <div className="grid grid-cols-3 gap-2">
                       <div>
                         <span className="block text-[10px] text-slate-400 font-bold uppercase">District</span>
@@ -274,6 +327,164 @@ export default function CaseDetail() {
               )}
             </div>
           </div>
+
+          {/* Interactive Case Graph Projection Section */}
+          <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+            <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Interactive Case Graph Projection</h3>
+            
+            {graphNodes.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Visual relationship canvas list */}
+                <div className="md:col-span-2 border rounded-xl p-4 bg-slate-50 max-h-96 overflow-y-auto space-y-4">
+                  <p className="text-xs text-slate-400 italic mb-2">Click any node below to trace details and associated relationships:</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {graphNodes.map((node) => {
+                      const colors: Record<string, string> = {
+                        CASE: "bg-indigo-100 text-indigo-800 border-indigo-300",
+                        PERSON: "bg-emerald-100 text-emerald-800 border-emerald-300",
+                        LAND_PARCEL: "bg-amber-100 text-amber-800 border-amber-300",
+                        DOCUMENT: "bg-rose-100 text-rose-800 border-rose-300",
+                        EVIDENCE: "bg-blue-100 text-blue-800 border-blue-300",
+                        EVENT: "bg-slate-100 text-slate-800 border-slate-300"
+                      };
+
+                      return (
+                        <button
+                          key={node.id}
+                          onClick={() => setSelectedNode(node)}
+                          className={`px-3 py-1.5 rounded-lg border text-xs font-semibold hover:opacity-80 transition-all ${
+                            colors[node.type] || "bg-slate-50 text-slate-800"
+                          } ${selectedNode?.id === node.id ? "ring-2 ring-indigo-600 ring-offset-1" : ""}`}
+                        >
+                          {node.type}: {node.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="border-t pt-4 mt-4">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Active Linkages</h4>
+                    {graphEdges.length > 0 ? (
+                      <div className="space-y-1 text-xs text-slate-600 font-mono">
+                        {graphEdges.map((edge, idx) => {
+                          const srcNode = graphNodes.find(n => n.id === edge.source);
+                          const targetNode = graphNodes.find(n => n.id === edge.target);
+                          return (
+                            <div key={idx} className="bg-white p-1 rounded border">
+                              {srcNode ? srcNode.label : "Entity"} ──[{edge.type}]──&gt; {targetNode ? targetNode.label : "Entity"}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-slate-400 italic">No connections recorded.</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Node details drawer */}
+                <div className="border rounded-xl p-4 bg-white space-y-3">
+                  <h4 className="font-bold text-sm text-slate-800 border-b pb-2">Selected Node Trace</h4>
+                  {selectedNode ? (
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold uppercase tracking-wider text-[10px] text-slate-400">Node Type</span>
+                        <span className="font-bold text-indigo-600">{selectedNode.type}</span>
+                      </div>
+                      <div className="flex justify-between items-center border-b pb-2">
+                        <span className="font-semibold uppercase tracking-wider text-[10px] text-slate-400">Label</span>
+                        <span className="font-bold text-slate-850">{selectedNode.label}</span>
+                      </div>
+                      <div className="space-y-1.5 mt-2">
+                        <p className="font-semibold uppercase tracking-wider text-[10px] text-slate-400">Attributes</p>
+                        {Object.entries(selectedNode.details).map(([key, val]) => (
+                          <div key={key} className="flex flex-col bg-slate-50 p-1.5 rounded border border-slate-100">
+                            <span className="text-[10px] text-slate-500 font-semibold">{key}</span>
+                            <span className="font-mono break-all">{String(val)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400 italic">Click any node to view PostgreSQL-backed attribute trace.</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <p className="text-sm text-slate-400 italic">Graph representation empty.</p>
+            )}
+          </div>
+
+          {/* Potential Conflicts (Officer Only) */}
+          {userRole === "officer" && (
+            <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Potential Verification Conflicts</h3>
+              
+              {conflicts.length > 0 ? (
+                <div className="space-y-3">
+                  {conflicts.map((c) => {
+                    const badgeColors: Record<string, string> = {
+                      OPEN: "bg-rose-50 text-rose-700 border-rose-200",
+                      REVIEWED: "bg-blue-50 text-blue-700 border-blue-200",
+                      DISMISSED: "bg-slate-100 text-slate-600 border-slate-300"
+                    };
+
+                    return (
+                      <div key={c.conflict_id} className="p-4 border rounded-xl bg-slate-50 flex flex-col justify-between gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-800 px-2 py-0.5 rounded">
+                                {c.conflict_type}
+                              </span>
+                              <span className="text-xs font-semibold uppercase text-slate-400">
+                                Severity: {c.severity}
+                              </span>
+                            </div>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeColors[c.status] || ""}`}>
+                              {c.status}
+                            </span>
+                          </div>
+
+                          <p className="text-sm font-semibold text-slate-800">{c.description}</p>
+                          
+                          <div className="text-[10px] text-slate-500 space-y-1 font-mono pt-2 border-t border-dashed border-slate-200">
+                            <p>Conflict ID: {c.conflict_id}</p>
+                            {c.source_entity_a && <p>Source Entity A: {c.source_entity_a}</p>}
+                            {c.source_entity_b && <p>Source Entity B: {c.source_entity_b}</p>}
+                            <p>Detected At: {new Date(c.detected_at).toLocaleString()}</p>
+                            {c.resolved_at && <p>Resolved At: {new Date(c.resolved_at).toLocaleString()}</p>}
+                          </div>
+                        </div>
+
+                        {c.status === "OPEN" && (
+                          <div className="flex items-center gap-2 pt-2 justify-end border-t border-slate-200">
+                            <button
+                              disabled={resolvingConflictId === c.conflict_id}
+                              onClick={() => handleConflictStatus(c.conflict_id, "REVIEWED")}
+                              className="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-bold transition-all disabled:opacity-50"
+                            >
+                              Mark Reviewed
+                            </button>
+                            <button
+                              disabled={resolvingConflictId === c.conflict_id}
+                              onClick={() => handleConflictStatus(c.conflict_id, "DISMISSED")}
+                              className="px-3 py-1 bg-slate-600 hover:bg-slate-700 text-white rounded text-xs font-bold transition-all disabled:opacity-50"
+                            >
+                              Dismiss
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-600 italic">No potential conflicts detected.</p>
+              )}
+            </div>
+          )}
 
           {/* Document Evidence Section */}
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
