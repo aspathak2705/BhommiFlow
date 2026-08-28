@@ -1,7 +1,7 @@
 {
-  "name": "ShikshaFlow",
-  "short_name": "ShikshaFlow",
-  "description": "Intelligent Lesson Planner & Teacher Workspace",
+  "name": "BhoomiFlow",
+  "short_name": "BhoomiFlow",
+  "description": "Evidence-traceability and case-orchestration layer for fragmented land-record workflows",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FCFAF7",

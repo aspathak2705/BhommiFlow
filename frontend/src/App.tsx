@@ -1,17 +1,22 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Workspace from "./pages/Workspace";
-import CreateTask from "./pages/CreateTask";
-import TaskDetail from "./pages/TaskDetail";
+import Login from "./pages/Login";
+import CitizenDashboard from "./pages/CitizenDashboard";
+import CreateCase from "./pages/CreateCase";
+import OfficerDashboard from "./pages/OfficerDashboard";
+import CaseDetail from "./pages/CaseDetail";
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Workspace />} />
-        <Route path="/create-task" element={<CreateTask />} />
-        <Route path="/tasks/:taskId" element={<TaskDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/citizen" element={<CitizenDashboard />} />
+        <Route path="/citizen/create-case" element={<CreateCase />} />
+        <Route path="/officer" element={<OfficerDashboard />} />
+        <Route path="/cases/:caseId" element={<CaseDetail />} />
+        
         {/* Fallback route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );
