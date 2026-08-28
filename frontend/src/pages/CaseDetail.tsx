@@ -9,7 +9,12 @@ import {
   compareDocuments,
   fetchCaseGraph,
   fetchCaseConflicts,
-  updateConflictStatus
+  updateConflictStatus,
+  fetchCaseGuidance,
+  createEvidenceRequest,
+  fetchEvidenceRequests,
+  fulfillEvidenceRequest,
+  fetchNotifications
 } from "../lib/api";
 import { Case, CaseEvent, Evidence } from "../types/types";
 
@@ -74,8 +79,21 @@ export default function CaseDetail() {
   const [conflicts, setConflicts] = useState<any[]>([]);
   const [resolvingConflictId, setResolvingConflictId] = useState("");
 
+  // Phase 4 RAG states
+  const [ragQuestion, setRagQuestion] = useState("");
+  const [ragAnswer, setRagAnswer] = useState("");
+  const [ragSources, setRagSources] = useState<any[]>([]);
+  const [ragSearching, setRagSearching] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Phase 5 states
+  const [evidenceRequests, setEvidenceRequests] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [newRequestDesc, setNewRequestDesc] = useState("");
+  const [creatingRequest, setCreatingRequest] = useState(false);
+  const [fulfillingRequestId, setFulfillingRequestId] = useState("");
 
   const loadData = async () => {
     if (!caseId) return;
@@ -104,6 +122,12 @@ export default function CaseDetail() {
       // Load Potential Conflicts
       const conflictList = await fetchCaseConflicts(caseId);
       setConflicts(conflictList);
+
+      // Load Evidence Requests and Notifications
+      const requests = await fetchEvidenceRequests(caseId);
+      setEvidenceRequests(requests);
+      const notifs = await fetchNotifications(caseId);
+      setNotifications(notifs);
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || "Failed to load case details.");
@@ -175,6 +199,26 @@ export default function CaseDetail() {
     }
   };
 
+  const handleRagQuery = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!caseId || !ragQuestion.trim()) return;
+    setRagSearching(true);
+    setRagAnswer("");
+    setRagSources([]);
+    setErrorMsg(null);
+
+    try {
+      const guidance = await fetchCaseGuidance(caseId, ragQuestion);
+      setRagAnswer(guidance.answer);
+      setRagSources(guidance.sources);
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "Failed to retrieve guidance.");
+    } finally {
+      setRagSearching(false);
+    }
+  };
+
   const handleConflictStatus = async (conflictId: string, status: string) => {
     setResolvingConflictId(conflictId);
     try {
@@ -185,6 +229,39 @@ export default function CaseDetail() {
       alert(err.message || "Failed to update conflict status.");
     } finally {
       setResolvingConflictId("");
+    }
+  };
+
+  const handleCreateEvidenceRequest = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!caseId || !newRequestDesc.trim()) return;
+    setCreatingRequest(true);
+    setErrorMsg(null);
+
+    try {
+      await createEvidenceRequest(caseId, newRequestDesc);
+      setNewRequestDesc("");
+      await loadData();
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "Failed to create evidence request.");
+    } finally {
+      setCreatingRequest(false);
+    }
+  };
+
+  const handleFulfillRequest = async (requestId: string) => {
+    setFulfillingRequestId(requestId);
+    setErrorMsg(null);
+
+    try {
+      await fulfillEvidenceRequest(requestId);
+      await loadData();
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "Failed to fulfill evidence request.");
+    } finally {
+      setFulfillingRequestId("");
     }
   };
 
@@ -234,6 +311,59 @@ export default function CaseDetail() {
       <main className="max-w-7xl mx-auto w-full mt-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left/Middle Column: Overview, Documents, Case Graph, and Potential Conflicts */}
         <div className="lg:col-span-2 space-y-6">
+          {/* Action Required Widget (Always Visible at Top when requested) */}
+          <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+            <h3 className="text-lg font-bold border-b pb-2 text-rose-700">Requested Evidence / Actions</h3>
+            {evidenceRequests.length > 0 ? (
+              <div className="space-y-3">
+                {evidenceRequests.map((req) => (
+                  <div key={req.request_id} className="p-4 border rounded-xl bg-rose-50/50 flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-semibold text-slate-800">{req.description}</p>
+                      <span className="text-[10px] text-slate-400 font-mono block mt-1">
+                        Requested: {new Date(req.created_at).toLocaleString()} | Status: <strong className={req.status === "OPEN" ? "text-rose-600" : "text-emerald-600"}>{req.status}</strong>
+                      </span>
+                    </div>
+                    {userRole === "citizen" && req.status === "OPEN" && (
+                      <button
+                        onClick={() => handleFulfillRequest(req.request_id)}
+                        disabled={fulfillingRequestId === req.request_id}
+                        className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded text-xs font-bold transition-all disabled:opacity-50"
+                      >
+                        {fulfillingRequestId === req.request_id ? "Fulfilling..." : "Mark Fulfilled"}
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-slate-500 italic">No additional evidence is currently requested for this case.</p>
+            )}
+
+            {/* Officer Action: Request Evidence Form */}
+            {userRole === "officer" && (
+              <form onSubmit={handleCreateEvidenceRequest} className="border-t pt-4 space-y-3">
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Request Additional Evidence</h4>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={newRequestDesc}
+                    onChange={(e) => setNewRequestDesc(e.target.value)}
+                    placeholder="Enter document request explanation..."
+                    className="flex-1 p-2 border rounded text-sm bg-white"
+                  />
+                  <button
+                    type="submit"
+                    disabled={creatingRequest || !newRequestDesc.trim()}
+                    className="px-4 py-2 bg-rose-600 hover:bg-rose-750 text-white rounded text-sm font-bold transition-all disabled:opacity-50"
+                  >
+                    {creatingRequest ? "Requesting..." : "Submit Request"}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
@@ -486,7 +616,60 @@ export default function CaseDetail() {
             </div>
           )}
 
-          {/* Document Evidence Section */}
+          {/* Grounded Procedure Guidance RAG Widget */}
+          <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+            <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Find Government Procedure Guidance</h3>
+            <p className="text-xs text-slate-500">
+              Search the authoritative state knowledge base for procedures, circulars, and document requirements relevant to this case.
+            </p>
+            <form onSubmit={handleRagQuery} className="flex gap-2">
+              <input
+                type="text"
+                value={ragQuestion}
+                onChange={(e) => setRagQuestion(e.target.value)}
+                placeholder="Ask about land mutation timelines, heir certificates, needed documents..."
+                className="flex-1 p-2 border rounded text-sm bg-white"
+              />
+              <button
+                type="submit"
+                disabled={ragSearching || !ragQuestion}
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm font-bold transition-all disabled:opacity-50"
+              >
+                {ragSearching ? "Searching..." : "Search Guidance"}
+              </button>
+            </form>
+
+            {ragAnswer && (
+              <div className="p-4 border rounded-xl bg-slate-50 space-y-3">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400">Grounded AI explanation</h4>
+                <p className="text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">{ragAnswer}</p>
+                
+                {ragSources.length > 0 && (
+                  <div className="border-t pt-3 mt-3">
+                    <h5 className="font-bold text-[10px] text-slate-450 uppercase tracking-wider mb-2">Sources Cited:</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {ragSources.map((src, idx) => (
+                        <div key={idx} className="bg-white px-2.5 py-1 rounded border text-[10px] space-y-0.5">
+                          <span className="font-bold block text-slate-700">{src.title}</span>
+                          <span className="text-slate-400 block">{src.department} • Scope: {src.scope}</span>
+                          {src.source_url && src.source_url !== "Not available" && (
+                            <a
+                              href={src.source_url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-indigo-600 hover:underline block font-semibold"
+                            >
+                              Official Link
+                            </a>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
             <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Case Evidence & Documents</h3>
             
@@ -695,6 +878,31 @@ export default function CaseDetail() {
               </form>
             </div>
           )}
+
+          {/* SMS Notification Activity Log */}
+          <div className="bg-white rounded-xl border p-6 shadow-sm space-y-3">
+            <h3 className="font-bold text-slate-800 border-b pb-2">SMS Notification Logs</h3>
+            {notifications.length > 0 ? (
+              <div className="space-y-3">
+                {notifications.map((n) => (
+                  <div key={n.notification_id} className="p-3 border rounded bg-slate-50 text-xs space-y-1">
+                    <div className="flex justify-between items-center font-semibold text-slate-700">
+                      <span>{n.event_type}</span>
+                      <span className={n.status === "SENT" ? "text-emerald-600" : "text-rose-600 font-bold"}>
+                        {n.status}
+                      </span>
+                    </div>
+                    <p className="text-slate-650 font-sans">{n.message}</p>
+                    <span className="text-[10px] text-slate-400 block font-mono">
+                      Sent: {new Date(n.created_at).toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs text-slate-450 italic">No notification alerts triggered for this case.</p>
+            )}
+          </div>
 
           {/* Case Event Timeline */}
           <div className="bg-white rounded-xl border p-6 shadow-sm">
