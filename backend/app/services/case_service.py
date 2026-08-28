@@ -94,8 +94,12 @@ def log_event(db: Session, case_id: str, event_type: str, actor_id: str, actor_r
         actor_role=actor_role,
         metadata_json=json.dumps(metadata) if metadata else None
     )
+    # Automatically register to local append-only hash chain
+    from app.services.integrity_service import append_to_hash_chain
     db.add(db_event)
-    return db_event
+    db.commit()
+    db.refresh(db_event)
+    return append_to_hash_chain(db, db_event)
 
 def get_case(db: Session, case_id: str) -> Case:
     return db.query(Case).filter(Case.case_id == case_id).first()

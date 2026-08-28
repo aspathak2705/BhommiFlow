@@ -59,6 +59,8 @@ class CaseEventResponse(BaseModel):
     actor_role: str
     timestamp: datetime
     metadata_json: Optional[str]
+    previous_event_hash: Optional[str]
+    current_event_hash: Optional[str]
 
     class Config:
         from_attributes = True

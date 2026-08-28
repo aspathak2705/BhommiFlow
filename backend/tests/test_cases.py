@@ -1,4 +1,6 @@
 import sys
+import io
+import json
 from pathlib import Path
 from fastapi.testclient import TestClient
 
@@ -9,7 +11,10 @@ from app.main import app
 from app.core.database import SessionLocal
 from app.models.user import User, CitizenProfile, OfficerProfile
 from app.models.case import Case, LandParcel, Person, CasePerson, CaseEvent
+from app.models.document import Document, Evidence
 from app.api.routes.auth import TOKEN_DB
+from app.services.integrity_service import verify_hash_chain
+from app.services.extraction_service import extract_metadata_from_text
 
 client = TestClient(app)
 
@@ -21,6 +26,8 @@ def setup_test_data():
     db.query(CasePerson).delete()
     db.query(Person).delete()
     db.query(LandParcel).delete()
+    db.query(Evidence).delete()
+    db.query(Document).delete()
     db.query(Case).delete()
     db.query(CitizenProfile).delete()
     db.query(OfficerProfile).delete()
@@ -80,6 +87,8 @@ def setup_test_data():
     db.query(CasePerson).delete()
     db.query(Person).delete()
     db.query(LandParcel).delete()
+    db.query(Evidence).delete()
+    db.query(Document).delete()
     db.query(Case).delete()
     db.query(CitizenProfile).delete()
     db.query(OfficerProfile).delete()
@@ -202,3 +211,149 @@ def test_officer_assignment_authorization():
         headers={"Authorization": "Bearer token-off-2"}
     )
     assert response.status_code == 403
+
+def test_document_uploads_and_security():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    db.close()
+
+    # 1. Citizen 1 uploads valid file
+    file_content = b"Sale Deed Date: 28/08/2026 Reg No: 98765 Survey No: 104"
+    files = {"file": ("saledeed.pdf", io.BytesIO(file_content), "application/pdf")}
+    data = {"document_type": "Sale Deed"}
+
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data=data,
+        files=files,
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    assert response.status_code == 200
+    doc_data = response.json()
+    assert doc_data["sha256_hash"] is not None
+    assert doc_data["status"] == "READY"
+
+    # Verify metadata regex parser extracted fields correctly
+    meta = json.loads(doc_data["extracted_metadata"])
+    assert meta["issue_date"]["value"] == "2026-08-28"
+    assert meta["registration_number"]["value"] == "98765"
+    assert meta["survey_number"]["value"] == "104"
+
+    # 2. Citizen 2 blocked from uploading to Citizen 1's case
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data=data,
+        files=files,
+        headers={"Authorization": "Bearer token-cit-2"}
+    )
+    assert response.status_code == 403
+
+    # 3. Invalid file type rejected
+    bad_files = {"file": ("test.exe", io.BytesIO(b"binary"), "application/octet-stream")}
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data=data,
+        files=bad_files,
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    assert response.status_code == 400
+
+    # 4. Oversized file rejected
+    huge_files = {"file": ("big.pdf", io.BytesIO(b"0" * (11 * 1024 * 1024)), "application/pdf")}
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data=data,
+        files=huge_files,
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    assert response.status_code == 400
+
+def test_document_comparison():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    db.close()
+
+    # Upload Doc A (Citizen)
+    file_a = b"Exact match content"
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data={"document_type": "Sale Deed"},
+        files={"file": ("fileA.pdf", io.BytesIO(file_a), "application/pdf")},
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    doc_a_id = response.json()["document_id"]
+
+    # Upload Counterpart Doc B (Officer 1 - identical)
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data={"document_type": "Sale Deed"},
+        files={"file": ("fileB.pdf", io.BytesIO(file_a), "application/pdf")},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    doc_b_id = response.json()["document_id"]
+
+    # Upload Doc C (Different content)
+    file_c = b"Different matching content"
+    response = client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data={"document_type": "Sale Deed"},
+        files={"file": ("fileC.pdf", io.BytesIO(file_c), "application/pdf")},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    doc_c_id = response.json()["document_id"]
+
+    # Compare identical files
+    response = client.post(
+        f"/api/v1/documents/{doc_a_id}/compare",
+        data={"counterpart_id": doc_b_id},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    assert response.status_code == 200
+    assert response.json()["match"] is True
+    assert response.json()["status_text"] == "EXACT FILE MATCH"
+    assert response.json()["content_comparison_available"] is False
+
+    # Compare differing files (Verify mismatch is not labeled fraud)
+    response = client.post(
+        f"/api/v1/documents/{doc_a_id}/compare",
+        data={"counterpart_id": doc_c_id},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    assert response.status_code == 200
+    assert response.json()["match"] is False
+    assert "differ" in response.json()["status_text"].lower()
+    assert "fraud" not in response.json()["status_text"].lower()
+    assert response.json()["content_comparison_available"] is True
+    assert response.json()["text_diff_detected"] is True
+    assert "character difference" in response.json()["comparison_summary"].lower()
+
+def test_hash_chain_integrity_and_tamper_detection():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    
+    # Verify existing event timeline matches the append-only hash chain
+    assert verify_hash_chain(db, case_id) is True
+
+    # Tamper with an event in the database
+    tamper_event = db.query(CaseEvent).filter(CaseEvent.case_id == case_id).first()
+    assert tamper_event is not None
+    tamper_event.event_type = "TAMPERED_EVENT"
+    db.commit()
+
+    # Integrity verification must fail
+    assert verify_hash_chain(db, case_id) is False
+    db.close()
+
+def test_date_extraction_provenance():
+    # Test common Indian date formats normalization and regex sources
+    res_slash = extract_metadata_from_text("Date of registration is 28/08/2026")
+    assert res_slash["issue_date"]["value"] == "2026-08-28"
+
+    res_dash = extract_metadata_from_text("Action registered on 28-08-2026")
+    assert res_dash["issue_date"]["value"] == "2026-08-28"
+
+    res_dot = extract_metadata_from_text("Dated 28.08.2026")
+    assert res_dot["issue_date"]["value"] == "2026-08-28"

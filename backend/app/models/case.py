@@ -25,6 +25,8 @@ class Case(Base):
     land_parcels = relationship("LandParcel", back_populates="case", cascade="all, delete-orphan")
     people = relationship("CasePerson", back_populates="case", cascade="all, delete-orphan")
     events = relationship("CaseEvent", back_populates="case", cascade="all, delete-orphan")
+    documents = relationship("Document", back_populates="case", cascade="all, delete-orphan")
+    evidence = relationship("Evidence", back_populates="case", cascade="all, delete-orphan")
 
 class LandParcel(Base):
     __tablename__ = "land_parcels"
@@ -75,6 +77,8 @@ class CaseEvent(Base):
     actor_role = Column(String, nullable=False)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
     metadata_json = Column(String, nullable=True)  # Simple metadata storage
+    previous_event_hash = Column(String, nullable=True)
+    current_event_hash = Column(String, nullable=True)
 
     case = relationship("Case", back_populates="events")
     actor = relationship("User")
