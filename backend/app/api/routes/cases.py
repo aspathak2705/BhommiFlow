@@ -11,10 +11,15 @@ from app.models.case import Case, CaseEvent
 from app.models.document import Document, Evidence
 from app.schemas.case import CaseCreate, CaseResponse, CaseStatusUpdate, CaseEventResponse
 from app.schemas.document import DocumentResponse, EvidenceResponse, DocumentCompareResponse
+from app.schemas.conflict import ConflictResponse, ConflictStatusUpdate
+from app.schemas.graph import GraphResponse
 from app.services import case_service
 from app.services.storage_service import storage_service
 from app.services.integrity_service import calculate_sha256
 from app.services.extraction_service import extract_metadata_from_text
+from app.services.graph_service import build_case_graph
+from app.services.conflict_service import ConflictDetectionService
+from app.models.conflict import PotentialConflict
 
 router = APIRouter()
 
@@ -258,3 +263,73 @@ def download_document(
         
     from fastapi.responses import Response
     return Response(content=content, media_type=doc.mime_type)
+
+# --- PHASE 3 CASE GRAPH & CONFLICT DETECTION APIS ---
+
+@router.get("/cases/{case_id}/graph", response_model=GraphResponse)
+def get_case_graph(
+    case_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    return build_case_graph(db, case_id)
+
+@router.post("/cases/{case_id}/conflicts/analyze")
+def analyze_case_conflicts(
+    case_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    # Re-run deterministic conflict rules
+    ConflictDetectionService.analyze_case_conflicts(db, case_id)
+    return {"status": "success", "message": "Conflict evaluation finished"}
+
+@router.get("/cases/{case_id}/conflicts", response_model=List[ConflictResponse])
+def get_case_conflicts(
+    case_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    # Automatically execute analysis to fetch up-to-date potential conflicts
+    ConflictDetectionService.analyze_case_conflicts(db, case_id)
+    return db.query(PotentialConflict).filter(PotentialConflict.case_id == case_id).all()
+
+@router.patch("/conflicts/{conflict_id}/status", response_model=ConflictResponse)
+def update_conflict_status(
+    conflict_id: str,
+    status_update: ConflictStatusUpdate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    if current_user.role != "officer":
+        raise HTTPException(status_code=403, detail="Only officers can update conflict review statuses")
+        
+    conflict = db.query(PotentialConflict).filter(PotentialConflict.conflict_id == conflict_id).first()
+    if not conflict:
+        raise HTTPException(status_code=404, detail="Conflict record not found")
+        
+    # Enforce case authorization check
+    check_case_access(conflict.case_id, current_user, db)
+    
+    conflict.status = status_update.status
+    if status_update.status in ["REVIEWED", "DISMISSED"]:
+        conflict.reviewed_by = current_user.id
+        from datetime import datetime, timezone
+        conflict.resolved_at = datetime.now(timezone.utc)
+        
+    # Log timeline activity review event
+    case_service.log_event(
+        db=db,
+        case_id=conflict.case_id,
+        event_type="CONFLICT_REVIEWED" if status_update.status == "REVIEWED" else "CONFLICT_DISMISSED",
+        actor_id=current_user.id,
+        actor_role=current_user.role,
+        metadata={"conflict_id": conflict_id, "status": status_update.status}
+    )
+    
+    db.commit()
+    db.refresh(conflict)
+    return conflict

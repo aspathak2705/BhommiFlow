@@ -357,3 +357,76 @@ def test_date_extraction_provenance():
 
     res_dot = extract_metadata_from_text("Dated 28.08.2026")
     assert res_dot["issue_date"]["value"] == "2026-08-28"
+
+def test_case_graph_projection():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    db.close()
+
+    # 1. Citizen 1 can retrieve own case graph
+    response = client.get(f"/api/v1/cases/{case_id}/graph", headers={"Authorization": "Bearer token-cit-1"})
+    assert response.status_code == 200
+    graph = response.json()
+    assert "nodes" in graph
+    assert "edges" in graph
+    
+    # Assert nodes count and types
+    node_types = [n["type"] for n in graph["nodes"]]
+    assert "CASE" in node_types
+    assert "PERSON" in node_types
+    assert "LAND_PARCEL" in node_types
+    assert "DOCUMENT" in node_types
+
+    # 2. Citizen 2 blocked from retrieving graph
+    response = client.get(f"/api/v1/cases/{case_id}/graph", headers={"Authorization": "Bearer token-cit-2"})
+    assert response.status_code == 403
+
+    # 3. Assigned officer can retrieve graph
+    response = client.get(f"/api/v1/cases/{case_id}/graph", headers={"Authorization": "Bearer token-off-1"})
+    assert response.status_code == 200
+
+    # 4. Unassigned officer blocked from retrieving graph
+    response = client.get(f"/api/v1/cases/{case_id}/graph", headers={"Authorization": "Bearer token-off-2"})
+    assert response.status_code == 403
+
+def test_conflict_detection_service():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    db.close()
+
+    # Make sure some files exist to trigger duplicate document mismatch conflict
+    file_content = b"Sale Deed Date: 28/08/2026 Reg No: 98765 Survey No: 104"
+    client.post(
+        f"/api/v1/cases/{case_id}/documents",
+        data={"document_type": "Sale Deed"},
+        files={"file": ("saledeed_dup.pdf", io.BytesIO(file_content), "application/pdf")},
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+
+    # Force run conflict analysis via endpoint
+    response = client.post(f"/api/v1/cases/{case_id}/conflicts/analyze", headers={"Authorization": "Bearer token-off-1"})
+    assert response.status_code == 200
+
+    # Retrieve potential conflicts
+    response = client.get(f"/api/v1/cases/{case_id}/conflicts", headers={"Authorization": "Bearer token-off-1"})
+    assert response.status_code == 200
+    conflicts = response.json()
+    
+    # Assert counterpart comparison or duplicate/other conflict exists because documents were compared
+    conflict_types = [c["conflict_type"] for c in conflicts]
+    assert len(conflict_types) > 0
+    
+    conflict_id = conflicts[0]["conflict_id"]
+    
+    # Resolve or dismiss conflict via PATCH
+    response = client.patch(
+        f"/api/v1/conflicts/{conflict_id}/status",
+        json={"status": "REVIEWED"},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    assert response.status_code == 200
+    assert response.json()["status"] == "REVIEWED"
+
+
