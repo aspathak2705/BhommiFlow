@@ -63,6 +63,32 @@ export interface CaseEvent {
   actor_role: string;
   timestamp: string;
   metadata_json?: string;
+  previous_event_hash?: string;
+  current_event_hash?: string;
+}
+
+export interface Document {
+  document_id: string;
+  case_id: string;
+  uploaded_by: string;
+  document_type: string;
+  file_name: string;
+  file_size: number;
+  sha256_hash: string;
+  uploaded_at: string;
+  status: string;
+  extracted_metadata?: string;
+}
+
+export interface Evidence {
+  evidence_id: string;
+  case_id: string;
+  document_id: string;
+  evidence_type: string;
+  submitted_by: string;
+  submitted_at: string;
+  status: string;
+  document: Document;
 }
 
 export interface Case {

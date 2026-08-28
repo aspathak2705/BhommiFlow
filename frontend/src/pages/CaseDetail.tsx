@@ -1,7 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchCase, fetchCaseEvents, updateCaseStatus } from "../lib/api";
-import { Case, CaseEvent } from "../types/types";
+import { fetchCase, fetchCaseEvents, updateCaseStatus, uploadDocument, fetchEvidence, compareDocuments } from "../lib/api";
+import { Case, CaseEvent, Evidence } from "../types/types";
+
+const DOCUMENT_TYPES = [
+  "Land Record",
+  "Sale Deed",
+  "Mutation Document",
+  "Property Card",
+  "Registration Document",
+  "Death Certificate",
+  "Succession/Legal-Heir Document",
+  "Court Order",
+  "Survey Document",
+  "Application",
+  "Other"
+];
 
 export default function CaseDetail() {
   const { caseId } = useParams<{ caseId: string }>();
@@ -9,6 +23,7 @@ export default function CaseDetail() {
 
   const [caseObj, setCaseObj] = useState<Case | null>(null);
   const [events, setEvents] = useState<CaseEvent[]>([]);
+  const [evidenceList, setEvidenceList] = useState<Evidence[]>([]);
   const [userRole, setUserRole] = useState<string>("citizen");
   
   // Officer status updates
@@ -16,36 +31,52 @@ export default function CaseDetail() {
   const [statusNote, setStatusNote] = useState("");
   const [updating, setUpdating] = useState(false);
 
+  // File Upload states
+  const [uploadType, setUploadType] = useState(DOCUMENT_TYPES[0]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState("");
+
+  // Document Comparison states
+  const [compDocA, setCompDocA] = useState("");
+  const [compDocB, setCompDocB] = useState("");
+  const [comparing, setComparing] = useState(false);
+  const [compareResult, setCompareResult] = useState<any | null>(null);
+
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadData() {
-      if (!caseId) return;
-      try {
-        const storedUser = localStorage.getItem("bhoomiflow_user");
-        if (storedUser) {
-          const user = JSON.parse(storedUser);
-          setUserRole(user.role);
-        }
-
-        const data = await fetchCase(caseId);
-        setCaseObj(data);
-        setNewStatus(data.status);
-
-        const eventList = await fetchCaseEvents(caseId);
-        setEvents(eventList);
-      } catch (err: any) {
-        console.error(err);
-        setErrorMsg(err.message || "Failed to load case details.");
-      } finally {
-        setLoading(false);
+  const loadData = async () => {
+    if (!caseId) return;
+    try {
+      const storedUser = localStorage.getItem("bhoomiflow_user");
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        setUserRole(user.role);
       }
+
+      const data = await fetchCase(caseId);
+      setCaseObj(data);
+      setNewStatus(data.status);
+
+      const eventList = await fetchCaseEvents(caseId);
+      setEvents(eventList);
+
+      const evidence = await fetchEvidence(caseId);
+      setEvidenceList(evidence);
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "Failed to load case details.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
     loadData();
   }, [caseId]);
 
-  const handleStatusChange = async (e: React.FormEvent) => {
+  const handleStatusChange = async (e: FormEvent) => {
     e.preventDefault();
     if (!caseId) return;
     setUpdating(true);
@@ -55,15 +86,52 @@ export default function CaseDetail() {
       const updated = await updateCaseStatus(caseId, newStatus, statusNote);
       setCaseObj(updated);
       setStatusNote("");
-      
-      // Reload events to refresh timeline
-      const eventList = await fetchCaseEvents(caseId);
-      setEvents(eventList);
+      await loadData();
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || "Failed to update case status.");
     } finally {
       setUpdating(false);
+    }
+  };
+
+  const handleFileUpload = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!caseId || !selectedFile) return;
+    setUploading(true);
+    setErrorMsg(null);
+    setUploadProgress("Uploading file & extracting metadata...");
+
+    try {
+      await uploadDocument(caseId, uploadType, selectedFile);
+      setUploadProgress("Upload successful!");
+      setSelectedFile(null);
+      await loadData();
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "File upload failed.");
+      setUploadProgress("");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleCompare = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!compDocA || !compDocB) return;
+    setComparing(true);
+    setCompareResult(null);
+    setErrorMsg(null);
+
+    try {
+      const result = await compareDocuments(compDocA, compDocB);
+      setCompareResult(result);
+      await loadData();
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || "Comparison failed.");
+    } finally {
+      setComparing(false);
     }
   };
 
@@ -110,9 +178,9 @@ export default function CaseDetail() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto w-full mt-8 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Side: Case Details */}
-        <div className="md:col-span-2 space-y-6">
+      <main className="max-w-6xl mx-auto w-full mt-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left/Middle Column: Details, Uploads, Verification */}
+        <div className="lg:col-span-2 space-y-6">
           <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
@@ -177,11 +245,6 @@ export default function CaseDetail() {
                         </span>
                       </div>
                     </div>
-                    {lp.description && (
-                      <p className="text-xs text-slate-500 border-t pt-1.5 mt-1.5 italic">
-                        Note: {lp.description}
-                      </p>
-                    )}
                   </div>
                 ))
               ) : (
@@ -211,10 +274,179 @@ export default function CaseDetail() {
               )}
             </div>
           </div>
+
+          {/* Document Evidence Section */}
+          <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+            <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Case Evidence & Documents</h3>
+            
+            {evidenceList.length > 0 ? (
+              <div className="space-y-3">
+                {evidenceList.map((ev) => {
+                  let meta = null;
+                  try {
+                    meta = ev.document.extracted_metadata ? JSON.parse(ev.document.extracted_metadata) : null;
+                  } catch (e) {
+                    console.error("Failed to parse document metadata", e);
+                  }
+
+                  return (
+                    <div key={ev.evidence_id} className="p-4 border rounded-xl bg-slate-50 flex flex-col md:flex-row justify-between gap-4">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded">
+                            {ev.document.document_type}
+                          </span>
+                          <span className="text-xs text-slate-400 font-semibold uppercase">
+                            {ev.evidence_type}
+                          </span>
+                        </div>
+                        <h4 className="font-bold text-slate-800">{ev.document.file_name}</h4>
+                        <div className="text-xs text-slate-500 space-y-1">
+                          <p className="font-mono">SHA-256: {ev.document.sha256_hash.substring(0, 24)}...</p>
+                          <p>Uploaded: {new Date(ev.document.uploaded_at).toLocaleString()}</p>
+                          {meta && (
+                            <div className="mt-2 p-2 bg-white rounded border border-slate-200">
+                              <p className="font-semibold text-slate-700 mb-1">Rule-Extracted Metadata:</p>
+                              {meta.issue_date && <p>• Issue Date: {meta.issue_date.value} ({meta.issue_date.source})</p>}
+                              {meta.registration_number && <p>• Reg No: {meta.registration_number.value} ({meta.registration_number.source})</p>}
+                              {meta.survey_number && <p>• Survey No: {meta.survey_number.value} ({meta.survey_number.source})</p>}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end justify-between gap-2">
+                        <span className="text-xs font-bold uppercase text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                          {ev.document.status}
+                        </span>
+                        <a
+                          href={`http://localhost:8000/api/v1/documents/${ev.document.document_id}/download`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1"
+                        >
+                          View / Download
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-sm text-slate-400 italic">No documents uploaded.</p>
+            )}
+          </div>
+
+          {/* Document Hashing Comparison Widget (Officer Only) */}
+          {userRole === "officer" && evidenceList.length > 1 && (
+            <div className="bg-white rounded-xl border p-6 space-y-4 shadow-sm">
+              <h3 className="text-lg font-bold border-b pb-2 text-indigo-700">Evidence Verification Comparison</h3>
+              <form onSubmit={handleCompare} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Citizen Submission</label>
+                    <select
+                      className="w-full p-2 border rounded bg-white text-sm"
+                      value={compDocA}
+                      onChange={(e) => setCompDocA(e.target.value)}
+                    >
+                      <option value="">Select Document...</option>
+                      {evidenceList
+                        .filter((e) => e.evidence_type === "CITIZEN_SUBMISSION")
+                        .map((e) => (
+                          <option key={e.document.document_id} value={e.document.document_id}>
+                            {e.document.file_name} ({e.document.document_id.substring(0, 8)})
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Official Counterpart</label>
+                    <select
+                      className="w-full p-2 border rounded bg-white text-sm"
+                      value={compDocB}
+                      onChange={(e) => setCompDocB(e.target.value)}
+                    >
+                      <option value="">Select Document...</option>
+                      {evidenceList
+                        .filter((e) => e.evidence_type === "OFFICIAL_COUNTERPART")
+                        .map((e) => (
+                          <option key={e.document.document_id} value={e.document.document_id}>
+                            {e.document.file_name} ({e.document.document_id.substring(0, 8)})
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  disabled={comparing || !compDocA || !compDocB}
+                  className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-sm disabled:opacity-50"
+                >
+                  {comparing ? "Comparing Fingerprints..." : "Compare Signatures / Content"}
+                </button>
+              </form>
+
+              {compareResult && (
+                <div className={`p-4 border rounded-xl mt-4 ${compareResult.match ? "bg-emerald-50 border-emerald-200" : "bg-amber-50 border-amber-200"}`}>
+                  <h4 className={`font-bold text-sm uppercase ${compareResult.match ? "text-emerald-800" : "text-amber-800"}`}>
+                    Verification Result: {compareResult.status_text}
+                  </h4>
+                  <div className="text-xs text-slate-600 space-y-1.5 mt-2 font-mono">
+                    <p>Citizen Fingerprint: {compareResult.citizen_hash}</p>
+                    <p>Official Fingerprint: {compareResult.officer_hash}</p>
+                  </div>
+                  {compareResult.comparison_summary && (
+                    <div className="mt-3 pt-3 border-t text-xs text-slate-700 font-sans">
+                      <p className="font-semibold">Content Comparison Analysis:</p>
+                      <p className="mt-1">{compareResult.comparison_summary}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Right Side: Timeline & Actions */}
+        {/* Right Side: Timeline, Actions, Upload Panel */}
         <div className="space-y-6">
+          {/* Document Upload Widget */}
+          <div className="bg-white rounded-xl border p-6 shadow-sm space-y-4">
+            <h3 className="font-bold text-slate-800 border-b pb-2">Attach Document / Evidence</h3>
+            <form onSubmit={handleFileUpload} className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Document Category</label>
+                <select
+                  className="w-full p-2 border rounded bg-white text-sm"
+                  value={uploadType}
+                  onChange={(e) => setUploadType(e.target.value)}
+                >
+                  {DOCUMENT_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Select File (PDF, JPEG, PNG)</label>
+                <input
+                  type="file"
+                  required
+                  className="w-full p-1 border rounded bg-white text-sm"
+                  onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={uploading || !selectedFile}
+                className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm font-bold transition-colors disabled:opacity-50"
+              >
+                {uploading ? "Uploading..." : "Upload Evidence"}
+              </button>
+              {uploadProgress && <p className="text-xs text-indigo-600 mt-1 font-semibold">{uploadProgress}</p>}
+            </form>
+          </div>
+
           {/* Officer Status Control Panel */}
           {userRole === "officer" && (
             <div className="bg-white rounded-xl border p-6 shadow-sm space-y-4">
@@ -291,7 +523,13 @@ export default function CaseDetail() {
                             </p>
                           )}
                           {metadata.note && <p className="italic">Note: "{metadata.note}"</p>}
+                          {metadata.file_name && <p className="italic text-indigo-600">Attached: {metadata.file_name}</p>}
                         </div>
+                      )}
+                      {evt.current_event_hash && (
+                        <p className="text-[10px] font-mono text-slate-400 mt-1 break-all select-all" title="Append-only cryptographic signature">
+                          SIG: {evt.current_event_hash}
+                        </p>
                       )}
                     </div>
                   );
