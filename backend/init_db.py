@@ -11,11 +11,11 @@ def main():
     conn = engine.connect().execution_options(isolation_level="AUTOCOMMIT")
     
     try:
-        conn.execute(text("CREATE DATABASE shikshaflow"))
-        print("Database 'shikshaflow' created successfully.")
+        conn.execute(text("CREATE DATABASE bhoomiflow"))
+        print("Database 'bhoomiflow' created successfully.")
     except ProgrammingError as e:
         if "already exists" in str(e):
-            print("Database 'shikshaflow' already exists.")
+            print("Database 'bhoomiflow' already exists.")
         else:
             print("Failed to create database:", e)
             sys.exit(1)

@@ -9,7 +9,7 @@ router = APIRouter()
 def health():
     return {
         "status": "ok",
-        "service": "shikshaflow-api"
+        "service": "bhoomiflow-api"
     }
 
 @router.get("/health/db")

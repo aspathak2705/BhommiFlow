@@ -15,7 +15,7 @@ if env_file_path.exists():
                 os.environ[key.strip()] = val.strip()
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/shikshaflow"
+    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/bhoomiflow"
     PORT: int = 8000
     HOST: str = "0.0.0.0"
 

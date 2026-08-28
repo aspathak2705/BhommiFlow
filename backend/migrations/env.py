@@ -12,9 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.core.config import settings
 from app.core.database import Base
-from app.models.teacher import Teacher
-from app.models.class_ import Class
-from app.models.task import TeachingTask
+from app.models.user import User, CitizenProfile, OfficerProfile
+from app.models.case import Case, LandParcel, Person, CasePerson, CaseEvent
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

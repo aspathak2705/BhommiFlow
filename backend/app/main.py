@@ -6,22 +6,23 @@ from fastapi.middleware.cors import CORSMiddleware
 # Ensure app is in Python path when running from backend root
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from app.api.routes import health, tasks
+from app.api.routes import health, auth, cases
 from app.core.config import settings
 
 app = FastAPI(
-    title="ShikshaFlow API",
-    description="Backend API for ShikshaFlow lesson planner",
+    title="BhoomiFlow API",
+    description="Evidence-traceability and case-orchestration layer for fragmented land-record workflows",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
 
 # CORS configuration
-# Allowing localhost:3000 for frontend development
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
 app.add_middleware(
@@ -34,8 +35,9 @@ app.add_middleware(
 
 # Include routes under /api/v1 prefix
 app.include_router(health.router, prefix="/api/v1", tags=["Health"])
-app.include_router(tasks.router, prefix="/api/v1", tags=["Tasks"])
+app.include_router(auth.router, prefix="/api/v1", tags=["Authentication"])
+app.include_router(cases.router, prefix="/api/v1", tags=["Cases"])
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to ShikshaFlow API. Access docs at /docs."}
+    return {"message": "Welcome to BhoomiFlow API. Access docs at /docs."}
