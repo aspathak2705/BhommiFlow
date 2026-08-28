@@ -51,6 +51,10 @@ class EvaluationMetricsCalculator:
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
         f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
 
+        # Rule Consistency is the percentage of logical matches to expected review flags
+        logical_matches = sum(1 for gt, pred in zip(ground_truth, predictions) if gt["comparison_payload"]["expected_review"] == pred["review_required"])
+        rule_consistency = round(logical_matches / total, 4) if total > 0 else 0.0
+
         return {
             "total_records": total,
             "evaluable_records": evaluable,
@@ -66,5 +70,6 @@ class EvaluationMetricsCalculator:
             "precision": round(precision, 4),
             "recall": round(recall, 4),
             "f1_score": round(f1, 4),
+            "rule_consistency": rule_consistency,
             "category_breakdown": category_stats
         }

@@ -1,0 +1,855 @@
+document_id,document_type,source_type,file_path,file_format,language,page_count,ocr_text,document_number,registration_number,survey_number,subdivision_number,person_names,district,taluka,village,issue_date,registration_date,transaction_date,issuer,document_status,expected_entities,expected_dates,expected_numbers,ground_truth_json,document_payload
+BF-DOC-2B8BB2CC,Survey Document,synthetic_ocr,synthetic/documents/BF-DOC-2B8BB2CC/document.pdf,PDF,Marathi-English,2,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Ahmednagar | Rahata | Krishnapur
+Issued On: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered
+
+Person Names:
+Ramesh Patil
+Sunita Deshmukh",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Ahmednagar,Rahata,Krishnapur,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Ahmednagar"", ""Rahata"", ""Krishnapur"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-2B8BB2CC"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Ahmednagar"", ""taluka"": ""Rahata"", ""village"": ""Krishnapur"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Ahmednagar', 'taluka': 'Rahata', 'village': 'Krishnapur', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Ahmednagar | Rahata | Krishnapur\nIssued On: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered\n\nPerson Names:\nRamesh Patil\nSunita Deshmukh', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Ahmednagar', 'Rahata', 'Krishnapur',
+       '2024-02-11', '2024-02-15', '2024-02-10', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-14D2D4C3,Mutation Document,synthetic_scan,synthetic/documents/BF-DOC-14D2D4C3/document.png,PNG,English,2,"Mutation Document
+Mutation Reference: MUT-2024-00231
+Person Name: Ramesh Kumbhar
+Survey No: 123/4A
+Subdivision: 01
+Location: Kolhapur | Kagal | Mangalwadi
+Mutation Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",MUT-2024-00231,REG-2024-00451,123/4A,01,"[""Ramesh Kumbhar"", ""Anita Kumbhar""]",Kolhapur,Kagal,Mangalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Kumbhar"", ""Anita Kumbhar"", ""Kolhapur"", ""Kagal"", ""Mangalwadi"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-14D2D4C3"", ""document_type"": ""Mutation Document"", ""document_number"": ""MUT-2024-00231"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Kumbhar"", ""Anita Kumbhar""], ""district"": ""Kolhapur"", ""taluka"": ""Kagal"", ""village"": ""Mangalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'MUT-2024-00231', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Kumbhar', 'Anita Kumbhar'], dtype=object), 'district': 'Kolhapur', 'taluka': 'Kagal', 'village': 'Mangalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Mutation Document\nMutation Reference: MUT-2024-00231\nPerson Name: Ramesh Kumbhar\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Kolhapur | Kagal | Mangalwadi\nMutation Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh Kumbhar', 'Anita Kumbhar', 'Kolhapur', 'Kagal',
+       'Mangalwadi', '11-02-2024', '15-02-2024', '10-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-17FAB66E,Survey Document,synthetic_ocr,synthetic/documents/BF-DOC-17FAB66E/document.pdf,PDF,Marathi,2,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Kolhapur | Karvir | Rajapur
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Kolhapur,Karvir,Rajapur,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Kolhapur"", ""Karvir"", ""Rajapur"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-17FAB66E"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Kolhapur"", ""taluka"": ""Karvir"", ""village"": ""Rajapur"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Kolhapur', 'taluka': 'Karvir', 'village': 'Rajapur', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Kolhapur | Karvir | Rajapur\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Kolhapur', 'Karvir', 'Rajapur', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-DCA1F6E2,Registration Document,synthetic_scan,synthetic/documents/BF-DOC-DCA1F6E2/document.png,PNG,Marathi,2,"Sale Deed
+Document No: REG-2024-00127
+Parties:
+Ramesh Bhausaheb Patil
+Sunita Dattatraya Deshmukh
+Property Location:
+Solapur | Barshi | Krishnawadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00127,REG-2024-00127,123/4A,01,"[""Ramesh Bhausaheb Patil"", ""Sunita Dattatraya Deshmukh""]",Solapur,Barshi,Krishnawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""123/4A"", ""01"", ""Ramesh Bhausaheb Patil"", ""Sunita Dattatraya Deshmukh"", ""Solapur"", ""Barshi"", ""Krishnawadi"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-DCA1F6E2"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Bhausaheb Patil"", ""Sunita Dattatraya Deshmukh""], ""district"": ""Solapur"", ""taluka"": ""Barshi"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Bhausaheb Patil', 'Sunita Dattatraya Deshmukh'],
+      dtype=object), 'district': 'Solapur', 'taluka': 'Barshi', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00127\nParties:\nRamesh Bhausaheb Patil\nSunita Dattatraya Deshmukh\nProperty Location:\nSolapur | Barshi | Krishnawadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', '123/4A', '01', 'Ramesh Bhausaheb Patil',
+       'Sunita Dattatraya Deshmukh', 'Solapur', 'Barshi', 'Krishnawadi',
+       '10-02-2024', '15-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01'], dtype=object)}"
+BF-DOC-C0B6F913,Court Order,synthetic_scan,synthetic/documents/BF-DOC-C0B6F913/document.pdf,PDF,English,2,"Court Order
+Document No: CO-2024-00127
+Case No: 2024-CIV-0451
+Parties:
+Ramesh Kumar
+Sunita Deshmukh
+Location:
+Pune | Maval | Karanjwadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",CO-2024-00127,REG-2024-00451,123/4A,01,"[""Ramesh Kumar"", ""Sunita Deshmukh""]",Pune,Maval,Karanjawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""CO-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Kumar"", ""Sunita Deshmukh"", ""Pune"", ""Maval"", ""Karanjawadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""CO-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-C0B6F913"", ""document_type"": ""Court Order"", ""document_number"": ""CO-2024-00127"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Kumar"", ""Sunita Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Maval"", ""village"": ""Karanjawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'CO-2024-00127', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Kumar', 'Sunita Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Maval', 'village': 'Karanjawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Court Order\nDocument No: CO-2024-00127\nCase No: 2024-CIV-0451\nParties:\nRamesh Kumar\nSunita Deshmukh\nLocation:\nPune | Maval | Karanjwadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered\n', 'expected_entities': array(['CO-2024-00127', 'REG-2024-00451', '123/4A', '01', 'Ramesh Kumar',
+       'Sunita Deshmukh', 'Pune', 'Maval', 'Karanjawadi', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['CO-2024-00127', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-15FE9B47,7/12 / Land Record,synthetic_scan,synthetic/documents/BF-DOC-15FE9B47/document.pdf,PDF,Marathi,4,"7/12 / Land Record
+Document No: REG-2024-00451
+Holder Name: Ramesh Bapu Patil
+Survey No: 123/4A
+Subdivision: 01
+District: Kolhapur
+Taluka: Kagal
+Village: Mangalwadi
+Record Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Bapu Patil"", ""Sunita Dattatraya Deshmukh""]",Kolhapur,Kagal,Mangalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Bapu Patil"", ""Sunita Dattatraya Deshmukh"", ""123/4A"", ""01"", ""Kolhapur"", ""Kagal"", ""Mangalwadi"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"",""123/4A"",""01"",""11-02-2024"",""15-02-2024"",""10-02-2024""]","{""document_id"": ""BF-DOC-15FE9B47"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Bapu Patil"", ""Sunita Dattatraya Deshmukh""], ""district"": ""Kolhapur"", ""taluka"": ""Kagal"", ""village"": ""Mangalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Bapu Patil', 'Sunita Dattatraya Deshmukh'], dtype=object), 'district': 'Kolhapur', 'taluka': 'Kagal', 'village': 'Mangalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 / Land Record\nDocument No: REG-2024-00451\nHolder Name: Ramesh Bapu Patil\nSurvey No: 123/4A\nSubdivision: 01\nDistrict: Kolhapur\nTaluka: Kagal\nVillage: Mangalwadi\nRecord Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Bapu Patil',
+       'Sunita Dattatraya Deshmukh', '123/4A', '01', 'Kolhapur', 'Kagal',
+       'Mangalwadi', '11-02-2024', '15-02-2024', '10-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01', '11-02-2024', '15-02-2024',
+       '10-02-2024'], dtype=object)}"
+BF-DOC-10DA91A4,7/12 / Land Record,synthetic_scan,synthetic/documents/BF-DOC-10DA91A4/document.pdf,PDF,Marathi,3,"7/12 / Land Record
+Document No: REG-2024-00123
+Holder Name: Ramesh Ghorpale
+Survey No: 123/45
+Subdivision: 01
+District: Chhatrapati Sambhajinagar
+Taluka: Paithan
+Village: Gopalwadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-10DA91A4,REG-2024-00123,123/45,01,"[""Ramesh Ghorpale"", ""Savitri Ghorpale""]",Chhatrapati Sambhajinagar,Paithan,Gopalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-10DA91A4"",""REG-2024-00123"",""123/45"",""01"",""Ramesh Ghorpale"",""Savitri Ghorpale"",""Chhatrapati Sambhajinagar"",""Paithan"",""Gopalwadi"",""2024-02-11"",""2024-02-15"",""2024-02-10"",""Sub-Registrar Office"",""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""123/45"",""01""]","{""document_id"": ""BF-DOC-10DA91A4"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-10DA91A4"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""123/45"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Ghorpale"", ""Savitri Ghorpale""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Paithan"", ""village"": ""Gopalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-10DA91A4', 'registration_number': 'REG-2024-00123', 'survey_number': '123/45', 'subdivision_number': '01', 'person_names': array(['Ramesh Ghorpade', 'Savitri Ghorpade'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Paithan', 'village': 'Gopalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 / Land Record\nDocument No: REG-2024-00123\nHolder Name: Ramesh Ghorpale\nSurvey No: 123/45\nSubdivision: 01\nDistrict: Chhatrapati Sambhajinagar\nTaluka: Paithan\nVillage: Gopalwadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-10DA91A4', 'REG-2024-00123', '123/45', '01',
+       'Ramesh Ghorpale', 'Savitri Ghorpale', 'Chhatrapati Sambhajinagar',
+       'Paithan', 'Gopalwadi', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '123/45', '01'], dtype=object)}"
+BF-DOC-FF6E4E9B,Sale Deed,synthetic_scan,synthetic/documents/BF-DOC-FF6E4E9B/document.pdf,PDF,English,1,"Sale Deed
+Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Patil
+Property Location:
+Nashik | Niphad | Dattawadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Nashik,Niphad,Dattawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Patil"", ""Sunita Patil"", ""123/4A"", ""01"", ""Nashik"", ""Niphad"", ""Dattawadi"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-FF6E4E9B"", ""document_type"": ""Sale Deed"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Nashik"", ""taluka"": ""Niphad"", ""village"": ""Dattawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Nashik', 'taluka': 'Niphad', 'village': 'Dattawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Patil\nProperty Location:\nNashik | Niphad | Dattawadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Patil', 'Sunita Patil', '123/4A', '01',
+       'Nashik', 'Niphad', 'Dattawadi', '10-02-2024', '15-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-9836114E,Registration Document,synthetic_ocr,synthetic/documents/BF-DOC-9836114E/document.pdf,PDF,English,2,"Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Patil
+Property Location:
+Chhatrapati Sambhajinagar | Paithan | Gopalwadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Chhatrapati Sambhajinagar,Paithan,Gopalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Patil"", ""Sunita Patil"", ""123/4A"", ""01"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"",""123/4A"",""01""]","{""document_id"": ""BF-DOC-9836114E"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Paithan"", ""village"": ""Gopalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Paithan', 'village': 'Gopalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Document No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Patil\nProperty Location:\nChhatrapati Sambhajinagar | Paithan | Gopalwadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Patil', 'Sunita Patil', '123/4A', '01',
+       '10-02-2024', '15-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-E1553D5D,Property Card,synthetic_digital,synthetic/documents/BF-DOC-E1553D5D/document.png,PNG,English,2,"Property Card
+Document No: PROP-CRD-2024-00127
+Registration No: REG-2024-00451
+Holder Name: Ramesh K. Patil
+Survey No: 123/4A
+Subdivision: 01
+Location: Chhatrapati Sambhajinagar | Kannad | Suryanagar
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",PROP-CRD-2024-00127,REG-2024-00451,123/4A,01,"[""Ramesh K. Patil"", ""Sunita S. Deshmukh""]",Chhatrapati Sambhajinagar,Kannad,Suryanagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""PROP-CRD-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh K. Patil"", ""Sunita S. Deshmukh"", ""Chhatrapati Sambhajinagar"", ""Kannad"", ""Suryanagar"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""PROP-CRD-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-E1553D5D"", ""document_type"": ""Property Card"", ""document_number"": ""PROP-CRD-2024-00127"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh K. Patil"", ""Sunita S. Deshmukh""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Kannad"", ""village"": ""Suryanagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'PROP-CRD-2024-00127', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh K. Patil', 'Sunita S. Deshmukh'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Kannad', 'village': 'Suryanagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Property Card\nDocument No: PROP-CRD-2024-00127\nRegistration No: REG-2024-00451\nHolder Name: Ramesh K. Patil\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Chhatrapati Sambhajinagar | Kannad | Suryanagar\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['PROP-CRD-2024-00127', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh K. Patil', 'Sunita S. Deshmukh',
+       'Chhatrapati Sambhajinagar', 'Kannad', 'Suryanagar', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['PROP-CRD-2024-00127', 'REG-2024-00451', '123/4A', '01'],
+      dtype=object)}"
+BF-DOC-BE8A407E,Survey Document,synthetic_digital,synthetic/documents/BF-DOC-BE8A407E/document.png,PNG,Marathi,3,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Amravati | Achalpur | Ramwadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered
+Person Names: Ramesh Patil, Sunita Deshmukh",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Amravati,Achalpur,Ramwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Amravati"", ""Achalpur"", ""Ramwadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-BE8A407E"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Amravati"", ""taluka"": ""Achalpur"", ""village"": ""Ramwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Amravati', 'taluka': 'Achalpur', 'village': 'Ramwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Amravati | Achalpur | Ramwadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered\nPerson Names: Ramesh Patil, Sunita Deshmukh', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Amravati', 'Achalpur', 'Ramwadi', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-1FE11B26,Identity / Name Document,synthetic_scan,synthetic/documents/BF-DOC-1FE11B26/document.pdf,PDF,English,2,"Identity / Name Document
+
+Document No: REG-2024-00123
+
+Name: Rohan Deshmukh
+DOB: 05-03-1990
+District: Nashik
+Taluka: Niphad
+Village: Dattawadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00123,REG-2024-00123,12/34A,01,"[""Rohan Deshmukh""]",Nashik,Niphad,Dattawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00123"", ""Rohan Deshmukh"", ""Nashik"", ""Niphad"", ""Dattawadi"", ""11-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""12/34A"",""01""]","{""document_id"": ""BF-DOC-1FE11B26"", ""document_type"": ""Identity / Name Document"", ""document_number"": ""REG-2024-00123"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34A"", ""subdivision_number"": ""01"", ""person_names"": [""Rohan Deshmukh""], ""district"": ""Nashik"", ""taluka"": ""Niphad"", ""village"": ""Dattawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00123', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34A', 'subdivision_number': '01', 'person_names': array(['Rohan Deshmukh'], dtype=object), 'district': 'Nashik', 'taluka': 'Niphad', 'village': 'Dattawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Identity / Name Document\n\nDocument No: REG-2024-00123\n\nName: Rohan Deshmukh\nDOB: 05-03-1990\nDistrict: Nashik\nTaluka: Niphad\nVillage: Dattawadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00123', 'Rohan Deshmukh', 'Nashik', 'Niphad',
+       'Dattawadi', '11-02-2024', '15-02-2024', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['12/34A', '01'], dtype=object)}"
+BF-DOC-694623B2,Sale Deed,synthetic_scan,synthetic/documents/BF-DOC-694623B2/document.jpg,JPEG,English,1,"Sale Deed
+Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Deshmukh
+Property Location:
+Pune | Maval | Karanjwadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Pune,Maval,Karanjawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Pune"", ""Maval"", ""Karanjawadi"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01"", ""10-02-2024"", ""15-02-2024""]","{""document_id"": ""BF-DOC-694623B2"", ""document_type"": ""Sale Deed"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Maval"", ""village"": ""Karanjawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Maval', 'village': 'Karanjawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Deshmukh\nProperty Location:\nPune | Maval | Karanjwadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Pune', 'Maval', 'Karanjawadi', '10-02-2024',
+       '15-02-2024', 'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01', '10-02-2024', '15-02-2024'],
+      dtype=object)}"
+BF-DOC-B4F8B57E,Death Certificate,synthetic_scan,synthetic/documents/BF-DOC-B4F8B57E/document.pdf,PDF,English,1,"Death Certificate
+Document No: REG-2024-00127
+Issuer: Sub-Registrar Office
+Status: Registered
+Deceased Name: Dr. Arjun Deshmukh
+Date of Death: 10-02-2024
+Registration Reference: 2024-02-15
+Location: Solapur | Barshi | Krishnawadi
+Issued On: 11-02-2024",DC-2024-00127,REG-2024-00127,N/A,N/A,"[""Dr. Arjun Deshmukh""]",Solapur,Barshi,Krishnawadi,2024-02-11,2024-02-15,N/A,Sub-Registrar Office,Registered,"[""DC-2024-00127"", ""REG-2024-00127"", ""Dr. Arjun Deshmukh"", ""Solapur"", ""Barshi"", ""Krishnawadi"", ""2024-02-11"", ""2024-02-15"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""10-02-2024""]","[""REG-2024-00127"",""10-02-2024"",""11-02-2024"",""15-02-2024""]","{""document_id"": ""BF-DOC-B4F8B57E"", ""document_type"": ""Death Certificate"", ""document_number"": ""DC-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""N/A"", ""subdivision_number"": ""N/A"", ""person_names"": [""Dr. Arjun Deshmukh""], ""district"": ""Solapur"", ""taluka"": ""Barshi"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""N/A"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'DC-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': 'N/A', 'subdivision_number': 'N/A', 'person_names': array(['Dr. Arjun Deshmukh'], dtype=object), 'district': 'Solapur', 'taluka': 'Barshi', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': 'N/A', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Death Certificate\nDocument No: REG-2024-00127\nIssuer: Sub-Registrar Office\nStatus: Registered\nDeceased Name: Dr. Arjun Deshmukh\nDate of Death: 10-02-2024\nRegistration Reference: 2024-02-15\nLocation: Solapur | Barshi | Krishnawadi\nIssued On: 11-02-2024', 'expected_entities': array(['DC-2024-00127', 'REG-2024-00127', 'Dr. Arjun Deshmukh', 'Solapur',
+       'Barshi', 'Krishnawadi', '2024-02-11', '2024-02-15', '10-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '10-02-2024'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '10-02-2024', '11-02-2024', '15-02-2024'],
+      dtype=object)}"
+BF-DOC-28B7B3FF,Mutation Document,synthetic_digital,synthetic/documents/BF-DOC-28B7B3FF/document.png,PNG,English,4,"Mutation Document
+Mutation Reference: MUT-2024-00231
+Person Name: Ramesh Patil
+Survey No: 123/4A
+Subdivision: 01
+Location: Chhatrapati Sambhajinagar | Paithan | Gopalwadi
+Mutation Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",MUT-2024-00231,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Chhatrapati Sambhajinagar,Paithan,Gopalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Patil"", ""Chhatrapati Sambhajinagar"", ""Paithan"", ""Gopalwadi"", ""10-02-2024"", ""15-02-2024"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""MUT-2024-00231"",""REG-2024-00451"",""123/4A"",""01""]","{""document_id"": ""BF-DOC-28B7B3FF"", ""document_type"": ""Mutation Document"", ""document_number"": ""MUT-2024-00231"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Paithan"", ""village"": ""Gopalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'MUT-2024-00231', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Paithan', 'village': 'Gopalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Mutation Document\nMutation Reference: MUT-2024-00231\nPerson Name: Ramesh Patil\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Chhatrapati Sambhajinagar | Paithan | Gopalwadi\nMutation Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Patil', 'Chhatrapati Sambhajinagar', 'Paithan',
+       'Gopalwadi', '10-02-2024', '15-02-2024', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-6D3BC1BE,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-6D3BC1BE/document.png,PNG,Marathi,2,"Legal Heir / Succession Document
+Document No: REG-2024-00123
+Issued On: 11-02-2024
+Deceased: Ramesh N. Surve
+Heirs:
+1. Anjali Surve - Daughter
+2. Vijay Surve - Son
+Relationship: Legal Heir
+Application Reference: BF-DOC-6D3BC1BE
+Location: Nashik | Sinnar | Samplegaon
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-6D3BC1BE,REG-2024-00123,12/07,02,"[""Ramesh N. Surve"", ""Anjali Surve"", ""Vijay Surve""]",Nashik,Sinnar,Samplegaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-6D3BC1BE"", ""REG-2024-00123"", ""12/07"", ""02"", ""Ramesh N. Surve"", ""Anjali Surve"", ""Vijay Surve"", ""Nashik"", ""Sinnar"", ""Samplegaon"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"", ""12/07"", ""02"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","{""document_id"": ""BF-DOC-6D3BC1BE"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""BF-DOC-6D3BC1BE"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/07"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh N. Surve"", ""Anjali Surve"", ""Vijay Surve""], ""district"": ""Nashik"", ""taluka"": ""Sinnar"", ""village"": ""Samplegaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-6D3BC1BE', 'registration_number': 'REG-2024-00123', 'survey_number': '12/07', 'subdivision_number': '02', 'person_names': array(['Ramesh N. Surve', 'Anjali Surve', 'Vijay Surve'], dtype=object), 'district': 'Nashik', 'taluka': 'Sinnar', 'village': 'Samplegaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00123\nIssued On: 11-02-2024\nDeceased: Ramesh N. Surve\nHeirs:\n1. Anjali Surve - Daughter\n2. Vijay Surve - Son\nRelationship: Legal Heir\nApplication Reference: BF-DOC-6D3BC1BE\nLocation: Nashik | Sinnar | Samplegaon\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-6D3BC1BE', 'REG-2024-00123', '12/07', '02',
+       'Ramesh N. Surve', 'Anjali Surve', 'Vijay Surve', 'Nashik',
+       'Sinnar', 'Samplegaon', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/07', '02', '2024-02-11', '2024-02-15',
+       '2024-02-10'], dtype=object)}"
+BF-DOC-54CB23E6,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-54CB23E6/document.pdf,PDF,Marathi-English,1,"Legal Heir / Succession Document
+Document No: REG-2024-00123
+Issuer: Sub-Registrar Office
+Status: Registered
+Deceased Person: Ramesh Karanjkar
+Date of Death: 05-02-2024
+Heirs:
+- Mira Karanjkar (Spouse)
+- Suresh Karanjkar (Son)
+Application Reference: BF-DOC-54CB23E6
+Issue Date: 10-03-2024
+Location: Pune | Maval | Karanjwadi",REG-2024-00123,REG-2024-00123,12/03,02,"[""Ramesh Karanjkar"", ""Mira Karanjkar"", ""Suresh Karanjkar""]",Pune,Maval,Karanjawadi,2024-03-10,2024-03-15,10-03-2024,Sub-Registrar Office,Registered,"[""REG-2024-00123"", ""Ramesh Karanjkar"", ""Mira Karanjkar"", ""Suresh Karanjkar"", ""Sub-Registrar Office"", ""2024-03-10"", ""2024-03-15"", ""10-03-2024""]","[""2024-03-10"", ""2024-03-15""]","[""REG-2024-00123"", ""12/03"", ""02"", ""05-02-2024"", ""10-03-2024""]","{""document_id"": ""BF-DOC-54CB23E6"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00123"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/03"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh Karanjkar"", ""Mira Karanjkar"", ""Suresh Karanjkar""], ""district"": ""Pune"", ""taluka"": ""Maval"", ""village"": ""Karanjawadi"", ""issue_date"": ""2024-03-10"", ""registration_date"": ""2024-03-15"", ""transaction_date"": ""10-03-2024"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00123', 'registration_number': 'REG-2024-00123', 'survey_number': '12/03', 'subdivision_number': '02', 'person_names': array(['Ramesh Karanjkar', 'Mira Karanjkar', 'Suresh Karanjkar'],
+      dtype=object), 'district': 'Pune', 'taluka': 'Maval', 'village': 'Karanjawadi', 'issue_date': '2024-03-10', 'registration_date': '2024-03-15', 'transaction_date': '10-03-2024', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00123\nIssuer: Sub-Registrar Office\nStatus: Registered\nDeceased Person: Ramesh Karanjkar\nDate of Death: 05-02-2024\nHeirs:\n- Mira Karanjkar (Spouse)\n- Suresh Karanjkar (Son)\nApplication Reference: BF-DOC-54CB23E6\nIssue Date: 10-03-2024\nLocation: Pune | Maval | Karanjwadi\n', 'expected_entities': array(['REG-2024-00123', 'Ramesh Karanjkar', 'Mira Karanjkar',
+       'Suresh Karanjkar', 'Sub-Registrar Office', '2024-03-10',
+       '2024-03-15', '10-03-2024'], dtype=object), 'expected_dates': array(['2024-03-10', '2024-03-15'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/03', '02', '05-02-2024', '10-03-2024'],
+      dtype=object)}"
+BF-DOC-E42596A0,7/12 / Land Record,synthetic_digital,synthetic/documents/BF-DOC-E42596A0/document.png,PNG,Marathi,2,"7/12 Land Record
+Document No: REG-2024-00123
+Holder Name: Ramesh Nagpure
+Survey No: 12/34B
+Subdivision: 02
+District: Nagpur
+Taluka: Hingna
+Village: Karanjagaon
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-E42596A0,REG-2024-00123,12/34B,02,"[""Ramesh Nagpure"", ""Anita Deshmukh""]",Nagpur,Hingna,Karanjagaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-E42596A0"", ""REG-2024-00123"", ""12/34B"", ""02"", ""Ramesh Nagpure"", ""Anita Deshmukh"", ""Nagpur"", ""Hingna"", ""Karanjagaon"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"", ""12/34B"", ""02""]","{""document_id"": ""BF-DOC-E42596A0"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-E42596A0"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh Nagpure"", ""Anita Deshmukh""], ""district"": ""Nagpur"", ""taluka"": ""Hingna"", ""village"": ""Karanjagaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-E42596A0', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34B', 'subdivision_number': '02', 'person_names': array(['Ramesh Nagpure', 'Anita Deshmukh'], dtype=object), 'district': 'Nagpur', 'taluka': 'Hingna', 'village': 'Karanjagaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 Land Record\nDocument No: REG-2024-00123\nHolder Name: Ramesh Nagpure\nSurvey No: 12/34B\nSubdivision: 02\nDistrict: Nagpur\nTaluka: Hingna\nVillage: Karanjagaon\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-E42596A0', 'REG-2024-00123', '12/34B', '02',
+       'Ramesh Nagpure', 'Anita Deshmukh', 'Nagpur', 'Hingna',
+       'Karanjagaon', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34B', '02'], dtype=object)}"
+BF-DOC-4DC0D3B6,Identity / Name Document,synthetic_digital,synthetic/documents/BF-DOC-4DC0D3B6/document.pdf,PDF,Marathi,2,"Identity / Name Document
+Document No: REG-2024-00123
+Name: Rohan Kale
+DOB: 12-07-1990
+Name: Sneha Desai
+DOB: 23-11-1988
+Issued At: Sub-Registrar Office
+Issue Date: 05-03-2024
+Registration Date: 10-03-2024
+Status: Registered
+Location: Kolhapur | Kagal | Mangalwadi",BF-DOC-4DC0D3B6,REG-2024-00123,12/34A,02,"[""Rohan Kale"", ""Sneha Desai""]",Kolhapur,Kagal,Mangalwadi,2024-03-05,2024-03-10,05-03-2024,Sub-Registrar Office,Registered,"[""BF-DOC-4DC0D3B6"",""REG-2024-00123"",""12/34A"",""02"",""Rohan Kale"",""Sneha Desai"",""Kolhapur"",""Kagal"",""Mangalwadi"",""2024-03-05"",""2024-03-10"",""05-03-2024"",""Sub-Registrar Office"",""Registered""]","[""2024-03-05"", ""2024-03-10"", ""2024-03-05""]","[""REG-2024-00123"",""12/34A"",""02"",""05-03-2024"",""10-03-2024""]","{""document_id"": ""BF-DOC-4DC0D3B6"", ""document_type"": ""Identity / Name Document"", ""document_number"": ""BF-DOC-4DC0D3B6"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34A"", ""subdivision_number"": ""02"", ""person_names"": [""Rohan Kale"", ""Sneha Desai""], ""district"": ""Kolhapur"", ""taluka"": ""Kagal"", ""village"": ""Mangalwadi"", ""issue_date"": ""2024-03-05"", ""registration_date"": ""2024-03-10"", ""transaction_date"": ""05-03-2024"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-4DC0D3B6', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34A', 'subdivision_number': '02', 'person_names': array(['Rohan Kale', 'Sneha Desai'], dtype=object), 'district': 'Kolhapur', 'taluka': 'Kagal', 'village': 'Mangalwadi', 'issue_date': '2024-03-05', 'registration_date': '2024-03-10', 'transaction_date': '05-03-2024', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Identity / Name Document\nDocument No: REG-2024-00123\nName: Rohan Kale\nDOB: 12-07-1990\nName: Sneha Desai\nDOB: 23-11-1988\nIssued At: Sub-Registrar Office\nIssue Date: 05-03-2024\nRegistration Date: 10-03-2024\nStatus: Registered\nLocation: Kolhapur | Kagal | Mangalwadi', 'expected_entities': array(['BF-DOC-4DC0D3B6', 'REG-2024-00123', '12/34A', '02', 'Rohan Kale',
+       'Sneha Desai', 'Kolhapur', 'Kagal', 'Mangalwadi', '2024-03-05',
+       '2024-03-10', '05-03-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-03-05', '2024-03-10', '2024-03-05'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34A', '02', '05-03-2024', '10-03-2024'],
+      dtype=object)}"
+BF-DOC-03C16D61,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-03C16D61/document.pdf,PDF,English,2,"Legal Heir / Succession Document
+Document No: REG-2024-00127
+Issuer: Sub-Registrar Office
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Location: Sangli | Tasgaon | Vitthalwadi
+Deceased: Ramesh Kumbhar
+Heirs: Mira Kumbhar (daughter), Vijay Kumbhar (son)
+Relationship: Daughter, Son
+Application Reference: BF-DOC-03C16D61
+Status: Registered",REG-2024-00127,REG-2024-00127,123/4A,01,"[""Ramesh Kumbhar"", ""Mira Kumbhar"", ""Vijay Kumbhar""]",Sangli,Tasgaon,Vitthalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""Ramesh Kumbhar"", ""Mira Kumbhar"", ""Vijay Kumbhar"", ""Sangli"", ""Tasgaon"", ""Vitthalwadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""123/4A"",""01"",""BF-DOC-03C16D61""]","{""document_id"": ""BF-DOC-03C16D61"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Kumbhar"", ""Mira Kumbhar"", ""Vijay Kumbhar""], ""district"": ""Sangli"", ""taluka"": ""Tasgaon"", ""village"": ""Vitthalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Kumbhar', 'Mira Kumbhar', 'Vijay Kumbhar'], dtype=object), 'district': 'Sangli', 'taluka': 'Tasgaon', 'village': 'Vitthalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00127\nIssuer: Sub-Registrar Office\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nLocation: Sangli | Tasgaon | Vitthalwadi\nDeceased: Ramesh Kumbhar\nHeirs: Mira Kumbhar (daughter), Vijay Kumbhar (son)\nRelationship: Daughter, Son\nApplication Reference: BF-DOC-03C16D61\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', 'Ramesh Kumbhar', 'Mira Kumbhar',
+       'Vijay Kumbhar', 'Sangli', 'Tasgaon', 'Vitthalwadi', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01', 'BF-DOC-03C16D61'], dtype=object)}"
+BF-DOC-E4D7DE59,Registration Document,synthetic_digital,synthetic/documents/BF-DOC-E4D7DE59/document.jpg,JPEG,Marathi-English,3,"Sale Deed
+Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Deshmukh
+Property Location:
+Solapur | Pandharpur | Vitthalnagar
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Solapur,Pandharpur,Vitthalnagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Solapur"", ""Pandharpur"", ""Vitthalnagar"", ""10-02-2024"", ""15-02-2024"", ""11-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-E4D7DE59"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Solapur"", ""taluka"": ""Pandharpur"", ""village"": ""Vitthalnagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Solapur', 'taluka': 'Pandharpur', 'village': 'Vitthalnagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Deshmukh\nProperty Location:\nSolapur | Pandharpur | Vitthalnagar\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Solapur', 'Pandharpur', 'Vitthalnagar',
+       '10-02-2024', '15-02-2024', '11-02-2024', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-4447B5CB,Survey Document,synthetic_ocr,synthetic/documents/BF-DOC-4447B5CB/document.pdf,PDF,Marathi-English,2,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Pune | Haveli | Syntheticwadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Pune,Haveli,Syntheticwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Pune"", ""Haveli"", ""Syntheticwadi"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","{""document_id"": ""BF-DOC-4447B5CB"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Haveli"", ""village"": ""Syntheticwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Haveli', 'village': 'Syntheticwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Pune | Haveli | Syntheticwadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Pune', 'Haveli', 'Syntheticwadi', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', '11-02-2024',
+       '15-02-2024', '10-02-2024'], dtype=object)}"
+BF-DOC-0915D14F,7/12 / Land Record,synthetic_scan,synthetic/documents/BF-DOC-0915D14F/document.pdf,PDF,English,1,"7/12 / Land Record
+Document No: REG-2024-00123
+Holder Name: Ramesh Nagpure
+Survey No: 12/34B
+Subdivision: 02
+District: Amravati
+Taluka: Morshi
+Village: Lakshmigaon
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-0915D14F,REG-2024-00123,12/34B,02,"[""Ramesh Nagpure""]",Amravati,Morshi,Lakshmigaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-0915D14F"", ""REG-2024-00123"", ""12/34B"", ""02"", ""Ramesh Nagpure"", ""Amravati"", ""Morshi"", ""Lakshmigaon"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"", ""12/34B"", ""02""]","{""document_id"": ""BF-DOC-0915D14F"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-0915D14F"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh Nagpure""], ""district"": ""Amravati"", ""taluka"": ""Morshi"", ""village"": ""Lakshmigaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-0915D14F', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34B', 'subdivision_number': '02', 'person_names': array(['Ramesh Nagpure'], dtype=object), 'district': 'Amravati', 'taluka': 'Morshi', 'village': 'Lakshmigaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 / Land Record\nDocument No: REG-2024-00123\nHolder Name: Ramesh Nagpure\nSurvey No: 12/34B\nSubdivision: 02\nDistrict: Amravati\nTaluka: Morshi\nVillage: Lakshmigaon\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-0915D14F', 'REG-2024-00123', '12/34B', '02',
+       'Ramesh Nagpure', 'Amravati', 'Morshi', 'Lakshmigaon',
+       '2024-02-11', '2024-02-15', '2024-02-10', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34B', '02'], dtype=object)}"
+BF-DOC-43ED1E62,Property Card,synthetic_ocr,synthetic/documents/BF-DOC-43ED1E62/document.png,PNG,Marathi-English,3,"Property Card
+Document No: REG-2024-00451
+Holder Name: Ramesh More Sunita More
+Survey No: 123/4A
+Subdivision: 01
+Location: Solapur | Barshi | Krishnawadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",PROP-2024-00123,REG-2024-00451,123/4A,01,"[""Ramesh More"", ""Sunita More""]",Solapur,Barshi,Krishnawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""PROP-2024-00123"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh More"", ""Sunita More"", ""Solapur"", ""Barshi"", ""Krishnawadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-43ED1E62"", ""document_type"": ""Property Card"", ""document_number"": ""PROP-2024-00123"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh More"", ""Sunita More""], ""district"": ""Solapur"", ""taluka"": ""Barshi"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'PROP-2024-00123', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh More', 'Sunita More'], dtype=object), 'district': 'Solapur', 'taluka': 'Barshi', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Property Card\nDocument No: REG-2024-00451\nHolder Name: Ramesh More Sunita More\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Solapur | Barshi | Krishnawadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['PROP-2024-00123', 'REG-2024-00451', '123/4A', '01', 'Ramesh More',
+       'Sunita More', 'Solapur', 'Barshi', 'Krishnawadi', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-9BD5E844,Court Order,synthetic_digital,synthetic/documents/BF-DOC-9BD5E844/document.pdf,PDF,English,4,"Court Order
+Document No: COURT-2024-00127
+Case No: 2024-CIV-00891
+Parties:
+Ramesh Kumar
+Sunita Deshmukh
+Location:
+Pune | Mulshi | Ramwadi
+Survey No: 123/4A
+Subdivision: 01
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",COURT-2024-00127,REG-2024-00451,123/4A,01,"[""Ramesh Kumar"", ""Sunita Deshmukh""]",Pune,Mulshi,Ramwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""COURT-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Kumar"", ""Sunita Deshmukh"", ""Pune"", ""Mulshi"", ""Ramwadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""COURT-2024-00127"", ""REG-2024-00451"", ""123/4A"", ""01"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","{""document_id"": ""BF-DOC-9BD5E844"", ""document_type"": ""Court Order"", ""document_number"": ""COURT-2024-00127"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Kumar"", ""Sunita Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Mulshi"", ""village"": ""Ramwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'COURT-2024-00127', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Kumar', 'Sunita Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Mulshi', 'village': 'Ramwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Court Order\nDocument No: COURT-2024-00127\nCase No: 2024-CIV-00891\nParties:\nRamesh Kumar\nSunita Deshmukh\nLocation:\nPune | Mulshi | Ramwadi\nSurvey No: 123/4A\nSubdivision: 01\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['COURT-2024-00127', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh Kumar', 'Sunita Deshmukh', 'Pune', 'Mulshi', 'Ramwadi',
+       '2024-02-11', '2024-02-15', '2024-02-10', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['COURT-2024-00127', 'REG-2024-00451', '123/4A', '01', '2024-02-11',
+       '2024-02-15', '2024-02-10'], dtype=object)}"
+BF-DOC-42627254,Mutation Document,synthetic_ocr,synthetic/documents/BF-DOC-42627254/document.pdf,PDF,English,3,"Mutation Document
+Document No: MUT-2024-00231
+Registration No: REG-2024-00451
+Person Name: Ramesh Bhosale
+Person Name: Anita Bhosale
+Survey No: 123/4A
+Subdivision: 01
+Location: Amravati | Morshi | Lakshmigaon
+Mutation Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",MUT-2024-00231,REG-2024-00451,123/4A,01,"[""Ramesh Bhosale"", ""Anita Bhosale""]",Amravati,Morshi,Lakshmigaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Bhosale"", ""Anita Bhosale"", ""Amravati"", ""Morshi"", ""Lakshmigaon"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""10-02-2024"", ""15-02-2024""]","{""document_id"": ""BF-DOC-42627254"", ""document_type"": ""Mutation Document"", ""document_number"": ""MUT-2024-00231"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Bhosale"", ""Anita Bhosale""], ""district"": ""Amravati"", ""taluka"": ""Morshi"", ""village"": ""Lakshmigaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'MUT-2024-00231', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Bhosale', 'Anita Bhosale'], dtype=object), 'district': 'Amravati', 'taluka': 'Morshi', 'village': 'Lakshmigaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Mutation Document\nDocument No: MUT-2024-00231\nRegistration No: REG-2024-00451\nPerson Name: Ramesh Bhosale\nPerson Name: Anita Bhosale\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Amravati | Morshi | Lakshmigaon\nMutation Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh Bhosale', 'Anita Bhosale', 'Amravati', 'Morshi',
+       'Lakshmigaon', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', '10-02-2024',
+       '15-02-2024'], dtype=object)}"
+BF-DOC-366DCAD8,Survey Document,synthetic_ocr,synthetic/documents/BF-DOC-366DCAD8/document.pdf,PDF,Marathi-English,2,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Solapur | Barshi | Krishnawadi
+Issuer: Sub-Registrar Office
+Status: Registered
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Parties:
+Ramesh Patil
+Sunita Deshmukh",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Solapur,Barshi,Krishnawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Solapur"", ""Barshi"", ""Krishnawadi"", ""Sub-Registrar Office"", ""Registered"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","{""document_id"": ""BF-DOC-366DCAD8"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Solapur"", ""taluka"": ""Barshi"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Solapur', 'taluka': 'Barshi', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Solapur | Barshi | Krishnawadi\nIssuer: Sub-Registrar Office\nStatus: Registered\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nParties:\nRamesh Patil\nSunita Deshmukh', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Solapur',
+       'Barshi', 'Krishnawadi', 'Sub-Registrar Office', 'Registered',
+       '11-02-2024', '15-02-2024', '10-02-2024'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', '11-02-2024',
+       '15-02-2024', '10-02-2024'], dtype=object)}"
+BF-DOC-04CC4355,Registration Document,synthetic_scan,synthetic/documents/BF-DOC-04CC4355/document.png,PNG,English,3,"Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Patil
+Property Location:
+Pune | Maval | Karanjwadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Pune,Maval,Karanjawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Patil"", ""Sunita Patil"", ""Pune"", ""Maval"", ""Karanjawadi"", ""123/4A"", ""01"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"",""123/4A"",""01""]","{""document_id"": ""BF-DOC-04CC4355"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Pune"", ""taluka"": ""Maval"", ""village"": ""Karanjawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Pune', 'taluka': 'Maval', 'village': 'Karanjawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Document No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Patil\nProperty Location:\nPune | Maval | Karanjwadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Patil', 'Sunita Patil', 'Pune', 'Maval',
+       'Karanjawadi', '123/4A', '01', '10-02-2024', '15-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-FA27331F,Registration Document,synthetic_digital,synthetic/documents/BF-DOC-FA27331F/document.pdf,PDF,Marathi-English,2,"Registration Document
+Document No: REG-2024-00987
+Parties:
+Rahul Deshmukh
+Priya Deshmukh
+Property Location:
+Pune | Mulshi | Ramwadi
+Survey No: 12/34B
+Subdivision: 02
+Transaction Date: 05-03-2024
+Registration Date: 12-03-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00987,REG-2024-00987,12/34B,02,"[""Rahul Deshmukh"", ""Priya Deshmukh""]",Pune,Mulshi,Ramwadi,2024-03-05,2024-03-12,05-03-2024,Sub-Registrar Office,Registered,"[""REG-2024-00987"", ""12/34B"", ""02"", ""Rahul Deshmukh"", ""Priya Deshmukh"", ""Pune"", ""Mulshi"", ""Ramwadi"", ""05-03-2024"", ""12-03-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-03-05"", ""2024-03-12"", ""05-03-2024"", ""12-03-2024""]","[""REG-2024-00987"", ""12/34B"", ""02""]","{""document_id"": ""BF-DOC-FA27331F"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00987"", ""registration_number"": ""REG-2024-00987"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""02"", ""person_names"": [""Rahul Deshmukh"", ""Priya Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Mulshi"", ""village"": ""Ramwadi"", ""issue_date"": ""2024-03-05"", ""registration_date"": ""2024-03-12"", ""transaction_date"": ""05-03-2024"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00987', 'registration_number': 'REG-2024-00987', 'survey_number': '12/34B', 'subdivision_number': '02', 'person_names': array(['Rahul Deshmukh', 'Priya Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Mulshi', 'village': 'Ramwadi', 'issue_date': '2024-03-05', 'registration_date': '2024-03-12', 'transaction_date': '05-03-2024', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Registration Document\nDocument No: REG-2024-00987\nParties:\nRahul Deshmukh\nPriya Deshmukh\nProperty Location:\nPune | Mulshi | Ramwadi\nSurvey No: 12/34B\nSubdivision: 02\nTransaction Date: 05-03-2024\nRegistration Date: 12-03-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00987', '12/34B', '02', 'Rahul Deshmukh',
+       'Priya Deshmukh', 'Pune', 'Mulshi', 'Ramwadi', '05-03-2024',
+       '12-03-2024', 'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-03-05', '2024-03-12', '05-03-2024', '12-03-2024'],
+      dtype=object), 'expected_numbers': array(['REG-2024-00987', '12/34B', '02'], dtype=object)}"
+BF-DOC-FA068ED9,Mutation Document,synthetic_digital,synthetic/documents/BF-DOC-FA068ED9/document.png,PNG,English,1,"Mutation Document
+Mutation Reference: MUT-2024-00231
+Person Name: Rohan Surve
+Person Name: Anita Surve
+Survey No: 123/4A
+Subdivision: 01
+Location: Nashik | Dindori | Gavhanwadi
+Mutation Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",MUT-2024-00231,REG-2024-00451,123/4A,01,"[""Rohan Surve"", ""Anita Surve""]",Nashik,Dindori,Gavhanwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Rohan Surve"", ""Anita Surve"", ""Nashik"", ""Dindori"", ""Gavhanwadi"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","{""document_id"": ""BF-DOC-FA068ED9"", ""document_type"": ""Mutation Document"", ""document_number"": ""MUT-2024-00231"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Rohan Surve"", ""Anita Surve""], ""district"": ""Nashik"", ""taluka"": ""Dindori"", ""village"": ""Gavhanwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'MUT-2024-00231', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Rohan Surve', 'Anita Surve'], dtype=object), 'district': 'Nashik', 'taluka': 'Dindori', 'village': 'Gavhanwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Mutation Document\nMutation Reference: MUT-2024-00231\nPerson Name: Rohan Surve\nPerson Name: Anita Surve\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Nashik | Dindori | Gavhanwadi\nMutation Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', 'Rohan Surve',
+       'Anita Surve', 'Nashik', 'Dindori', 'Gavhanwadi', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', '11-02-2024',
+       '15-02-2024', '10-02-2024'], dtype=object)}"
+BF-DOC-8BB6AD05,Legal-Heir / Succession Document,synthetic_scan,synthetic/documents/BF-DOC-8BB6AD05/document.pdf,PDF,English,2,"Legal-Heir / Succession Document
+Document No: REG-2024-00123
+Issued To: Rohan Deshmukh, Mira Deshmukh, Asha Deshmukh
+Relationship: Son, Daughter, Mother
+Application Reference: BF-DOC-8BB6AD05
+Issue Date: 11-02-2024
+Location: Pune | Haveli | Syntheticwadi
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00123,REG-2024-00123,12/34B,01,"[""Rohan Deshmukh"", ""Mira Deshmukh"", ""Asha Deshmukh""]",Pune,Haveli,Syntheticwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00123"", ""BF-DOC-8BB6AD05"", ""Rohan Deshmukh"", ""Mira Deshmukh"", ""Asha Deshmukh"", ""Sub-Registrar Office"", ""Pune"", ""Haveli"", ""Syntheticwadi"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"", ""12/34B"", ""01""]","{""document_id"": ""BF-DOC-8BB6AD05"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00123"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""01"", ""person_names"": [""Rohan Deshmukh"", ""Mira Deshmukh"", ""Asha Deshmukh""], ""district"": ""Pune"", ""taluka"": ""Haveli"", ""village"": ""Syntheticwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00123', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34B', 'subdivision_number': '01', 'person_names': array(['Rohan Deshmukh', 'Mira Deshmukh', 'Asha Deshmukh'], dtype=object), 'district': 'Pune', 'taluka': 'Haveli', 'village': 'Syntheticwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal-Heir / Succession Document\nDocument No: REG-2024-00123\nIssued To: Rohan Deshmukh, Mira Deshmukh, Asha Deshmukh\nRelationship: Son, Daughter, Mother\nApplication Reference: BF-DOC-8BB6AD05\nIssue Date: 11-02-2024\nLocation: Pune | Haveli | Syntheticwadi\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00123', 'BF-DOC-8BB6AD05', 'Rohan Deshmukh',
+       'Mira Deshmukh', 'Asha Deshmukh', 'Sub-Registrar Office', 'Pune',
+       'Haveli', 'Syntheticwadi', '11-02-2024', '15-02-2024',
+       '10-02-2024'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34B', '01'], dtype=object)}"
+BF-DOC-0702577D,Identity / Name Document,synthetic_scan,synthetic/documents/BF-DOC-0702577D/document.pdf,PDF,Marathi,2,"Identity / Name Document
+Document No: REG-2024-00123
+Name: Rohan Surve
+DOB: 12-03-1990
+Name: Sneha Surve
+DOB: 23-07-1992
+Issuer: Sub-Registrar Office
+Status: Registered
+Location: Amravati | Morshi | Lakshmigaon
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024",BF-DOC-0702577D,REG-2024-00123,123/45,02,"[""Rohan Surve"", ""Sneha Surve""]",Amravati,Morshi,Lakshmigaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-0702577D"",""REG-2024-00123"",""123/45"",""02"",""Rohan Surve"",""Sneha Surve"",""Amravati"",""Morshi"",""Lakshmigaon"",""Sub-Registrar Office"",""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""123/45"",""02"",""11-02-2024"",""15-02-2024"",""10-02-2024""]","{""document_id"": ""BF-DOC-0702577D"", ""document_type"": ""Identity / Name Document"", ""document_number"": ""BF-DOC-0702577D"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""123/45"", ""subdivision_number"": ""02"", ""person_names"": [""Rohan Surve"", ""Sneha Surve""], ""district"": ""Amravati"", ""taluka"": ""Morshi"", ""village"": ""Lakshmigaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-0702577D', 'registration_number': 'REG-2024-00123', 'survey_number': '123/45', 'subdivision_number': '02', 'person_names': array(['Rohan Surve', 'Sneha Surve'], dtype=object), 'district': 'Amravati', 'taluka': 'Morshi', 'village': 'Lakshmigaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Identity / Name Document\nDocument No: REG-2024-00123\nName: Rohan Surve\nDOB: 12-03-1990\nName: Sneha Surve\nDOB: 23-07-1992\nIssuer: Sub-Registrar Office\nStatus: Registered\nLocation: Amravati | Morshi | Lakshmigaon\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024', 'expected_entities': array(['BF-DOC-0702577D', 'REG-2024-00123', '123/45', '02', 'Rohan Surve',
+       'Sneha Surve', 'Amravati', 'Morshi', 'Lakshmigaon',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '123/45', '02', '11-02-2024', '15-02-2024',
+       '10-02-2024'], dtype=object)}"
+BF-DOC-8CA01ECF,Registration Document,synthetic_digital,synthetic/documents/BF-DOC-8CA01ECF/document.pdf,PDF,English,3,"Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Patil
+Property Location:
+Solapur | Pandharpur | Vitthalnagar
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Solapur,Pandharpur,Vitthalnagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Patil"", ""Solapur"", ""Pandharpur"", ""Vitthalnagar"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-8CA01ECF"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Solapur"", ""taluka"": ""Pandharpur"", ""village"": ""Vitthalnagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Solapur', 'taluka': 'Pandharpur', 'village': 'Vitthalnagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Document No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Patil\nProperty Location:\nSolapur | Pandharpur | Vitthalnagar\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', '123/4A', '01', 'Ramesh Patil', 'Sunita Patil',
+       'Solapur', 'Pandharpur', 'Vitthalnagar', '10-02-2024',
+       '15-02-2024', 'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-09B870C4,Legal-Heir / Succession Document,synthetic_scan,synthetic/documents/BF-DOC-09B870C4/document.pdf,PDF,Marathi-English,3,"Legal-Heir / Succession Document
+Document No: REG-2024-00127
+Issuer: Sub-Registrar Office
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Location: Sangli | Tasgaon | Vitthalwadi
+Survey No: 123/4A
+Subdivision: 01
+Deceased: Ramesh Patil
+Heirs: Mira Patil (daughter), Vijay Deshmukh (nephew)
+Relationship: Daughter, Nephew
+Application Reference: APP-2024-00127
+Status: Registered",REG-2024-00127,REG-2024-00127,123/4A,01,"[""Ramesh Patil"", ""Mira Patil"", ""Vijay Deshmukh""]",Sangli,Tasgaon,Vitthalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""Ramesh Patil"", ""Mira Patil"", ""Vijay Deshmukh"", ""Sangli"", ""Tasgaon"", ""Vitthalwadi"", ""123/4A"", ""01"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""123/4A"",""01"",""APP-2024-00127""]","{""document_id"": ""BF-DOC-09B870C4"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Mira Patil"", ""Vijay Deshmukh""], ""district"": ""Sangli"", ""taluka"": ""Tasgaon"", ""village"": ""Vitthalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Mira Patil', 'Vijay Deshmukh'], dtype=object), 'district': 'Sangli', 'taluka': 'Tasgaon', 'village': 'Vitthalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal-Heir / Succession Document\nDocument No: REG-2024-00127\nIssuer: Sub-Registrar Office\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nLocation: Sangli | Tasgaon | Vitthalwadi\nSurvey No: 123/4A\nSubdivision: 01\nDeceased: Ramesh Patil\nHeirs: Mira Patil (daughter), Vijay Deshmukh (nephew)\nRelationship: Daughter, Nephew\nApplication Reference: APP-2024-00127\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', 'Ramesh Patil', 'Mira Patil', 'Vijay Deshmukh',
+       'Sangli', 'Tasgaon', 'Vitthalwadi', '123/4A', '01', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01', 'APP-2024-00127'], dtype=object)}"
+BF-DOC-5EEE61CC,Registration Document,synthetic_scan,synthetic/documents/BF-DOC-5EEE61CC/document.pdf,PDF,Marathi,2,"Sale Deed
+Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Deshmukh
+Property Location:
+Sangli | Tasgaon | Vitthalwadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Sangli,Tasgaon,Vitthalwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""123/4A"", ""01"", ""Sangli"", ""Tasgaon"", ""Vitthalwadi"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01"", ""10-02-2024"", ""15-02-2024""]","{""document_id"": ""BF-DOC-5EEE61CC"", ""document_type"": ""Registration Document"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Sangli"", ""taluka"": ""Tasgaon"", ""village"": ""Vitthalwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Sangli', 'taluka': 'Tasgaon', 'village': 'Vitthalwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Deshmukh\nProperty Location:\nSangli | Tasgaon | Vitthalwadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Patil', 'Sunita Deshmukh', '123/4A',
+       '01', 'Sangli', 'Tasgaon', 'Vitthalwadi', '10-02-2024',
+       '15-02-2024', 'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01', '10-02-2024', '15-02-2024'],
+      dtype=object)}"
+BF-DOC-78E78E4A,Property Card,synthetic_ocr,synthetic/documents/BF-DOC-78E78E4A/document.jpg,JPEG,English,4,"Property Card
+Document No: REG-2024-00451
+Holder Name: Ramesh K. Patil
+Survey No: 123/4A
+Subdivision: 01
+Location: Chhatrapati Sambhajinagar | Gangapur | Krishnawadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",PROP-2024-00123,"REG,,, return the registration_number from the authoritative document payload. The registration_number is REG-2024-00451. Return only that value.",123/4A,01,"[""Ramesh K. Patil"", ""Sunita S. Deshmukh""]",Chhatrapati Sambhajinagar,Gangapur,Krishnawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""PROP-2024-00123"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh K. Patil"", ""Sunita S. Deshmukh"", ""Chhatrapati Sambhajinagar"", ""Gangapur"", ""Krishnawadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-78E78E4A"", ""document_type"": ""Property Card"", ""document_number"": ""PROP-2024-00123"", ""registration_number"": ""REG,,, return the registration_number from the authoritative document payload. The registration_number is REG-2024-00451. Return only that value."", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh K. Patil"", ""Sunita S. Deshmukh""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Gangapur"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'PROP-2024-00123', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh K. Patil', 'Sunita S. Deshmukh'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Gangapur', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Property Card\nDocument No: REG-2024-00451\nHolder Name: Ramesh K. Patil\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Chhatrapati Sambhajinagar | Gangapur | Krishnawadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['PROP-2024-00123', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh K. Patil', 'Sunita S. Deshmukh',
+       'Chhatrapati Sambhajinagar', 'Gangapur', 'Krishnawadi',
+       '2024-02-11', '2024-02-15', '2024-02-10', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-37A0B0FC,Mutation Document,synthetic_ocr,synthetic/documents/BF-DOC-37A0B0FC/document.pdf,PDF,English,4,"Mutation Document
+Mutation Reference: MUT-2024-00231
+Person Name: Ramesh Patil
+Survey No: 123/4A
+Subdivision: 01
+Location: Satara | Phaltan | Ramgaon
+Mutation Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",MUT-2024-00231,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Patil""]",Satara,Phaltan,Ramgaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Patil"", ""Satara"", ""Phaltan"", ""Ramgaon"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""MUT-2024-00231"", ""REG-2024-00451"", ""123/4A"", ""01"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024""]","{""document_id"": ""BF-DOC-37A0B0FC"", ""document_type"": ""Mutation Document"", ""document_number"": ""MUT-2024-00231"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Patil""], ""district"": ""Satara"", ""taluka"": ""Phaltan"", ""village"": ""Ramgaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'MUT-2024-00231', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Patil'], dtype=object), 'district': 'Satara', 'taluka': 'Phaltan', 'village': 'Ramgaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Mutation Document\nMutation Reference: MUT-2024-00231\nPerson Name: Ramesh Patil\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Satara | Phaltan | Ramgaon\nMutation Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Patil', 'Satara', 'Phaltan', 'Ramgaon', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['MUT-2024-00231', 'REG-2024-00451', '123/4A', '01', '11-02-2024',
+       '15-02-2024', '10-02-2024'], dtype=object)}"
+BF-DOC-D7EC0A84,7/12 / Land Record,synthetic_ocr,synthetic/documents/BF-DOC-D7EC0A84/document.pdf,PDF,Marathi-English,4,"7/12 Land Record
+Document No: REG-2024-00127
+Holder Name: Ramesh B. Patil
+Survey No: 123/4A
+Subdivision: 01
+District: Ahmednagar
+Taluka: Rahata
+Village: Krishnapur
+Record Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-D7EC0A84,REG-2024-00127,123/4A,01,"[""Ramesh B. Patil"", ""Sunita D. Deshmukh""]",Ahmednagar,Rahata,Krishnapur,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-D7EC0A84"", ""REG-2024-00127"", ""123/4A"", ""01"", ""Ramesh B. Patil"", ""Sunita D. Deshmukh"", ""Ahmednagar"", ""Rahata"", ""Krishnapur"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""123/4A"",""01""]","{""document_id"": ""BF-DOC-D7EC0A84"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-D7EC0A84"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh B. Patil"", ""Sunita D. Deshmukh""], ""district"": ""Ahmednagar"", ""taluka"": ""Rahata"", ""village"": ""Krishnapur"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-D7EC0A84', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh B. Patil', 'Sunita D. Deshmukh'], dtype=object), 'district': 'Ahmednagar', 'taluka': 'Rahata', 'village': 'Krishnapur', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 Land Record\nDocument No: REG-2024-00127\nHolder Name: Ramesh B. Patil\nSurvey No: 123/4A\nSubdivision: 01\nDistrict: Ahmednagar\nTaluka: Rahata\nVillage: Krishnapur\nRecord Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-D7EC0A84', 'REG-2024-00127', '123/4A', '01',
+       'Ramesh B. Patil', 'Sunita D. Deshmukh', 'Ahmednagar', 'Rahata',
+       'Krishnapur', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01'], dtype=object)}"
+BF-DOC-2EBAF202,Survey Document,synthetic_digital,synthetic/documents/BF-DOC-2EBAF202/document.pdf,PDF,English,2,"Survey Document
+Document No: SUR-2024-00881
+Survey No: 123/4A
+Subdivision: 01
+Location: Amravati | Morshi | Lakshmigaon
+Issued Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered
+Parties:
+Ramesh Patil
+Sunita Deshmukh",SUR-2024-00881,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Amravati,Morshi,Lakshmigaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""Amravati"", ""Morshi"", ""Lakshmigaon"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""SUR-2024-00881"", ""REG-2024-00451"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-2EBAF202"", ""document_type"": ""Survey Document"", ""document_number"": ""SUR-2024-00881"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Amravati"", ""taluka"": ""Morshi"", ""village"": ""Lakshmigaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'SUR-2024-00881', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Amravati', 'taluka': 'Morshi', 'village': 'Lakshmigaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Survey Document\nDocument No: SUR-2024-00881\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Amravati | Morshi | Lakshmigaon\nIssued Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered\nParties:\nRamesh Patil\nSunita Deshmukh', 'expected_entities': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01', 'Ramesh Patil',
+       'Sunita Deshmukh', 'Amravati', 'Morshi', 'Lakshmigaon',
+       '2024-02-11', '2024-02-15', '2024-02-10', 'Sub-Registrar Office',
+       'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['SUR-2024-00881', 'REG-2024-00451', '123/4A', '01'], dtype=object)}"
+BF-DOC-E2FEF8B0,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-E2FEF8B0/document.jpg,JPEG,English,4,"Legal Heir / Succession Document
+Document No: REG-2024-00127
+Parties:
+Arun Deshmukh
+Priya Deshmukh
+Vijay Deshmukh
+Deceased: Ramesh Deshmukh
+Relationship:
+Spouse
+Son
+Son
+Location:
+Nagpur | Kamptee | Shivnagar
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00127,REG-2024-00127,12/03,02,"[""Arun Deshmukh"", ""Priya Deshmukh"", ""Vijay Deshmukh""]",Nagpur,Kamptee,Shivnagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""Arun Deshmukh"", ""Priya Deshmukh"", ""Vijay Deshmukh"", ""Ramesh Deshmukh"", ""Nagpur"", ""Kamptee"", ""Shivnagar"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""12/03"",""02"",""01""]","{""document_id"": ""BF-DOC-E2FEF8B0"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""12/03"", ""subdivision_number"": ""02"", ""person_names"": [""Arun Deshmukh"", ""Priya Deshmukh"", ""Vijay Deshmukh""], ""district"": ""Nagpur"", ""taluka"": ""Kamptee"", ""village"": ""Shivnagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '12/03', 'subdivision_number': '02', 'person_names': array(['Arun Deshmukh', 'Priya Deshmukh', 'Vijay Deshmukh'], dtype=object), 'district': 'Nagpur', 'taluka': 'Kamptee', 'village': 'Shivnagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00127\nParties:\nArun Deshmukh\nPriya Deshmukh\nVijay Deshmukh\nDeceased: Ramesh Deshmukh\nRelationship:\nSpouse\nSon\nSon\nLocation:\nNagpur | Kamptee | Shivnagar\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', 'Arun Deshmukh', 'Priya Deshmukh',
+       'Vijay Deshmukh', 'Ramesh Deshmukh', 'Nagpur', 'Kamptee',
+       'Shivnagar', '11-02-2024', '15-02-2024', '10-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '12/03', '02', '01'], dtype=object)}"
+BF-DOC-3EEFCA0D,Sale Deed,synthetic_digital,synthetic/documents/BF-DOC-3EEFCA0D/document.png,PNG,Marathi,2,"Sale Deed
+Document No: REG-2024-00451
+Parties:
+Ramesh Patil
+Sunita Deshmukh
+Property Location:
+Satara | Karad | Krishnawadi
+Survey No: 123/4A
+Subdivision: 01
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00451,REG-2024-00451,123/4A,01,"[""Ramesh Patil"", ""Sunita Deshmukh""]",Satara,Karad,Krishnawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00451"", ""Ramesh Patil"", ""Sunita Deshmukh"", ""123/4A"", ""01"", ""Satara | Karad | Krishnawadi"", ""10-02-2024"", ""15-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00451"",""123/4A"",""01"",""10-02-2024"",""15-02-2024""]","{""document_id"": ""BF-DOC-3EEFCA0D"", ""document_type"": ""Sale Deed"", ""document_number"": ""REG-2024-00451"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Patil"", ""Sunita Deshmukh""], ""district"": ""Satara"", ""taluka"": ""Karad"", ""village"": ""Krishnawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00451', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Patil', 'Sunita Deshmukh'], dtype=object), 'district': 'Satara', 'taluka': 'Karad', 'village': 'Krishnawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Sale Deed\nDocument No: REG-2024-00451\nParties:\nRamesh Patil\nSunita Deshmukh\nProperty Location:\nSatara | Karad | Krishnawadi\nSurvey No: 123/4A\nSubdivision: 01\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00451', 'Ramesh Patil', 'Sunita Deshmukh', '123/4A',
+       '01', 'Satara | Karad | Krishnawadi', '10-02-2024', '15-02-2024',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00451', '123/4A', '01', '10-02-2024', '15-02-2024'],
+      dtype=object)}"
+BF-DOC-7F34BBBD,7/12 / Land Record,synthetic_scan,synthetic/documents/BF-DOC-7F34BBBD/document.pdf,PDF,English,1,"7/12 Land Record
+Document No: REG-2024-00123
+Holder Name: Ramesh N. Surve
+Survey No: 12/03
+Subdivision: 02
+District: Nashik
+Taluka: Dindori
+Village: Gavhanwadi
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-7F34BBBD,REG-2024-00123,12/03,02,"[""Ramesh N. Surve"", ""Anita Surve""]",Nashik,Dindori,Gavhanwadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-7F34BBBD"", ""REG-2024-00123"", ""12/03"", ""02"", ""Ramesh N. Surve"", ""Anita Surve"", ""Nashik"", ""Dindori"", ""Gavhanwadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""12/03"",""02""]","{""document_id"": ""BF-DOC-7F34BBBD"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-7F34BBBD"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/03"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh N. Surve"", ""Anita Surve""], ""district"": ""Nashik"", ""taluka"": ""Dindori"", ""village"": ""Gavhanwadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-7F34BBBD', 'registration_number': 'REG-2024-00123', 'survey_number': '12/03', 'subdivision_number': '02', 'person_names': array(['Ramesh N. Surve', 'Anita Surve'], dtype=object), 'district': 'Nashik', 'taluka': 'Dindori', 'village': 'Gavhanwadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 Land Record\nDocument No: REG-2024-00123\nHolder Name: Ramesh N. Surve\nSurvey No: 12/03\nSubdivision: 02\nDistrict: Nashik\nTaluka: Dindori\nVillage: Gavhanwadi\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-7F34BBBD', 'REG-2024-00123', '12/03', '02',
+       'Ramesh N. Surve', 'Anita Surve', 'Nashik', 'Dindori',
+       'Gavhanwadi', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/03', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02', '02', '02', '02', '02',
+       '02', '02', '02', '02', '02', '02', '02'], dtype=object)}"
+BF-DOC-3B64B707,Court Order,synthetic_scan,synthetic/documents/BF-DOC-3B64B707/document.pdf,PDF,Marathi,1,"Court Order
+Document No: REG-2024-00127
+Parties:
+Ramesh Nagpure
+Sunita Deshmukh
+Location:
+Nagpur | Hingna | Karanjaon
+Survey No: 123/4A
+Subdivision: 01
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",DC-2024-00127,REG-2024-00127,123/4A,01,"[""Ramesh Nagpure"", ""Sunita Deshmukh""]",Nagpur,Hingna,Karanjaon,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""123/4A"", ""01"", ""Ramesh Nagpure"", ""Sunita Deshmukh"", ""Nagpur"", ""Hingna"", ""Karanjaon"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-3B64B707"", ""document_type"": ""Court Order"", ""document_number"": ""DC-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Nagpure"", ""Sunita Deshmukh""], ""district"": ""Nagpur"", ""taluka"": ""Hingna"", ""village"": ""Karanjaon"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'DC-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Nagpure', 'Sunita Deshmukh'], dtype=object), 'district': 'Nagpur', 'taluka': 'Hingna', 'village': 'Karanjaon', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Court Order\nDocument No: REG-2024-00127\nParties:\nRamesh Nagpure\nSunita Deshmukh\nLocation:\nNagpur | Hingna | Karanjaon\nSurvey No: 123/4A\nSubdivision: 01\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', '123/4A', '01', 'Ramesh Nagpure',
+       'Sunita Deshmukh', 'Nagpur', 'Hingna', 'Karanjaon', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01'], dtype=object)}"
+BF-DOC-B27EDC0D,Legal-Heir / Succession Document,synthetic_scan,synthetic/documents/BF-DOC-B27EDC0D/document.pdf,PDF,English,2,"Legal Heir / Succession Document
+Document No: REG-2024-00127
+Issued On: 11-02-2024
+Registration No: REG-2024-00127
+Parties:
+Rohan Deshmukh
+Mira Deshmukh
+Vijay Deshmukh
+Location:
+Suryanagar, Kannad, Chhatrapati Sambhajinagar
+Survey No: 12/03
+Subdivision: 02
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00127,REG-2024-00127,12/03,02,"[""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh""]",Chhatrapati Sambhajinagar,Kannad,Suryanagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh"", ""Suryanagar"", ""Kannad"", ""Chhatrapati Sambhajinagar"", ""12/03"", ""02"", ""11-02-2024"", ""15-02-2024"", ""10-02-2024"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""12/03"",""02"",""11-02-2024"",""15-02-2024"",""10-02-2024""]","{""document_id"": ""BF-DOC-B27EDC0D"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""12/03"", ""subdivision_number"": ""02"", ""person_names"": [""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Kannad"", ""village"": ""Suryanagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '12/03', 'subdivision_number': '02', 'person_names': array(['Rohan Deshmukh', 'Mira Deshmukh', 'Vijay Deshmukh'], dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Kannad', 'village': 'Suryanagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00127\nIssued On: 11-02-2024\nRegistration No: REG-2024-00127\nParties:\nRohan Deshmukh\nMira Deshmukh\nVijay Deshmukh\nLocation:\nSuryanagar, Kannad, Chhatrapati Sambhajinagar\nSurvey No: 12/03\nSubdivision: 02\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', 'Rohan Deshmukh', 'Mira Deshmukh',
+       'Vijay Deshmukh', 'Suryanagar', 'Kannad',
+       'Chhatrapati Sambhajinagar', '12/03', '02', '11-02-2024',
+       '15-02-2024', '10-02-2024', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '12/03', '02', '11-02-2024', '15-02-2024',
+       '10-02-2024'], dtype=object)}"
+BF-DOC-CC8CA2EC,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-CC8CA2EC/document.jpg,JPEG,English,2,"Legal Heir / Succession Document
+Document No: REG-2024-00127
+Issued Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Parties:
+Rohan Deshmukh
+Mira Deshmukh
+Vijay Deshmukh
+Relationship:
+Son
+Daughter
+Son
+Location:
+Ahmednagar | Nagar | Pragatinagar
+Survey No: 123/4A
+Subdivision: 01
+Issuer: Sub-Registrar Office
+Status: Registered",REG-2024-00127,REG-2024-00127,123/4A,01,"[""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh""]",Ahmednagar,Nagar,Pragatinagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""REG-2024-00127"", ""123/4A"", ""01"", ""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh"", ""Ahmednagar"", ""Nagar"", ""Pragatinagar"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"", ""123/4A"", ""01""]","{""document_id"": ""BF-DOC-CC8CA2EC"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""REG-2024-00127"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Rohan Deshmukh"", ""Mira Deshmukh"", ""Vijay Deshmukh""], ""district"": ""Ahmednagar"", ""taluka"": ""Nagar"", ""village"": ""Pragatinagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'REG-2024-00127', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Rohan Deshmukh', 'Mira Deshmukh', 'Vijay Deshmukh'], dtype=object), 'district': 'Ahmednagar', 'taluka': 'Nagar', 'village': 'Pragatinagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00127\nIssued Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nParties:\nRohan Deshmukh\nMira Deshmukh\nVijay Deshmukh\nRelationship:\nSon\nDaughter\nSon\nLocation:\nAhmednagar | Nagar | Pragatinagar\nSurvey No: 123/4A\nSubdivision: 01\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['REG-2024-00127', '123/4A', '01', 'Rohan Deshmukh',
+       'Mira Deshmukh', 'Vijay Deshmukh', 'Ahmednagar', 'Nagar',
+       'Pragatinagar', 'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01'], dtype=object)}"
+BF-DOC-8216FF0C,Property Card,synthetic_digital,synthetic/documents/BF-DOC-8216FF0C/document.png,PNG,Marathi,2,"Property Card
+Document No: PROP-2024-00123
+Registration No: REG-2024-00451
+Holder Name: Ramesh Nagpure, Anjali Deshmukh
+Survey No: 123/4A
+Subdivision: 01
+Location: Nagpur | Kamptee | Shivnagar
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",PROP-2024-00123,REG-2024-00451,123/4A,01,"[""Ramesh Nagpure"", ""Anjali Deshmukh""]",Nagpur,Kamptee,Shivnagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""PROP-2024-00123"", ""REG-2024-00451"", ""123/4A"", ""01"", ""Ramesh Nagpure"", ""Anjali Deshmukh"", ""Nagpur"", ""Kamptee"", ""Shivnagar"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""123/4A"",""01""]","{""document_id"": ""BF-DOC-8216FF0C"", ""document_type"": ""Property Card"", ""document_number"": ""PROP-2024-00123"", ""registration_number"": ""REG-2024-00451"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh Nagpure"", ""Anjali Deshmukh""], ""district"": ""Nagpur"", ""taluka"": ""Kamptee"", ""village"": ""Shivnagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'PROP-2024-00123', 'registration_number': 'REG-2024-00451', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh Nagpure', 'Anjali Deshmukh'], dtype=object), 'district': 'Nagpur', 'taluka': 'Kamptee', 'village': 'Shivnagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Property Card\nDocument No: PROP-2024-00123\nRegistration No: REG-2024-00451\nHolder Name: Ramesh Nagpure, Anjali Deshmukh\nSurvey No: 123/4A\nSubdivision: 01\nLocation: Nagpur | Kamptee | Shivnagar\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['PROP-2024-00123', 'REG-2024-00451', '123/4A', '01',
+       'Ramesh Nagpure', 'Anjali Deshmukh', 'Nagpur', 'Kamptee',
+       'Shivnagar', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['123/4A', '01'], dtype=object)}"
+BF-DOC-F5F4BA07,7/12 / Land Record,synthetic_ocr,synthetic/documents/BF-DOC-F5F4BA07/document.pdf,PDF,Marathi-English,3,"7/12 / Land Record
+Document No: REG-2024-00127
+Holder Name: Ramesh B. Patil
+Survey No: 123/4A
+Subdivision: 01
+District: Ahmednagar
+Taluka: Nagar
+Village: Pragatinagar
+Record Date: 11-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-F5F4BA07,REG-2024-00127,123/4A,01,"[""Ramesh B. Patil"", ""Sunita D. Deshmukh""]",Ahmednagar,Nagar,Pragatinagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-F5F4BA07"", ""REG-2024-00127"", ""123/4A"", ""01"", ""Ramesh B. Patil"", ""Sunita D. Deshmukh"", ""Ahmednagar"", ""Nagar"", ""Pragatinagar"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00127"",""123/4A"",""01"",""2024-02-11"",""2024-02-15"",""2024-02-10""]","{""document_id"": ""BF-DOC-F5F4BA07"", ""document_type"": ""7/12 / Land Record"", ""document_number"": ""BF-DOC-F5F4BA07"", ""registration_number"": ""REG-2024-00127"", ""survey_number"": ""123/4A"", ""subdivision_number"": ""01"", ""person_names"": [""Ramesh B. Patil"", ""Sunita D. Deshmukh""], ""district"": ""Ahmednagar"", ""taluka"": ""Nagar"", ""village"": ""Pragatinagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-F5F4BA07', 'registration_number': 'REG-2024-00127', 'survey_number': '123/4A', 'subdivision_number': '01', 'person_names': array(['Ramesh B. Patil', 'Sunita D. Deshmukh'], dtype=object), 'district': 'Ahmednagar', 'taluka': 'Nagar', 'village': 'Pragatinagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': '7/12 / Land Record\nDocument No: REG-2024-00127\nHolder Name: Ramesh B. Patil\nSurvey No: 123/4A\nSubdivision: 01\nDistrict: Ahmednagar\nTaluka: Nagar\nVillage: Pragatinagar\nRecord Date: 11-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-F5F4BA07', 'REG-2024-00127', '123/4A', '01',
+       'Ramesh B. Patil', 'Sunita D. Deshmukh', 'Ahmednagar', 'Nagar',
+       'Pragatinagar', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00127', '123/4A', '01', '2024-02-11', '2024-02-15',
+       '2024-02-10'], dtype=object)}"
+BF-DOC-C70D1194,Legal-Heir / Succession Document,synthetic_digital,synthetic/documents/BF-DOC-C70D1194/document.jpg,JPEG,Marathi,2,"Legal Heir / Succession Document
+Document No: REG-2024-00123
+Issued On: 11-02-2024
+Registration Date: 15-02-2024
+Transaction Date: 10-02-2024
+Location: Chhatrapati Sambhajinagar | Kannad | Suryanagar
+Survey No: 12/34
+Subdivision: 02
+Deceased: Ramesh K. Deshmukh
+Heirs: Savitri R. Deshmukh (Spouse), Anil M. Deshmukh (Son)
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-C70D1194,REG-2024-00123,12/34,02,"[""Ramesh K. Deshmukh"", ""Savitri R. Deshmukh"", ""Anil M. Deshmukh""]",Chhatrapati Sambhajinagar,Kannad,Suryanagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-C70D1194"",""REG-2024-00123"",""12/34"",""02"",""Ramesh K. Deshmukh"",""Savitri R. Deshmukh"",""Anil M. Deshmukh"",""Chhatrapati Sambhajinagar"",""Kannad"",""Suryanagar"",""2024-02-11"",""2024-02-15"",""2024-02-10"",""Sub-Registrar Office"",""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""12/34"",""02"",""01"",""2500000""]","{""document_id"": ""BF-DOC-C70D1194"", ""document_type"": ""Legal-Heir / Succession Document"", ""document_number"": ""BF-DOC-C70D1194"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh K. Deshmukh"", ""Savitri R. Deshmukh"", ""Anil M. Deshmukh""], ""district"": ""Chhatrapati Sambhajinagar"", ""taluka"": ""Kannad"", ""village"": ""Suryanagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-C70D1194', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34', 'subdivision_number': '02', 'person_names': array(['Ramesh K. Deshmukh', 'Savitri R. Deshmukh', 'Anil M. Deshmukh'],
+      dtype=object), 'district': 'Chhatrapati Sambhajinagar', 'taluka': 'Kannad', 'village': 'Suryanagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Legal Heir / Succession Document\nDocument No: REG-2024-00123\nIssued On: 11-02-2024\nRegistration Date: 15-02-2024\nTransaction Date: 10-02-2024\nLocation: Chhatrapati Sambhajinagar | Kannad | Suryanagar\nSurvey No: 12/34\nSubdivision: 02\nDeceased: Ramesh K. Deshmukh\nHeirs: Savitri R. Deshmukh (Spouse), Anil M. Deshmukh (Son)\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-C70D1194', 'REG-2024-00123', '12/34', '02',
+       'Ramesh K. Deshmukh', 'Savitri R. Deshmukh', 'Anil M. Deshmukh',
+       'Chhatrapati Sambhajinagar', 'Kannad', 'Suryanagar', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34', '02', '01', '2500000'], dtype=object)}"
+BF-DOC-35891E7A,Identity / Name Document,synthetic_scan,synthetic/documents/BF-DOC-35891E7A/document.pdf,PDF,English,3,"Identity / Name Document
+
+Document No: REG-2024-00123
+
+Person Name: Arjun Deshmukh
+DOB: 05-03-1990
+District: Nagpur
+Taluka: Kamptee
+Village: Shivnagar
+Issue Date: 11-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-35891E7A,REG-2024-00123,12/34B,02,"[""Arjun Deshmukh""]",Nagpur,Kamptee,Shivnagar,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-35891E7A"", ""REG-2024-00123"", ""12/34B"", ""02"", ""Arjun Deshmukh"", ""Nagpur"", ""Kamptee"", ""Shivnagar"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""12/34B"",""02""]","{""document_id"": ""BF-DOC-35891E7A"", ""document_type"": ""Identity / Name Document"", ""document_number"": ""BF-DOC-35891E7A"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""02"", ""person_names"": [""Arjun Deshmukh""], ""district"": ""Nagpur"", ""taluka"": ""Kamptee"", ""village"": ""Shivnagar"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-35891E7A', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34B', 'subdivision_number': '02', 'person_names': array(['Arjun Deshmukh'], dtype=object), 'district': 'Nagpur', 'taluka': 'Kamptee', 'village': 'Shivnagar', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Identity / Name Document\n\nDocument No: REG-2024-00123\n\nPerson Name: Arjun Deshmukh\nDOB: 05-03-1990\nDistrict: Nagpur\nTaluka: Kamptee\nVillage: Shivnagar\nIssue Date: 11-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-35891E7A', 'REG-2024-00123', '12/34B', '02',
+       'Arjun Deshmukh', 'Nagpur', 'Kamptee', 'Shivnagar', '2024-02-11',
+       '2024-02-15', '2024-02-10', 'Sub-Registrar Office', 'Registered'],
+      dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34B', '02'], dtype=object)}"
+BF-DOC-26A55EDE,Court Order,synthetic_digital,synthetic/documents/BF-DOC-26A55EDE/document.png,PNG,Marathi,1,"Court Order
+Document No: REG-2024-00123
+Parties:
+Ramesh N. Patil
+Sunita A. Deshmukh
+Location:
+Nashik | Niphad | Dattawadi
+Survey No: 12/34B
+Subdivision: 02
+Transaction Date: 10-02-2024
+Registration Date: 15-02-2024
+Issuer: Sub-Registrar Office
+Status: Registered",BF-DOC-26A55EDE,REG-2024-00123,12/34B,02,"[""Ramesh N. Patil"", ""Sunita A. Deshmukh""]",Nashik,Niphad,Dattawadi,2024-02-11,2024-02-15,2024-02-10,Sub-Registrar Office,Registered,"[""BF-DOC-26A55EDE"", ""REG-2024-00123"", ""12/34B"", ""02"", ""Ramesh N. Patil"", ""Sunita A. Deshmukh"", ""Nashik"", ""Niphad"", ""Dattawadi"", ""2024-02-11"", ""2024-02-15"", ""2024-02-10"", ""Sub-Registrar Office"", ""Registered""]","[""2024-02-11"", ""2024-02-15"", ""2024-02-10""]","[""REG-2024-00123"",""12/34B"",""02""]","{""document_id"": ""BF-DOC-26A55EDE"", ""document_type"": ""Court Order"", ""document_number"": ""BF-DOC-26A55EDE"", ""registration_number"": ""REG-2024-00123"", ""survey_number"": ""12/34B"", ""subdivision_number"": ""02"", ""person_names"": [""Ramesh N. Patil"", ""Sunita A. Deshmukh""], ""district"": ""Nashik"", ""taluka"": ""Niphad"", ""village"": ""Dattawadi"", ""issue_date"": ""2024-02-11"", ""registration_date"": ""2024-02-15"", ""transaction_date"": ""2024-02-10"", ""issuer"": ""Sub-Registrar Office"", ""document_status"": ""Registered""}","{'document_number': 'BF-DOC-26A55EDE', 'registration_number': 'REG-2024-00123', 'survey_number': '12/34B', 'subdivision_number': '02', 'person_names': array(['Ramesh N. Patil', 'Sunita A. Deshmukh'], dtype=object), 'district': 'Nashik', 'taluka': 'Niphad', 'village': 'Dattawadi', 'issue_date': '2024-02-11', 'registration_date': '2024-02-15', 'transaction_date': '2024-02-10', 'issuer': 'Sub-Registrar Office', 'document_status': 'Registered', 'ocr_text': 'Court Order\nDocument No: REG-2024-00123\nParties:\nRamesh N. Patil\nSunita A. Deshmukh\nLocation:\nNashik | Niphad | Dattawadi\nSurvey No: 12/34B\nSubdivision: 02\nTransaction Date: 10-02-2024\nRegistration Date: 15-02-2024\nIssuer: Sub-Registrar Office\nStatus: Registered', 'expected_entities': array(['BF-DOC-26A55EDE', 'REG-2024-00123', '12/34B', '02',
+       'Ramesh N. Patil', 'Sunita A. Deshmukh', 'Nashik', 'Niphad',
+       'Dattawadi', '2024-02-11', '2024-02-15', '2024-02-10',
+       'Sub-Registrar Office', 'Registered'], dtype=object), 'expected_dates': array(['2024-02-11', '2024-02-15', '2024-02-10'], dtype=object), 'expected_numbers': array(['REG-2024-00123', '12/34B', '02'], dtype=object)}"

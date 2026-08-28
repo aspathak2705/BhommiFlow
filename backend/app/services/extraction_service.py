@@ -4,10 +4,10 @@ from typing import Optional, Dict, Any
 # Matches DD/MM/YYYY, DD-MM-YYYY, DD.MM.YYYY
 DATE_PATTERN = re.compile(r"\b(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})\b")
 
-# Matches Registration/Document numbers e.g., Reg No. 12345/2026 or No: 98765
-REG_PATTERN = re.compile(r"(?:reg(?:istration)?\.?\s*(?:no)?\.?\s*|document\s*no\.?\s*|no:?\s*)(\d+[\w\/\-]*)", re.IGNORECASE)
+# Matches Registration/Document numbers e.g., Reg No. 12345/2026, Document No: REG-2024-00127 or No: 98765
+REG_PATTERN = re.compile(r"(?:reg(?:istration)?\.?\s*(?:no|date)?\.?\s*|document\s*no\.?\s*|no:?\s*|ref(?:erence)?\.?\s*)([A-Z]{3,}-\d{4}-\d+[\w\/\-]*|\d+[\w\/\-]*)", re.IGNORECASE)
 
-# Matches Land survey numbers e.g., Survey No: 41/2A or S.No 12
+# Matches Land survey numbers e.g., Survey No: 123/4A or S.No 12
 SURVEY_PATTERN = re.compile(r"(?:survey\s*(?:no)?\.?:?|s\.?\s*no\.?:?)\s*(\d+[\w\/\-]*)", re.IGNORECASE)
 
 def normalize_date(day: str, month: str, year: str) -> str:

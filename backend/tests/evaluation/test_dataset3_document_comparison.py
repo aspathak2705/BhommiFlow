@@ -24,6 +24,7 @@ def test_dataset3_evaluator_and_metrics():
     assert metrics["precision"] > 0.8
     assert metrics["recall"] > 0.8
     assert metrics["f1_score"] > 0.8
+    assert metrics["rule_consistency"] == 0.88
 
 def test_dataset3_production_isolation():
     # Verify that no test cases exist using Dataset 3 values in backend storage/DB
