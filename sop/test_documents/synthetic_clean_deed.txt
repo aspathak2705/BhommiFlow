@@ -1,0 +1,17 @@
+# SYNTHETIC TEST ARTIFACT - NOT A GOVERNMENT DOCUMENT
+# For BhoomiFlow testing only.
+
+CASE ID: TEST-CASE-CLEAN
+DOCUMENT TYPE: Sale Deed
+ISSUE DATE: 12/04/2026
+REGISTRATION NUMBER: REG-2026-1001
+SURVEY NUMBER: 123/4A
+VILLAGE: Vitthalwadi
+TALUKA: Tasgaon
+DISTRICT: Sangli
+
+This is a clean synthetic document counterpart for validating BhoomiFlow's metadata extraction and conflict comparison engine.
+Claimant: Ramesh Kumar
+Land Type: Agricultural
+Area: 2.5 Hectares
+Status: Authenticated

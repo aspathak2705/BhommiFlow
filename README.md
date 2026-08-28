@@ -157,10 +157,14 @@ bhoomiflow/
    ```
 
 ### Running Tests
-Execute the full test suite (covering unit tests and dataset evaluation pipelines) with:
 ```bash
 pytest
 ```
+
+---
+
+## 8. E2E Acceptance Testing (Judge Demo Path)
+For the complete Standard Operating Procedure (SOP) and synthetic testing materials, see **[sop/SOP.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/sop/SOP.md)**.
 
 ---
 
