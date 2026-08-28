@@ -16,6 +16,8 @@ from app.models.user import User, CitizenProfile, OfficerProfile
 from app.models.case import Case, LandParcel, Person, CasePerson, CaseEvent
 from app.models.document import Document, Evidence
 from app.models.conflict import PotentialConflict
+from app.models.knowledge import KnowledgeSource, KnowledgeChunk
+from app.models.workflow import EvidenceRequest, Notification
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

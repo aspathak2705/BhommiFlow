@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/bhoomiflow"
     PORT: int = 8000
     HOST: str = "0.0.0.0"
+    NVIDIA_API_KEY: str = "nvapi-placeholder-or-empty"
+    NVIDIA_MODEL: str = "meta/llama-3.1-405b-instruct"
+    SMS_PROVIDER_KEY: str = "sms-provider-placeholder"
+    SMS_SENDER_ID: str = "BFMUT"
 
     model_config = SettingsConfigDict(
         env_file=str(env_file_path), 

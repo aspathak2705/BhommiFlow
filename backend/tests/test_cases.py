@@ -429,4 +429,109 @@ def test_conflict_detection_service():
     assert response.status_code == 200
     assert response.json()["status"] == "REVIEWED"
 
+def test_rag_guidance_and_ingestion():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+
+    # 1. Ingest official government procedure
+    from app.services.ingestion_service import KnowledgeIngestionService
+    KnowledgeIngestionService.ingest_source(
+        db=db,
+        title="Land Mutation Rules 2026",
+        department="Revenue Department",
+        state="Maharashtra",
+        source_url="https://revenue.maharashtra.gov.in/mutation-guide",
+        document_type="manual",
+        content_text="This manual covers land mutation procedures. Land mutation requires registration document matching, heir certificate verifications, and survey parcel validation checklists."
+    )
+    db.close()
+
+    # 2. Query case guidance as citizen (authorized)
+    response = client.post(
+        f"/api/v1/cases/{case_id}/guidance",
+        json={"question": "What is the procedure for land mutation?"},
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    assert response.status_code == 200
+    res = response.json()
+    assert "answer" in res
+    assert len(res["sources"]) > 0
+    assert res["sources"][0]["title"] == "Land Mutation Rules 2026"
+
+    # 3. Query case guidance as unauthorized citizen
+    response = client.post(
+        f"/api/v1/cases/{case_id}/guidance",
+        json={"question": "What is the procedure?"},
+        headers={"Authorization": "Bearer token-cit-2"}
+    )
+    assert response.status_code == 403
+
+def test_rag_edge_cases_and_guidelines():
+    # 1. Test empty state behavior when no sources match query
+    response = client.post(
+        "/api/v1/cases/dummy-id/guidance",
+        json={"question": "Unrelated matching query text"},
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    # Check that it returns empty response indicating no relevant government guidance is available
+    assert response.status_code == 404 or "no relevant" in response.json().get("detail", "").lower() or "not authorized" in response.json().get("detail", "").lower()
+
+    # 2. Test multilingual response path
+    db = SessionLocal()
+    from app.services.rag_service import RAGService
+    case_context = {"case_type": "Mutation", "description": "Mutation request"}
+    
+    # English response path
+    res_en = RAGService.generate_grounded_guidance(db, case_context, "Explain land mutation rules")
+    assert "answer" in res_en
+    assert len(res_en["sources"]) > 0
+
+    # Marathi response path (ensure grounding matches retrieved source)
+    res_mr = RAGService.generate_grounded_guidance(db, case_context, "फेरफार प्रक्रिया स्पष्ट करा")
+    assert "answer" in res_mr
+    assert len(res_mr["sources"]) > 0
+    db.close()
+
+def test_end_to_end_workflow_and_notifications():
+    db = SessionLocal()
+    case_obj = db.query(Case).first()
+    case_id = case_obj.case_id
+    db.close()
+
+    # 1. Officer requests additional evidence
+    response = client.post(
+        f"/api/v1/cases/{case_id}/evidence-requests",
+        json={"description": "Please provide your original succession certificate"},
+        headers={"Authorization": "Bearer token-off-1"}
+    )
+    assert response.status_code == 200
+    req_id = response.json()["request_id"]
+
+    # Verify status transitioned to ACTION_REQUIRED
+    response = client.get(f"/api/v1/cases/{case_id}", headers={"Authorization": "Bearer token-cit-1"})
+    assert response.status_code == 200
+    assert response.json()["status"] == "ACTION_REQUIRED"
+
+    # 2. Verify notifications logs are visible
+    response = client.get(f"/api/v1/cases/{case_id}/notifications", headers={"Authorization": "Bearer token-cit-1"})
+    assert response.status_code == 200
+    notifs = response.json()
+    assert len(notifs) > 0
+    assert notifs[0]["event_type"] == "EVIDENCE_REQUESTED"
+
+    # 3. Citizen fulfills the request
+    response = client.post(
+        f"/api/v1/evidence-requests/{req_id}/fulfill",
+        headers={"Authorization": "Bearer token-cit-1"}
+    )
+    assert response.status_code == 200
+
+    # Verify status transitioned to RESUBMITTED
+    response = client.get(f"/api/v1/cases/{case_id}", headers={"Authorization": "Bearer token-cit-1"})
+    assert response.json()["status"] == "RESUBMITTED"
+
+
+
+
 

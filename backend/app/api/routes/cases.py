@@ -20,6 +20,11 @@ from app.services.extraction_service import extract_metadata_from_text
 from app.services.graph_service import build_case_graph
 from app.services.conflict_service import ConflictDetectionService
 from app.models.conflict import PotentialConflict
+from app.schemas.rag import RAGQueryRequest, RAGQueryResponse
+from app.services.rag_service import RAGService
+from app.schemas.workflow import EvidenceRequestCreate, EvidenceRequestResponse, NotificationResponse
+from app.models.workflow import EvidenceRequest, Notification
+from app.services.notification_service import NotificationService
 
 router = APIRouter()
 
@@ -333,3 +338,145 @@ def update_conflict_status(
     db.commit()
     db.refresh(conflict)
     return conflict
+
+# --- PHASE 4 PROCEDURE RAG & GROUNDED INTELLIGENCE APIS ---
+
+@router.post("/cases/{case_id}/guidance", response_model=RAGQueryResponse)
+def get_case_guidance(
+    case_id: str,
+    query_in: RAGQueryRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Enforce case scope access authorization
+    case_obj = check_case_access(case_id, current_user, db)
+    
+    # Populate case context
+    case_context = {
+        "case_type": case_obj.case_type,
+        "description": case_obj.description,
+        "district": case_obj.district,
+        "taluka": case_obj.taluka,
+        "village": case_obj.village
+    }
+    
+    # Execute grounded RAG query
+    result = RAGService.generate_grounded_guidance(
+        db=db,
+        case_context=case_context,
+        user_question=query_in.question,
+        role=current_user.role
+    )
+    return result
+
+# --- PHASE 5 EVIDENCE REQUESTS & NOTIFICATION APIS ---
+
+@router.post("/cases/{case_id}/evidence-requests", response_model=EvidenceRequestResponse)
+def create_evidence_request(
+    case_id: str,
+    req_in: EvidenceRequestCreate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    if current_user.role != "officer":
+        raise HTTPException(status_code=403, detail="Only officers can request additional evidence")
+        
+    case_obj = check_case_access(case_id, current_user, db)
+    
+    # Save request record
+    req_id = f"ERQ-{uuid.uuid4().hex[:12].upper()}"
+    db_req = EvidenceRequest(
+        request_id=req_id,
+        case_id=case_id,
+        requested_by=current_user.id,
+        description=req_in.description,
+        status="OPEN"
+    )
+    db.add(db_req)
+    
+    # Force state mutation to ACTION_REQUIRED
+    case_obj.status = "ACTION_REQUIRED"
+    
+    # Log timeline event
+    case_service.log_event(
+        db=db,
+        case_id=case_id,
+        event_type="EVIDENCE_REQUESTED",
+        actor_id=current_user.id,
+        actor_role=current_user.role,
+        metadata={"request_id": req_id, "description": req_in.description}
+    )
+    case_service.log_event(
+        db=db,
+        case_id=case_id,
+        event_type="STATUS_CHANGED",
+        actor_id=current_user.id,
+        actor_role=current_user.role,
+        metadata={"old_status": "UNDER_REVIEW", "new_status": "ACTION_REQUIRED", "note": f"Requested: {req_in.description}"}
+    )
+    
+    # Trigger SMS notification event
+    sms_msg = f"BhoomiFlow: Additional evidence requested for Case {case_obj.case_reference}. Description: {req_in.description}. Please log in to upload."
+    NotificationService.send_sms(db, user_id=case_obj.citizen_id, case_id=case_id, event_type="EVIDENCE_REQUESTED", message=sms_msg)
+    
+    db.commit()
+    db.refresh(db_req)
+    return db_req
+
+@router.get("/cases/{case_id}/evidence-requests", response_model=List[EvidenceRequestResponse])
+def get_case_evidence_requests(
+    case_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    return db.query(EvidenceRequest).filter(EvidenceRequest.case_id == case_id).order_by(EvidenceRequest.created_at.desc()).all()
+
+@router.post("/evidence-requests/{request_id}/fulfill")
+def fulfill_evidence_request(
+    request_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    req = db.query(EvidenceRequest).filter(EvidenceRequest.request_id == request_id).first()
+    if not req:
+        raise HTTPException(status_code=404, detail="Evidence request not found")
+        
+    case_obj = check_case_access(req.case_id, current_user, db)
+    if current_user.role != "citizen" or case_obj.citizen_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Only the case owner can fulfill evidence requests")
+        
+    req.status = "FULFILLED"
+    from datetime import datetime, timezone
+    req.fulfilled_at = datetime.now(timezone.utc)
+    
+    # Update case status to RESUBMITTED
+    case_obj.status = "RESUBMITTED"
+    
+    # Log timeline event
+    case_service.log_event(
+        db=db,
+        case_id=req.case_id,
+        event_type="STATUS_CHANGED",
+        actor_id=current_user.id,
+        actor_role=current_user.role,
+        metadata={"old_status": "ACTION_REQUIRED", "new_status": "RESUBMITTED", "note": "Citizen fulfilled evidence request"}
+    )
+    
+    # Trigger SMS notification event
+    if case_obj.assigned_officer_id:
+        sms_msg = f"BhoomiFlow: Citizen has submitted requested evidence for Case {case_obj.case_reference}."
+        NotificationService.send_sms(db, user_id=case_obj.assigned_officer_id, case_id=req.case_id, event_type="EVIDENCE_RECEIVED", message=sms_msg)
+        
+    db.commit()
+    return {"status": "success", "message": "Evidence request marked as fulfilled"}
+
+@router.get("/cases/{case_id}/notifications", response_model=List[NotificationResponse])
+def get_case_notifications(
+    case_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    return db.query(Notification).filter(Notification.case_id == case_id).order_by(Notification.created_at.desc()).all()
+
