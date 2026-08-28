@@ -296,7 +296,7 @@ export default function CaseDetail() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-20">
-      <header className="h-16 bg-white border-b flex items-center justify-between px-6 sticky top-0 z-40">
+      <header className="h-16 bg-white border-b flex items-center justify-between px-4 md:px-6 sticky top-0 z-45">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate(userRole === "officer" ? "/officer" : "/citizen")}
@@ -305,12 +305,12 @@ export default function CaseDetail() {
             ← {t("backDashboard")}
           </button>
         </div>
-        <div className="text-sm font-bold text-slate-500">
+        <div className="text-sm font-bold text-slate-500 truncate max-w-[150px] sm:max-w-none">
           {t("caseLabel")}: {caseObj.case_reference}
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto w-full mt-8 px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <main className="max-w-7xl mx-auto w-full mt-8 px-4 md:px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left/Middle Column: Overview, Documents, Case Graph, and Potential Conflicts */}
         <div className="lg:col-span-2 space-y-6">
           {/* Action Required Widget (Always Visible at Top when requested) */}

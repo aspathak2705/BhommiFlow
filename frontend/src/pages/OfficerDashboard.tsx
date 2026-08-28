@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchCases, fetchHealth, fetchDbHealth, fetchMe } from "../lib/api";
+import { fetchCases, fetchMe } from "../lib/api";
 import { Case, User } from "../types/types";
 
 export default function OfficerDashboard() {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [cases, setCases] = useState<Case[]>([]);
-  const [apiOnline, setApiOnline] = useState<boolean | null>(null);
-  const [dbConnected, setDbConnected] = useState<boolean | null>(null);
   
   // Filtering & Search
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -19,20 +17,6 @@ export default function OfficerDashboard() {
 
   useEffect(() => {
     async function loadData() {
-      try {
-        const h = await fetchHealth();
-        setApiOnline(h.status === "ok");
-      } catch {
-        setApiOnline(false);
-      }
-
-      try {
-        const dbh = await fetchDbHealth();
-        setDbConnected(dbh.database === "connected");
-      } catch {
-        setDbConnected(false);
-      }
-
       try {
         const profile = await fetchMe();
         setUser(profile);
@@ -76,28 +60,16 @@ export default function OfficerDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
-      <header className="h-16 fixed top-0 w-full bg-white border-b flex justify-between items-center px-6 z-50">
+      <header className="h-16 fixed top-0 w-full bg-white border-b flex justify-between items-center px-4 md:px-6 z-50">
         <div className="flex items-center gap-3">
           <span className="text-xl font-bold text-indigo-700">BhoomiFlow</span>
-          <span className="text-slate-400 font-semibold">|</span>
-          <span className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold uppercase">
+          <span className="text-slate-400 font-semibold hidden sm:inline">|</span>
+          <span className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold uppercase hidden sm:inline">
             Officer Workspace
           </span>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-semibold">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 border rounded-full bg-slate-50">
-            <span className="text-slate-500">API:</span>
-            <span className={apiOnline ? "text-emerald-600" : "text-rose-600"}>
-              {apiOnline ? "● Online" : "● Offline"}
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 border rounded-full bg-slate-50">
-            <span className="text-slate-500">DB:</span>
-            <span className={dbConnected ? "text-emerald-600" : "text-rose-600"}>
-              {dbConnected ? "● Connected" : "● Disconnected"}
-            </span>
-          </div>
+        <div className="flex items-center gap-3 text-xs font-semibold">
           <button
             onClick={handleLogout}
             className="px-3 py-1.5 border rounded-full hover:bg-slate-100 transition-colors"
@@ -107,9 +79,9 @@ export default function OfficerDashboard() {
         </div>
       </header>
 
-      <main className="flex-1 pt-20 pb-16 px-6 max-w-7xl mx-auto w-full">
+      <main className="flex-1 pt-20 pb-16 px-4 md:px-6 max-w-7xl mx-auto w-full">
         {/* Officer Context Card */}
-        <div className="bg-white rounded-xl border p-6 my-6 flex justify-between items-center shadow-sm">
+        <div className="bg-white rounded-xl border p-4 md:p-6 my-6 flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm gap-4">
           <div>
             <h2 className="text-lg font-bold text-slate-800">
               Welcome, {user?.officer_profile?.full_name}
@@ -121,23 +93,23 @@ export default function OfficerDashboard() {
               Assigned Jurisdiction: Taluka {user?.officer_profile?.taluka}, District {user?.officer_profile?.district}
             </p>
           </div>
-          <div className="text-right text-sm font-semibold">
+          <div className="text-left md:text-right text-sm font-semibold">
             <span className="text-indigo-600">{cases.length} Total cases in database</span>
           </div>
         </div>
 
         {/* Search & Filters */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
           <div className="flex-1">
             <input
               type="text"
               placeholder="Search by case ref, title, village..."
-              className="w-full max-w-md p-2.5 border rounded-lg bg-white"
+              className="w-full p-2.5 border rounded-lg bg-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <div>
               <select
                 className="p-2.5 border rounded-lg bg-white text-sm"
