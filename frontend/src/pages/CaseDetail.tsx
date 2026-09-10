@@ -14,10 +14,14 @@ import {
   createEvidenceRequest,
   fetchEvidenceRequests,
   fulfillEvidenceRequest,
-  fetchNotifications
+  fetchNotifications,
+  fetchGraphExplanation
 } from "../lib/api";
 import { Case, CaseEvent, Evidence } from "../types/types";
 import { useLanguage } from "../lib/LanguageContext";
+import { ContextualGuidance } from "../components/guidance/ContextualGuidance";
+import { VoiceInputButton } from "../components/guidance/VoiceInputButton";
+import { ListenButton } from "../components/guidance/ListenButton";
 
 const DOCUMENT_TYPES = [
   "Land Record",
@@ -77,6 +81,7 @@ export default function CaseDetail() {
   const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
   const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([]);
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
+  const [graphExplanation, setGraphExplanation] = useState<any | null>(null);
   
   const [conflicts, setConflicts] = useState<any[]>([]);
   const [resolvingConflictId, setResolvingConflictId] = useState("");
@@ -120,6 +125,15 @@ export default function CaseDetail() {
       const graphData = await fetchCaseGraph(caseId);
       setGraphNodes(graphData.nodes);
       setGraphEdges(graphData.edges);
+
+      // Fetch dynamic graph accessibility summary
+      try {
+        const lang = localStorage.getItem("bhoomiflow_lang") || "en";
+        const explanation = await fetchGraphExplanation(caseId, lang);
+        setGraphExplanation(explanation);
+      } catch (geErr) {
+        console.error("Failed to load graph summary explanation", geErr);
+      }
 
       // Load Potential Conflicts
       const conflictList = await fetchCaseConflicts(caseId);
@@ -546,6 +560,17 @@ export default function CaseDetail() {
             ) : (
               <p className="text-sm text-slate-400 italic">Graph representation empty.</p>
             )}
+
+            {graphExplanation && (
+              <div className="bg-blue-50/40 border border-blue-100 rounded-xl p-4 space-y-2 mt-4">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-blue-800">{t("Visual Map Explanation")}</h4>
+                <p className="text-sm text-slate-800 leading-relaxed">{graphExplanation.summary}</p>
+                <p className="text-xs text-slate-500 italic">{graphExplanation.disclaimer}</p>
+                <div className="pt-2">
+                  <ListenButton textToSpeak={`${graphExplanation.summary}. ${graphExplanation.disclaimer}`} />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Potential Conflicts (Officer Only) */}
@@ -624,26 +649,34 @@ export default function CaseDetail() {
             <p className="text-xs text-slate-500">
               Search the authoritative state knowledge base for procedures, circulars, and document requirements relevant to this case.
             </p>
-            <form onSubmit={handleRagQuery} className="flex gap-2">
-              <input
-                type="text"
-                value={ragQuestion}
-                onChange={(e) => setRagQuestion(e.target.value)}
-                placeholder="Ask about land mutation timelines, heir certificates, needed documents..."
-                className="flex-1 p-2 border rounded text-sm bg-white"
-              />
-              <button
-                type="submit"
-                disabled={ragSearching || !ragQuestion}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm font-bold transition-all disabled:opacity-50"
-              >
-                {ragSearching ? "Searching..." : "Search Guidance"}
-              </button>
+            <form onSubmit={handleRagQuery} className="space-y-2">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={ragQuestion}
+                  onChange={(e) => setRagQuestion(e.target.value)}
+                  placeholder="Ask about land mutation timelines, heir certificates, needed documents..."
+                  className="flex-1 p-2 border rounded text-sm bg-white"
+                />
+                <button
+                  type="submit"
+                  disabled={ragSearching || !ragQuestion}
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-sm font-bold transition-all disabled:opacity-50"
+                >
+                  {ragSearching ? "Searching..." : "Search Guidance"}
+                </button>
+              </div>
+              <div className="pt-1">
+                <VoiceInputButton onTranscription={(text) => setRagQuestion((prev) => prev ? prev + " " + text : text)} />
+              </div>
             </form>
 
             {ragAnswer && (
               <div className="p-4 border rounded-xl bg-slate-50 space-y-3">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400">Grounded AI explanation</h4>
+                <div className="flex items-center justify-between">
+                  <h4 className="font-bold text-xs uppercase tracking-wider text-slate-400">Grounded AI explanation</h4>
+                  <ListenButton textToSpeak={ragAnswer} />
+                </div>
                 <p className="text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">{ragAnswer}</p>
                 
                 {ragSources.length > 0 && (
@@ -808,6 +841,7 @@ export default function CaseDetail() {
           {/* Document Upload Widget */}
           <div className="bg-white rounded-xl border p-6 shadow-sm space-y-4">
             <h3 className="font-bold text-slate-800 border-b pb-2">Attach Document / Evidence</h3>
+            <ContextualGuidance context="DOCUMENT_UPLOAD" />
             <form onSubmit={handleFileUpload} className="space-y-3">
               <div>
                 <label className="block text-xs font-bold uppercase text-slate-400 mb-1">Document Category</label>

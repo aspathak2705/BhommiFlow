@@ -15,13 +15,26 @@ if env_file_path.exists():
                 os.environ[key.strip()] = val.strip()
 
 class Settings(BaseSettings):
+    ENVIRONMENT: str = "development"
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/bhoomiflow"
+    SUPABASE_DATABASE_URL: str = ""
     PORT: int = 8000
     HOST: str = "0.0.0.0"
     NVIDIA_API_KEY: str = "nvapi-placeholder-or-empty"
-    NVIDIA_MODEL: str = "meta/llama-3.1-405b-instruct"
+    NVIDIA_BASE_URL: str = "https://integrate.api.nvidia.com/v1"
+    NVIDIA_MODEL: str = "nvidia/nemotron-3-super-120b-a12b:free"
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+    SMS_PROVIDER: str = "twilio"  # Default provider interface integration
     SMS_PROVIDER_KEY: str = "sms-provider-placeholder"
-    SMS_SENDER_ID: str = "BFMUT"
+    SMS_API_KEY: str = ""  # For general provider API keys
+    SMS_API_SECRET: str = ""  # For secret keys/auth tokens
+    SMS_SENDER_ID: str = "BFMUT"  # Or phone number
+    SARVAM_API_KEY: str = ""
+    SARVAM_BASE_URL: str = "https://api.sarvam.ai"
+    SARVAM_TTS_MODEL: str = "bulbul:v3"
+    SARVAM_STT_MODEL: str = "saaras:v1"
+    SPEECH_PROVIDER: str = "offline"
 
     model_config = SettingsConfigDict(
         env_file=str(env_file_path), 

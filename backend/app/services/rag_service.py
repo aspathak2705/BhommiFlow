@@ -12,43 +12,41 @@ class RAGService:
     @staticmethod
     def query_nvidia_nim(system_prompt: str, user_prompt: str) -> str:
         """
-        Direct REST call to NVIDIA NIM API utilizing standard urllib request.
-        Safe, lightweight, no additional third-party dependencies required.
+        REST call to NVIDIA Nemotron-3 model via OpenRouter API client interface.
+        Uses OpenAI SDK integration pattern.
         """
-        api_key = settings.NVIDIA_API_KEY
-        if not api_key or api_key == "nvapi-placeholder-or-empty":
-            logger.warning("NVIDIA_API_KEY is not configured. Running offline simulation.")
-            return f"[Offline Simulation Mode - No API Key] Standard response grounded in references."
+        api_key = settings.OPENROUTER_API_KEY
+        if not api_key:
+            raise ValueError("OpenRouter API key is not configured.")
 
-        url = "https://integrate.api.nvidia.com/v1/chat/completions"
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        }
-        
-        payload = {
-            "model": settings.NVIDIA_MODEL,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            "temperature": 0.2,
-            "top_p": 0.7,
-            "max_tokens": 1024
-        }
-        
+        from openai import OpenAI
+        client = OpenAI(
+            base_url=settings.OPENROUTER_BASE_URL,
+            api_key=api_key,
+        )
+
         try:
-            req = urllib.request.Request(
-                url, 
-                data=json.dumps(payload).encode("utf-8"), 
-                headers=headers,
-                method="POST"
+            response = client.chat.completions.create(
+                model=settings.NVIDIA_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.2,
+                top_p=0.7,
+                max_tokens=1024,
+                extra_body={
+                    "reasoning": {
+                        "enabled": True
+                    }
+                }
             )
-            with urllib.request.urlopen(req, timeout=12) as response:
-                res_data = json.loads(response.read().decode("utf-8"))
-                return res_data["choices"][0]["message"]["content"]
+            content = response.choices[0].message.content
+            if not content:
+                raise ValueError("Received empty completion from OpenRouter API provider.")
+            return content
         except Exception as e:
-            logger.error(f"NVIDIA NIM connection error: {str(e)}")
+            logger.error(f"OpenRouter Nemotron connection error: {str(e)}")
             raise e
 
     @staticmethod

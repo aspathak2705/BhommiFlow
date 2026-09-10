@@ -280,6 +280,23 @@ def get_case_graph(
     check_case_access(case_id, current_user, db)
     return build_case_graph(db, case_id)
 
+@router.get("/cases/{case_id}/graph/explanation")
+def get_case_graph_explanation(
+    case_id: str,
+    language: str = "en",
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    check_case_access(case_id, current_user, db)
+    graph_data = build_case_graph(db, case_id)
+    # Convert GraphResponse schema to dict
+    graph_dict = {
+        "nodes": [{"id": n.id, "type": n.type, "label": n.label, "details": n.details} for n in graph_data.nodes],
+        "edges": [{"source": e.source, "target": e.target, "type": e.type} for e in graph_data.edges]
+    }
+    from app.services.graph_explanation_service import GraphExplanationService
+    return GraphExplanationService.generate_explanation(graph_dict, language)
+
 @router.post("/cases/{case_id}/conflicts/analyze")
 def analyze_case_conflicts(
     case_id: str,

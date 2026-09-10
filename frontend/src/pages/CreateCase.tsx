@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCase } from "../lib/api";
 import { useLanguage } from "../lib/LanguageContext";
+import { VoiceInputButton } from "../components/guidance/VoiceInputButton";
+import { ContextualGuidance } from "../components/guidance/ContextualGuidance";
 
 const CASE_TYPES = [
   "Inheritance / succession",
@@ -185,7 +187,11 @@ export default function CreateCase() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
+                <div className="mt-2">
+                  <VoiceInputButton onTranscription={(text) => setDescription((prev) => prev ? prev + " " + text : text)} />
+                </div>
               </div>
+              <ContextualGuidance context="CASE_CREATION" />
             </div>
           )}
 
@@ -298,6 +304,7 @@ export default function CreateCase() {
                   onChange={(e) => setLandDescription(e.target.value)}
                 />
               </div>
+              <ContextualGuidance context="LAND_MAPPING" />
             </div>
           )}
 

@@ -18,6 +18,7 @@ from app.models.document import Document, Evidence
 from app.models.conflict import PotentialConflict
 from app.models.knowledge import KnowledgeSource, KnowledgeChunk
 from app.models.workflow import EvidenceRequest, Notification
+from app.models.project import Project, ProjectParcel, ProjectTimelineEvent
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -28,8 +29,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Set the sqlalchemy.url dynamically from settings
-db_url = settings.DATABASE_URL
+# Set the sqlalchemy.url dynamically from settings with Supabase precedence
+db_url = settings.SUPABASE_DATABASE_URL or settings.DATABASE_URL
 if db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 config.set_main_option("sqlalchemy.url", db_url.replace("%", "%%"))
