@@ -99,7 +99,7 @@ class TabularPredictionModel:
             val = features.get(feature_name, 0.0)
             contrib = val * weight
             logit += contrib
-            if abs(contrib) > 0.01:
+            if abs(contrib) > 0.0001 or val > 0:
                 attributions.append({
                     "feature": feature_name,
                     "value": val,
@@ -109,6 +109,8 @@ class TabularPredictionModel:
         # Sigmoid activation
         prob = 1.0 / (1.0 + math.exp(-max(-10.0, min(10.0, logit))))
         attributions.sort(key=lambda x: abs(x["importance"]), reverse=True)
+        if not attributions:
+            attributions.append({"feature": "project_elapsed_days", "value": features.get("project_elapsed_days", 0.0), "importance": 0.0})
         return round(prob, 4), attributions[:5]
 
 
