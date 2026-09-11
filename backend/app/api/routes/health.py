@@ -12,10 +12,23 @@ def health():
         "service": "bhoomiflow-api"
     }
 
+@router.get("/ready")
+def ready(db: Session = Depends(get_db)):
+    try:
+        db.execute(text("SELECT 1"))
+        return {
+            "status": "ready",
+            "database": "connected"
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Database readiness check failed: {str(e)}"
+        )
+
 @router.get("/health/db")
 def health_db(db: Session = Depends(get_db)):
     try:
-        # Execute basic query to verify connection
         db.execute(text("SELECT 1"))
         return {
             "status": "ok",

@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
     DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/bhoomiflow"
     SUPABASE_DATABASE_URL: str = ""
+    CORS_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173"
     PORT: int = 8000
     HOST: str = "0.0.0.0"
     NVIDIA_API_KEY: str = "nvapi-placeholder-or-empty"
