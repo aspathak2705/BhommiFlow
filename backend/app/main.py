@@ -7,7 +7,7 @@ from sqlalchemy import text
 # Ensure app is in Python path when running from backend root
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from app.api.routes import health, auth, cases, guidance, projects, evidence_intelligence
+from app.api.routes import health, auth, cases, guidance, projects, evidence_intelligence, intelligence_graph, prediction
 from app.core.config import settings
 from app.core.database import engine
 
@@ -55,6 +55,10 @@ app.include_router(cases.router, prefix="/api/v1", tags=["Cases"])
 app.include_router(guidance.router, prefix="/api/v1", tags=["Guidance"])
 app.include_router(projects.router, prefix="/api/v1", tags=["Projects Foundation"])
 app.include_router(evidence_intelligence.router, prefix="/api/v1", tags=["Evidence Intelligence"])
+app.include_router(intelligence_graph.router, prefix="/api/v1", tags=["Intelligence Graph"])
+app.include_router(prediction.router, prefix="/api/v1", tags=["Predictive Engine"])
+
+
 
 
 @app.get("/")

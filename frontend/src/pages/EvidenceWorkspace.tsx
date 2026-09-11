@@ -40,14 +40,47 @@ interface ConflictSignal {
   review_required: boolean;
 }
 
+interface GraphNode {
+  id: string;
+  node_type: string;
+  label: string;
+}
+
+interface Bottleneck {
+  primary_bottleneck: string;
+  secondary_bottleneck?: string;
+  severity: string;
+  age_days: number;
+  supporting_signals: string[];
+}
+
+interface DelayPropagation {
+  root_blocker: string;
+  dependency_chain: string[];
+  affected_processes: string[];
+  propagation_depth: number;
+  critical_path_affected: boolean;
+}
+
+interface DelayPrediction {
+  predicted_probability: number;
+  risk_level: string;
+  horizon_days: number;
+  top_contributing_features: { feature: string; value: number; importance: number }[];
+}
+
 export default function EvidenceWorkspace() {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState<'documents' | 'evidence' | 'conflicts'>('documents');
+  const [activeTab, setActiveTab] = useState<'documents' | 'evidence' | 'conflicts' | 'intelligence'>('documents');
   const [documents, setDocuments] = useState<BhoomiDocument[]>([]);
   const [evidenceList, setEvidenceList] = useState<EvidenceRecord[]>([]);
   const [conflicts, setConflicts] = useState<ConflictSignal[]>([]);
+  const [graphNodes, setGraphNodes] = useState<GraphNode[]>([]);
+  const [bottleneck, setBottleneck] = useState<Bottleneck | null>(null);
+  const [propagation, setPropagation] = useState<DelayPropagation | null>(null);
+  const [prediction, setPrediction] = useState<DelayPrediction | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [uploading, setUploading] = useState<boolean>(false);
 
@@ -85,6 +118,34 @@ export default function EvidenceWorkspace() {
       if (cnfRes.ok) {
         const cnfData = await cnfRes.json();
         setConflicts(cnfData);
+      }
+
+      // Fetch Graph Nodes
+      const graphRes = await fetch(`/api/v1/projects/${projectId}/graph`, { headers });
+      if (graphRes.ok) {
+        const graphData = await graphRes.json();
+        setGraphNodes(graphData.nodes || []);
+      }
+
+      // Fetch Bottlenecks
+      const btnRes = await fetch(`/api/v1/projects/${projectId}/bottlenecks`, { headers });
+      if (btnRes.ok) {
+        const btnData = await btnRes.json();
+        setBottleneck(btnData);
+      }
+
+      // Fetch Propagation
+      const propRes = await fetch(`/api/v1/projects/${projectId}/propagation`, { headers });
+      if (propRes.ok) {
+        const propData = await propRes.json();
+        setPropagation(propData);
+      }
+
+      // Fetch Prediction
+      const predRes = await fetch(`/api/v1/projects/${projectId}/prediction`, { headers });
+      if (predRes.ok) {
+        const predData = await predRes.json();
+        setPrediction(predData);
       }
     } catch (err) {
       console.error('Failed to load evidence workspace data:', err);
@@ -138,9 +199,9 @@ export default function EvidenceWorkspace() {
           <div>
             <h1 className="text-xl font-bold text-white flex items-center gap-2">
               <ShieldCheck className="w-6 h-6 text-emerald-400" />
-              Evidence Intelligence Workspace
+              Evidence & Intelligence Workspace
             </h1>
-            <p className="text-xs text-slate-400">Project ID: {projectId} • Grounded Extraction & Signal Audit</p>
+            <p className="text-xs text-slate-400">Project ID: {projectId} • Grounded Extraction, Graph & Signal Audit</p>
           </div>
         </div>
 
@@ -185,6 +246,18 @@ export default function EvidenceWorkspace() {
         >
           <AlertTriangle className="w-4 h-4" />
           <span>Conflict Signals ({conflicts.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('intelligence')}
+          className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+            activeTab === 'intelligence'
+              ? 'border-emerald-500 text-emerald-400 bg-slate-800/50'
+              : 'border-transparent text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <ShieldCheck className="w-4 h-4 text-emerald-400" />
+          <span>Intelligence Graph & Bottlenecks</span>
         </button>
       </div>
 
@@ -375,8 +448,150 @@ export default function EvidenceWorkspace() {
               )}
             </div>
           )}
+
+          {/* Intelligence Tab */}
+          {activeTab === 'intelligence' && (
+            <div className="space-y-6">
+              {/* Primary Bottleneck & Propagation Section */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Bottleneck Panel */}
+                <div className="bg-slate-800/60 rounded-xl p-5 border border-slate-700/50">
+                  <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 text-amber-400" />
+                    Evaluated Bottlenecks
+                  </h2>
+                  {bottleneck ? (
+                    <div className="space-y-3">
+                      <div className="bg-slate-900 p-3 rounded-lg border border-slate-700">
+                        <div className="text-xs text-slate-400">Primary Blocker</div>
+                        <div className="text-base font-bold text-amber-400 mt-0.5">{bottleneck.primary_bottleneck}</div>
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">
+                            Severity: {bottleneck.severity}
+                          </span>
+                          <span className="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">
+                            Age: {bottleneck.age_days} day(s)
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-xs font-semibold text-slate-300 mb-1.5">Supporting Signals (Explainability):</div>
+                        <ul className="space-y-1 text-xs text-slate-400 list-disc list-inside">
+                          {bottleneck.supporting_signals.map((sig, idx) => (
+                            <li key={idx}>{sig}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400">No bottleneck signals available.</p>
+                  )}
+                </div>
+
+                {/* Delay Propagation Panel */}
+                <div className="bg-slate-800/60 rounded-xl p-5 border border-slate-700/50">
+                  <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    Downstream Delay Propagation
+                  </h2>
+                  {propagation ? (
+                    <div className="space-y-3">
+                      <div className="bg-slate-900 p-3 rounded-lg border border-slate-700">
+                        <div className="text-xs text-slate-400">Root Cause Blocker</div>
+                        <div className="text-sm font-bold text-white mt-0.5">{propagation.root_blocker}</div>
+                        <div className="text-xs text-rose-400 mt-2 font-medium">
+                          Critical Path Impact: {propagation.critical_path_affected ? 'YES (High Delay Risk)' : 'NO'}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-xs font-semibold text-slate-300 mb-1.5">Affected Downstream Chain:</div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {propagation.dependency_chain.map((proc, idx) => (
+                            <React.Fragment key={idx}>
+                              <span className={`text-xs px-2.5 py-1 rounded font-medium ${
+                                idx === 0 ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-slate-800 text-slate-300 border border-slate-700'
+                              }`}>
+                                {proc}
+                              </span>
+                              {idx < propagation.dependency_chain.length - 1 && (
+                                <span className="text-slate-600 text-xs">→</span>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-400">No propagation calculations available.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* ML Delay Prediction Engine Card */}
+              {prediction && (
+                <div className="bg-slate-800/60 rounded-xl p-5 border border-emerald-500/30">
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-sm font-semibold text-white flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      ML Predictive Delay Risk Analysis ({prediction.horizon_days}-Day Horizon)
+                    </h2>
+                    <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase ${
+                      prediction.risk_level === 'Critical' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                      prediction.risk_level === 'High' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                      prediction.risk_level === 'Medium' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30' :
+                      'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                    }`}>
+                      {prediction.risk_level} Risk ({(prediction.predicted_probability * 100).toFixed(1)}%)
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div className="text-xs font-semibold text-slate-300 mb-2">Top ML Prediction Drivers (Feature Attribution):</div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {prediction.top_contributing_features.map((feat, idx) => (
+                        <div key={idx} className="bg-slate-800 p-2.5 rounded border border-slate-700">
+                          <div className="text-[11px] font-mono text-slate-400">{feat.feature}</div>
+                          <div className="text-xs font-bold text-white mt-0.5">Value: {feat.value}</div>
+                          <div className="text-[10px] text-emerald-400 mt-1 font-mono">Importance: +{feat.importance}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-3 italic">
+                      * Predictive signal generated by calibrated tabular model (v1). Output is for decision support only.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Connected Entity & Evidence Graph Nodes */}
+              <div className="bg-slate-800/60 rounded-xl p-5 border border-slate-700/50">
+                <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-emerald-400" />
+                  Connected Entity & Evidence Graph ({graphNodes.length} Nodes)
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {graphNodes.map((node) => (
+                    <div key={node.id} className="bg-slate-900/80 p-3 rounded-lg border border-slate-700 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">
+                          {node.node_type}
+                        </span>
+                        <div className="text-xs font-semibold text-white truncate mt-1">{node.label}</div>
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-500 truncate mt-2">
+                        ID: {node.id}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
   );
 }
+
