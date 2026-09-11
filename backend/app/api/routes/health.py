@@ -26,6 +26,7 @@ def ready(db: Session = Depends(get_db)):
             detail=f"Database readiness check failed: {str(e)}"
         )
 
+
 @router.get("/health/db")
 def health_db(db: Session = Depends(get_db)):
     try:

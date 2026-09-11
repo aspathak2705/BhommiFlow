@@ -32,6 +32,28 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+# Security Headers & Correlation ID Middleware
+@app.middleware("http")
+async def security_and_tracing_middleware(request, call_next):
+    import uuid, time
+    request_id = request.headers.get("X-Request-ID", f"req-{uuid.uuid4().hex[:12]}")
+    start_time = time.time()
+    
+    response = await call_next(request)
+    
+    process_time = time.time() - start_time
+    response.headers["X-Request-ID"] = request_id
+    response.headers["X-Process-Time"] = f"{process_time:.4f}s"
+    
+    # Production security headers
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    if settings.ENVIRONMENT == "production":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+        
+    return response
+
 # CORS configuration
 origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
 
