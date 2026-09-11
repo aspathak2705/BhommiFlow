@@ -108,6 +108,47 @@ interface InterventionCandidate {
   data_origin: string;
 }
 
+interface RequiredEvidenceItem {
+  document_type: string;
+  title: string;
+  status: string;
+  source_reference?: string;
+}
+
+interface ProcedureGrounding {
+  applicable_procedure: string;
+  source: string;
+  section: string;
+  effective_date: string;
+}
+
+interface DecisionContextData {
+  project_id: string;
+  decision_priority: string;
+  risk_level: string;
+  predicted_probability: number;
+  horizon_days: number;
+  summary: string;
+  top_drivers: ExplanationDriver[];
+  primary_bottleneck?: string;
+  bottleneck_severity?: string;
+  interventions: InterventionCandidate[];
+  required_evidence: RequiredEvidenceItem[];
+  uncertainties: UncertaintyItem[];
+  procedure_grounding?: ProcedureGrounding;
+  pending_decisions: any[];
+}
+
+interface AuditEventRecord {
+  event_id: string;
+  project_id: string;
+  actor_id: string;
+  actor_type: string;
+  event_type: string;
+  target_entity?: string;
+  timestamp?: string;
+}
+
 export default function EvidenceWorkspace() {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
@@ -122,6 +163,8 @@ export default function EvidenceWorkspace() {
   const [prediction, setPrediction] = useState<DelayPrediction | null>(null);
   const [explanation, setExplanation] = useState<ExplanationData | null>(null);
   const [interventions, setInterventions] = useState<InterventionCandidate[]>([]);
+  const [decisionContext, setDecisionContext] = useState<DecisionContextData | null>(null);
+  const [auditEvents, setAuditEvents] = useState<AuditEventRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [uploading, setUploading] = useState<boolean>(false);
 
@@ -201,6 +244,20 @@ export default function EvidenceWorkspace() {
       if (intRes.ok) {
         const intData = await intRes.json();
         setInterventions(intData);
+      }
+
+      // Fetch Phase 6 Decision Context
+      const dcRes = await fetch(`/api/v1/projects/${projectId}/decision-context`, { headers });
+      if (dcRes.ok) {
+        const dcData = await dcRes.json();
+        setDecisionContext(dcData);
+      }
+
+      // Fetch Phase 6 Audit Trail
+      const audRes = await fetch(`/api/v1/projects/${projectId}/audit`, { headers });
+      if (audRes.ok) {
+        const audData = await audRes.json();
+        setAuditEvents(audData);
       }
     } catch (err) {
       console.error('Failed to load evidence workspace data:', err);
@@ -710,6 +767,87 @@ export default function EvidenceWorkspace() {
                       </div>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Phase 6: Decision Intelligence & Human-in-the-Loop Officer Workspace */}
+              {decisionContext && (
+                <div className="bg-slate-800/60 rounded-xl p-5 border border-purple-500/40 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-sm font-semibold text-white flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-purple-400" />
+                      Officer Decision Intelligence Workspace
+                    </h2>
+                    <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase ${
+                      decisionContext.decision_priority === 'CRITICAL' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                      decisionContext.decision_priority === 'HIGH' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' :
+                      'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                    }`}>
+                      Priority: {decisionContext.decision_priority}
+                    </span>
+                  </div>
+
+                  {/* Required Evidence Checklist (Available vs Verified) */}
+                  <div className="bg-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div className="text-xs font-semibold text-slate-300 mb-2 flex items-center justify-between">
+                      <span>Required Evidence Verification Status:</span>
+                      <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">SYSTEM DERIVED</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {decisionContext.required_evidence.map((req, idx) => (
+                        <div key={idx} className="bg-slate-800 p-3 rounded border border-slate-700 flex items-center justify-between">
+                          <div>
+                            <div className="text-xs font-bold text-white">{req.title}</div>
+                            {req.source_reference && <div className="text-[10px] text-slate-400 font-mono mt-0.5">Source: {req.source_reference}</div>}
+                          </div>
+                          <span className={`text-[10px] px-2 py-1 rounded font-bold ${
+                            req.status === 'VERIFIED' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                            req.status === 'AVAILABLE' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' :
+                            'bg-red-500/20 text-red-400 border border-red-500/30'
+                          }`}>
+                            {req.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Procedure Grounding Card */}
+                  {decisionContext.procedure_grounding && (
+                    <div className="bg-slate-900/90 p-3.5 rounded-lg border border-indigo-500/30 text-xs">
+                      <div className="flex items-center justify-between text-indigo-300 font-bold mb-1">
+                        <span>Grounded Procedural Manual Guidance:</span>
+                        <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono">VERIFIED KB SOURCE</span>
+                      </div>
+                      <div className="text-white font-medium">{decisionContext.procedure_grounding.applicable_procedure}</div>
+                      <div className="text-slate-400 mt-1 text-[11px]">
+                        Source: {decisionContext.procedure_grounding.source} ({decisionContext.procedure_grounding.section})
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Officer Action & Audit History */}
+                  {auditEvents.length > 0 && (
+                    <div className="bg-slate-900 p-4 rounded-lg border border-slate-700">
+                      <div className="text-xs font-semibold text-slate-300 mb-2 flex items-center justify-between">
+                        <span>Officer Decision & Action Audit History:</span>
+                        <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">IMMUTABLE LOG</span>
+                      </div>
+                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                        {auditEvents.map((aud) => (
+                          <div key={aud.event_id} className="text-[11px] bg-slate-800 p-2 rounded flex items-center justify-between border border-slate-700">
+                            <div>
+                              <span className="text-purple-300 font-bold font-mono">{aud.event_type}</span>
+                              <span className="text-slate-400 ml-2">by {aud.actor_id} ({aud.actor_type})</span>
+                            </div>
+                            <span className="text-slate-500 font-mono text-[10px]">
+                              {aud.timestamp ? new Date(aud.timestamp).toLocaleString() : ''}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

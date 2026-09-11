@@ -19,6 +19,8 @@ from app.models.conflict import PotentialConflict
 from app.models.knowledge import KnowledgeSource, KnowledgeChunk
 from app.models.workflow import EvidenceRequest, Notification
 from app.models.project import Project, ProjectParcel, ProjectTimelineEvent
+from app.models.explainability import ProjectExplanation, InterventionCandidate
+from app.models.decision_intelligence import OfficerDecision, OfficerAction, DecisionAuditEvent
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
