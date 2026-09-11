@@ -4,6 +4,7 @@ import CitizenDashboard from "./pages/CitizenDashboard";
 import CreateCase from "./pages/CreateCase";
 import OfficerDashboard from "./pages/OfficerDashboard";
 import CaseDetail from "./pages/CaseDetail";
+import EvidenceWorkspace from "./pages/EvidenceWorkspace";
 import { LanguageProvider } from "./lib/LanguageContext";
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/citizen/create-case" element={<CreateCase />} />
           <Route path="/officer" element={<OfficerDashboard />} />
           <Route path="/cases/:caseId" element={<CaseDetail />} />
+          <Route path="/projects/:projectId/evidence" element={<EvidenceWorkspace />} />
           
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/login" replace />} />
@@ -24,3 +26,4 @@ export default function App() {
     </LanguageProvider>
   );
 }
+
