@@ -1,0 +1,15 @@
+{
+  "project": "BhoomiSakha",
+  "dataset": "Dataset 5",
+  "model_type": "CalibratedClassifierCV",
+  "target": "future_delay_within_180_days",
+  "test_roc_auc": 0.690504888888889,
+  "test_brier_score": 0.22234275411357166,
+  "reference_auc": 0.792,
+  "calibration": "sigmoid",
+  "training_completed": true,
+  "prediction_model_saved": true,
+  "permutation_importance": false,
+  "data_origin": "synthetic",
+  "created_at": "2026-09-11T18:34:46.394508+00:00"
+}

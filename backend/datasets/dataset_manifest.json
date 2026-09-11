@@ -1,0 +1,58 @@
+{
+  "manifest_version": "1.0.0",
+  "generated_at": "2026-09-11T22:40:00Z",
+  "datasets": {
+    "D1": {
+      "dataset_id": "D1",
+      "dataset_name": "Land Cases",
+      "canonical_path": "datasets/dataset1_land_cases/cases.jsonl",
+      "file_format": "jsonl",
+      "expected_record_count": 2000,
+      "actual_record_count": 2000,
+      "file_size_bytes": 9307298,
+      "source_sha256": "5c7afc274e2e41f8679da30746532f0c28eeb16ca0c8c37dab1ab30be84cbb6b",
+      "data_origin": "synthetic",
+      "validation_status": "VALIDATED",
+      "integration_status": "READY"
+    },
+    "D2": {
+      "dataset_id": "D2",
+      "dataset_name": "Document Extraction",
+      "canonical_path": "datasets/dataset2_document_extraction/dataset_2000.jsonl",
+      "file_format": "jsonl",
+      "expected_record_count": 2200,
+      "actual_record_count": 2200,
+      "file_size_bytes": 5199870,
+      "source_sha256": "0951da4bd443527399cf1d5f7878fa2c188cad5344321ccddc7b6f012d1c1a00",
+      "data_origin": "synthetic",
+      "validation_status": "VALIDATED",
+      "integration_status": "READY"
+    },
+    "D3": {
+      "dataset_id": "D3",
+      "dataset_name": "Document Comparison",
+      "canonical_path": "datasets/dataset3_document_comparison/dataset_3000.jsonl",
+      "file_format": "jsonl",
+      "expected_record_count": 3000,
+      "actual_record_count": 3000,
+      "file_size_bytes": 3340909,
+      "source_sha256": "f349a699ffdd5838abf26fe9655c5972a06b3548f824c63044f02abb5cf5bb25",
+      "data_origin": "synthetic",
+      "validation_status": "VALIDATED",
+      "integration_status": "READY"
+    },
+    "D4": {
+      "dataset_id": "D4",
+      "dataset_name": "Procedure RAG",
+      "canonical_path": "datasets/dataset4_rag/dataset4_government_procedure_rag.validated.json",
+      "file_format": "json",
+      "expected_record_count": 36,
+      "actual_record_count": 36,
+      "file_size_bytes": 73890,
+      "source_sha256": "0b7cc36c44f405e821c8333de8c7555dc6270134544a36982459a93e19f9592a",
+      "data_origin": "government_source",
+      "validation_status": "VALIDATED",
+      "integration_status": "READY"
+    }
+  }
+}
