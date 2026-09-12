@@ -34,8 +34,14 @@ def check_case_access(case_id: str, current_user: User, db: Session) -> Case:
         raise HTTPException(status_code=404, detail="Case not found")
     if current_user.role == "citizen" and case_obj.citizen_id != current_user.id:
         raise HTTPException(status_code=403, detail="Not authorized to access this case")
-    if current_user.role == "officer" and case_obj.assigned_officer_id != current_user.id:
-        raise HTTPException(status_code=403, detail="Not authorized to access this case")
+    if current_user.role == "officer":
+        has_access = False
+        if case_obj.assigned_officer_id == current_user.id:
+            has_access = True
+        elif current_user.officer_profile and current_user.officer_profile.district == case_obj.district and current_user.officer_profile.taluka == case_obj.taluka:
+            has_access = True
+        if not has_access:
+            raise HTTPException(status_code=403, detail="Not authorized to access this case")
     return case_obj
 
 @router.post("/cases", response_model=CaseResponse)

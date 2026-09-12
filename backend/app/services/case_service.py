@@ -23,10 +23,20 @@ def create_case(db: Session, case_in: CaseCreate, citizen_id: str) -> Case:
     case_id = f"CASE-{uuid.uuid4().hex[:12].upper()}"
     ref = generate_case_reference(db)
 
+    # Automatic jurisdiction matching for officer assignment
+    from app.models.user import OfficerProfile
+    matching_officer = db.query(OfficerProfile).filter(
+        OfficerProfile.district == case_in.district,
+        OfficerProfile.taluka == case_in.taluka
+    ).first()
+    
+    assigned_officer_id = matching_officer.user_id if matching_officer else None
+
     db_case = Case(
         case_id=case_id,
         case_reference=ref,
         citizen_id=citizen_id,
+        assigned_officer_id=assigned_officer_id,
         case_type=case_in.case_type,
         title=case_in.title,
         description=case_in.description,
@@ -108,6 +118,17 @@ def list_citizen_cases(db: Session, citizen_id: str) -> list[Case]:
     return db.query(Case).filter(Case.citizen_id == citizen_id).order_by(Case.created_at.desc()).all()
 
 def list_officer_cases(db: Session, officer_id: str) -> list[Case]:
+    from app.models.user import OfficerProfile
+    from sqlalchemy import or_
+    
+    officer_profile = db.query(OfficerProfile).filter(OfficerProfile.user_id == officer_id).first()
+    if officer_profile:
+        return db.query(Case).filter(
+            or_(
+                Case.assigned_officer_id == officer_id,
+                (Case.district == officer_profile.district) & (Case.taluka == officer_profile.taluka)
+            )
+        ).order_by(Case.created_at.desc()).all()
     return db.query(Case).filter(Case.assigned_officer_id == officer_id).order_by(Case.created_at.desc()).all()
 
 def update_case_status(db: Session, case_id: str, status_update: CaseStatusUpdate, actor_id: str, actor_role: str) -> Case:
