@@ -256,7 +256,7 @@ class UnifiedIngestionService:
             data = json.load(f)
 
         documents = data.get("documents", [])
-        existing_source_ids = set(r[0] for r in db.query(KnowledgeSource.source_id).filter(KnowledgeSource.document_type == "D4_PROCEDURE").all())
+        existing_source_ids = set(r[0] for r in db.query(KnowledgeSource.source_id).all())
         existing_chunk_ids = set(r[0] for r in db.query(KnowledgeChunk.chunk_id).filter(KnowledgeChunk.chunk_id.like("D4:%")).all())
 
         new_sources = []

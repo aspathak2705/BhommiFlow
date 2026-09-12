@@ -25,7 +25,16 @@ export const ListenButton: React.FC<ListenButtonProps> = ({ textToSpeak }) => {
     try {
       const res = await synthesizeSpeech(textToSpeak, lang);
       if (res.status === "OFFLINE" || !res.audio_content_base64) {
-        setErrorMsg(t("Audio guidance is currently unavailable."));
+        // Fallback to browser-native Web Speech API
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(textToSpeak);
+          const langMap: Record<string, string> = { en: "en-IN", hi: "hi-IN", mr: "mr-IN" };
+          utterance.lang = langMap[lang] || "en-IN";
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(utterance);
+        } else {
+          setErrorMsg(t("Audio guidance is currently unavailable."));
+        }
       } else {
         const audioSrc = `data:audio/wav;base64,${res.audio_content_base64}`;
         const audio = new Audio(audioSrc);
@@ -33,7 +42,15 @@ export const ListenButton: React.FC<ListenButtonProps> = ({ textToSpeak }) => {
         audio.play();
       }
     } catch (e: any) {
-      setErrorMsg(t("Audio guidance is currently unavailable."));
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        const langMap: Record<string, string> = { en: "en-IN", hi: "hi-IN", mr: "mr-IN" };
+        utterance.lang = langMap[lang] || "en-IN";
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setErrorMsg(t("Audio guidance is currently unavailable."));
+      }
     } finally {
       setLoading(false);
     }

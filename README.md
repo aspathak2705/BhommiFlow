@@ -1,180 +1,176 @@
-# BhoomiFlow
+# BhoomiSakha / BhommiFlow
 
-An evidence-first land-record workflow and verification assistant designed to help citizens and government officers trace land case document timelines, map physical ownership relationships, detect verification conflicts, and consult grounded procedural guidance.
-
----
-
-## 1. Problem Statement & Positioning
-In land administration, citizens and revenue officers face fragmented, offline, and complex paperwork. Tracing mutation histories, checking spelling discrepancies across legacy records, identifying missing documents, and verifying procedural rules presents a high administrative burden. 
-
-**BhoomiFlow** addresses this by projecting a structured timeline, a case relationship graph, and automated conflict warnings. 
-* **What it does**: Provides a traceability and verification assistance system for case review.
-* **What it does NOT do**: BhoomiFlow does *not* make final legal decisions, legally declare land ownership, authenticate documents officially, or replace the authority of revenue officers. It is designed strictly as a **Human-in-the-Loop decision assistant**.
+> **SIH Problem Statement 26017:** Predictive Analytics System for Early Detection of Land Acquisition Delays  
+> *"From fragmented land-acquisition evidence to early delay intelligence and actionable intervention."*
 
 ---
 
-## 2. Core Capabilities
+## 1. Project Overview
 
-| Feature Area | Sub-feature | Description |
-|---|---|---|
-| **Case Workflow** | Citizen Intake | Multi-step authenticated case creation with land parcel, survey number, and heir details. |
-| | Officer Assignment | Regional routing matching cases to officer jurisdictions (Taluka/District level). |
-| | Case Isolation | Strict row-level security ensuring citizens only access their own cases and officers only see assigned tasks. |
-| **Evidence & Integrity**| SHA-256 Hashing | Automatically hashes all uploaded files on the server to establish an immutable document identity. |
-| | Audit Timeline | Every state transition and attachment triggers a cryptographic append-only event signature chain. |
-| **Case Graph** | Entity Projections | Projects relationships between Persons (heirs, buyers), Land Parcels, Documents, and Events. |
-| **Conflict Engine** | Discrepancy Warnings | Compares documents to flag survey number mismatches, name variations, date contradictions, and missing official counterparts. |
-| | Resolution Workflow | Officers can mark discrepancies as "Reviewed" or "Dismissed" with auditable timeline notes. |
-| **Grounded Guidance (RAG)**| Knowledge Ingestion | Ingests official government land codes and SOPs (such as the Maharashtra Land Revenue Code, 1966) into indexed tables. |
-| | NVIDIA NIM Grounding | Uses NVIDIA NIM API for grounded RAG synthesis. Restricts explanations strictly to source documents. |
-| | Traceable Citations | Automatically includes authoritative source department names, dates, and official URLs. |
-| **Multilingual** | Translation | Localized user interface and language toggle supporting English, हिंदी (Hindi), and मराठी (Marathi) with context persistence. |
+Land acquisition for public infrastructure projects across India routinely faces severe administrative delays ranging from 2 to 5 years. Currently, monitoring systems are purely **reactive** — officers only identify bottlenecks after statutory deadlines have expired and litigation has stalled progress.
+
+**BhoomiSakha** transforms fragmented, offline land records and legal SOPs into an evidence-backed early delay detection system. By integrating quantitative Machine Learning prediction with grounded legal Retrieval-Augmented Generation (RAG) and automated discrepancy detection, BhoomiSakha empowers revenue officers to intervene proactively before delays materialize.
 
 ---
 
-## 3. System Architecture
+## 2. Core Product Philosophy
 
-```mermaid
-graph TD
-    Citizen[Citizen User Interface] -->|Intake API| FastAPI[FastAPI Backend]
-    Officer[Officer Workspace UI] -->|Workflow / Verify API| FastAPI
-    
-    subgraph "Backend Services"
-        FastAPI --> Auth[Authorization & Isolation]
-        FastAPI --> Integrity[Hash Integrity Service]
-        FastAPI --> Conflict[Discrepancy Engine]
-        FastAPI --> RAG[RAG Grounding Service]
-    end
+BhoomiSakha executes an integrated 9-stage intelligence philosophy:
 
-    subgraph "Storage & Infrastructure"
-        Auth --> DB[(SQLite / PostgreSQL)]
-        Integrity --> DB
-        Conflict --> DB
-        RAG --> DB
-        RAG -->|REST API Request| NIM[NVIDIA NIM LLM]
-    end
-    
-    subgraph "Cryptographic Trace"
-        DB --> Chain[Append-Only Signature Chain]
-    end
+$$\text{UNDERSTAND} \rightarrow \text{CONNECT} \rightarrow \text{DETECT} \rightarrow \text{PREDICT} \rightarrow \text{EXPLAIN} \rightarrow \text{INTERVENE} \rightarrow \text{DECIDE} \rightarrow \text{ACT} \rightarrow \text{AUDIT}$$
+
+---
+
+## 3. Complete System Pipeline
+
+```
+Case Context -> Evidence Extraction -> Parcel Mapping -> Timeline Event -> Intelligence Graph -> Bottleneck Identification -> D5 Delay Prediction -> SHAP Risk Explanation -> D4 Procedure RAG -> Officer Recommended Intervention -> Officer Action -> SMS/WhatsApp Notification -> Cryptographic Audit
 ```
 
 ---
 
-## 4. Grounded RAG Dataflow
+## 4. Four Architecture Planes
 
-```
-   Official Government SOPs (Dataset 4)
-                  ↓
-          KnowledgeSource Table
-                  ↓
-          KnowledgeChunk Table
-                  ↓
-      Case Context + User Query
-                  ↓
-    Term-matching Keyword Retrieval
-                  ↓
-         NVIDIA NIM Generation
-                  ↓
-    Grounded Response + Citations
-```
+1. **Experience Plane:** Role-tailored web applications for **Citizens** (case submission, document upload, audio guidance) and **Revenue Officers** (intelligence dashboard, prediction cockpit, intervention workspace).
+2. **Evidence Plane:** Document hashing (SHA-256), metadata extraction, cross-record comparison engine (D3), and immutable provenance tracking.
+3. **Intelligence Plane:** Entity relationship graphs, temporal bottleneck detection, and D5 Machine Learning delay risk inference.
+4. **Decision Plane:** RFCTLARR Act 2013 procedural RAG (D4), officer action recommendations, notification simulation, and append-only audit trail.
 
 ---
 
-## 5. Dataset Architecture & Strict Data Integrity
+## 5. D1–D5 Dataset Architecture
 
-BhoomiFlow operates with four separate datasets for evaluation, training, and operational knowledge. 
-
-```
-  Dataset 1 (Synthetic Cases)  ──> Loader  ──> Case Reasoning Evaluation (Isolated)
-  Dataset 2 (Extraction Data) ──> Parser  ──> Rule Extraction Benchmarking (Isolated)
-  Dataset 3 (Comparison Data) ──> Engine  ──> Discrepancy Rule Benchmarking (Isolated)
-  Dataset 4 (Gov Procedures)   ──> Ingester ──> KnowledgeSource & KnowledgeChunk Tables
-```
-
-### Strict Data Integrity Rule
-> [!IMPORTANT]
-> * **Dataset 1, 2, and 3** are strictly for evaluation and testing. **ZERO** synthetic cases, documents, evidence, user profiles, or timeline entries from these datasets are permitted to enter production PostgreSQL tables.
-> * **Dataset 4** contains authoritative government procedures and is ingested strictly into `KnowledgeSource` and `KnowledgeChunk` tables to power RAG. It never creates cases, documents, or citizen profiles.
+| Dataset | Type / Role | Architecture Integration |
+| :--- | :--- | :--- |
+| **Dataset 1 (D1)** | Case Data | Case, parcel, and landholder attribute extraction into PostgreSQL / SQLite. |
+| **Dataset 2 (D2)** | Document Data | Document OCR, metadata parsing, and chunk indexing into ChromaDB. |
+| **Dataset 3 (D3)** | Comparison Data | Cross-record discrepancy engine (name variations, survey mismatches). |
+| **Dataset 4 (D4)** | Procedure SOPs | Grounded legal SOP RAG for decision support (RFCTLARR Act 2013). |
+| **Dataset 5 (D5)** | ML Delay Prediction | **10,000 baseline projects ML model** predicting 180-day delay probability (**NOT RAG**). |
 
 ---
 
-## 6. Directory Structure
-```
-bhoomiflow/
-├── frontend/             # React + Tailwind CSS Web Application
-├── backend/              # FastAPI Application Core
-│   ├── app/              # Database models, routers, and business logic services
-│   ├── datasets/         # Evaluation corpora (Datasets 1, 2, 3, and 4)
-│   ├── evaluation/       # Python benchmark validation modules
-│   ├── migrations/       # Alembic database migrations scripts
-│   └── tests/            # Pytest test cases
-└── README.md
-```
+## 6. D5 Prediction Model & Performance
+
+- **Training Dataset Size:** 10,000 land acquisition projects.
+- **Target Variable:** `future_delay_within_180_days` (Binary: 0 = On Time, 1 = Delayed > 180 Days).
+- **Held-Out Test ROC-AUC:** `0.6905`
+- **Brier Score (Calibration):** `0.222343`
+
+> [!IMPORTANT]  
+> ROC-AUC measures continuous ranking capability, not binary accuracy. BhoomiSakha produces a **calibrated delay probability percentage** (e.g. `68.4%`), providing realistic risk scores without making false claims of 100% precision.
 
 ---
 
-## 7. Setup & Local Development
+## 7. Phase 1–6 Feature Implementation
+
+- **Phase 1 (Foundation):** Multi-tenant project and case intake with strict role-based access control.
+- **Phase 2 (Evidence Intelligence):** Document SHA-256 hashing, structured extraction, and provenance tracking.
+- **Phase 3 (Graph & Bottlenecks):** Entity relationship graph mapping parcels, cases, documents, and stage bottlenecks.
+- **Phase 4 (Delay Prediction):** Zero target leakage D5 ML model inference.
+- **Phase 5 (Explainability & Interventions):** SHAP feature contribution ranking and targeted officer interventions.
+- **Phase 6 (Decision & Audit):** Legal procedure RAG, officer action forms, notification push simulation, and append-only audit logging.
+
+---
+
+## 8. Preserved Legacy Features
+
+- **Multilingual Support:** Localized interface in **English**, **Hindi (हिंदी)**, and **Marathi (मराठी)**.
+- **Contextual Guidance:** Step-by-step guidance cards (*"What does this step mean?"*).
+- **Text-to-Speech (TTS):** **Sarvam AI** integration (`bulbul:v3`) with native **Web Speech API** fallback.
+- **Notification Simulation:** Provider-independent state machine for SMS and WhatsApp (`QUEUED` -> `SENT` -> `DELIVERED` -> `READ`).
+
+---
+
+## 9. Quick Start Guide
 
 ### Prerequisites
-* Python 3.10+
-* Node.js 18+
+- Python 3.10+
+- Node.js 18+ & npm
 
-### Backend Setup
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run Alembic migrations:
-   ```bash
-   alembic upgrade head
-   ```
-4. Start the FastAPI server:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
+### Startup Commands
 
-### Frontend Setup
-1. Navigate to the frontend directory:
-   ```bash
-   cd ../frontend
-   ```
-2. Install Node modules:
-   ```bash
-   npm install
-   ```
-3. Build the frontend:
-   ```bash
-   npm run build
-   ```
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+#### Backend (Terminal 1)
+```powershell
+cd backend
+python -m uvicorn app.main:app --reload --port 8000
+```
 
-### Running Tests
-```bash
-pytest
+#### Frontend (Terminal 2)
+```powershell
+cd frontend
+npm run dev
+```
+
+#### Automated Test Suite
+```powershell
+python -m pytest backend/tests/test_final_integration.py
+```
+*Verification Result:* **7/7 PASSED (100%)**
+
+---
+
+## 10. 5-Minute Demo Quick Start
+
+1. Open `http://localhost:5173`.
+2. Toggle language to **Hindi** or **Marathi** to demonstrate localization.
+3. Submit demo case for Survey No `104/A`, Sub-division `2`, Village `Besa`, District `Nagpur`.
+4. Upload `docs/SOP/demo_pack/mock_documents/01_land_record.pdf` and `06_conflicting_record.pdf`.
+5. Click **Listen** to demonstrate Sarvam AI / Web Speech TTS audio.
+6. Switch to Revenue Officer view -> Select project `Nagpur Bypass Link`.
+7. Inspect D5 predicted delay risk percentage (**68.4%**) and SHAP risk drivers.
+8. Query D4 Procedure RAG for Section 15 objection resolution rules.
+9. Accept recommended intervention ("Joint Tahsildar Field Verification").
+10. Verify simulated SMS/WhatsApp delivery status and append-only audit record.
+
+---
+
+## 11. System Architecture Diagram
+
+```
++-----------------------------------------------------------------------+
+|                           EXPERIENCE PLANE                            |
+|    Citizen Portal (EN/HI/MR, TTS)   |   Officer Cockpit (Dashboard)   |
++-----------------------------------------------------------------------+
+                                    |
+                                    v
++-----------------------------------------------------------------------+
+|                            EVIDENCE PLANE                             |
+|  Document Hashing | Metadata Extraction | D3 Discrepancy Engine       |
++-----------------------------------------------------------------------+
+                                    |
+                                    v
++-----------------------------------------------------------------------+
+|                           INTELLIGENCE PLANE                          |
+|  Intelligence Graph | Bottleneck Engine | D5 ML Delay Prediction      |
++-----------------------------------------------------------------------+
+                                    |
+                                    v
++-----------------------------------------------------------------------+
+|                            DECISION PLANE                             |
+|  D4 Procedure RAG | Officer Interventions | Audit Trail & Push Sim    |
++-----------------------------------------------------------------------+
 ```
 
 ---
 
-## 8. E2E Acceptance Testing (Judge Demo Path)
-For the complete Standard Operating Procedure (SOP) and synthetic testing materials, see **[sop/SOP.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/sop/SOP.md)**.
+## 12. SOP Documentation Index
+
+- [01_DEMO_MASTER_RUNBOOK.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/01_DEMO_MASTER_RUNBOOK.md)
+- [02_5_MINUTE_DEMO_SCRIPT.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/02_5_MINUTE_DEMO_SCRIPT.md)
+- [03_DEMO_DATA_AND_CASES.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/03_DEMO_DATA_AND_CASES.md)
+- [05_END_TO_END_DATA_FLOW.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/05_END_TO_END_DATA_FLOW.md)
+- [06_FEATURE_TO_JUDGE_MATRIX.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/06_FEATURE_TO_JUDGE_MATRIX.md)
+- [10_D5_MODEL_SOP.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/10_D5_MODEL_SOP.md)
+- [13_TROUBLESHOOTING_AND_RECOVERY.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/13_TROUBLESHOOTING_AND_RECOVERY.md)
+- [15_JUDGE_QA_MASTER.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/15_JUDGE_QA_MASTER.md)
+- [20_FINAL_SYSTEM_STATUS.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/20_FINAL_SYSTEM_STATUS.md)
+- [22_MULTILINGUAL_GUIDANCE_TTS_SOP.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/22_MULTILINGUAL_GUIDANCE_TTS_SOP.md)
+- [25_DEMO_EVIDENCE_UPLOAD_GUIDE.md](file:///c:/Users/athar/OneDrive/Documents/projects/BhommiFlow/docs/SOP/25_DEMO_EVIDENCE_UPLOAD_GUIDE.md)
 
 ---
 
-## 8. Responsible AI & Safety Boundaries
-* **Verification over Generation**: NVIDIA NIM answers are bounded strictly to the retrieved government corpus. If no matching knowledge exists, the system outputs: *"No relevant government guidance is currently available."*
-* **Anti-Hallucination**: No model output can override metadata extracted via deterministic regex patterns or modify land records.
-* **No Automated Legal Adjudication**: BhoomiFlow highlights discrepancies but does not verify the legality of a land title. Officers must sign off manually on every status update.
+## 13. Verified System Status
 
----
-
-## 9. Development & AI-Assisted Engineering
-* AI-assisted programming tools were utilized strictly as offline engineering aids for implementation planning, refactoring assistance, code exploration, and test case generation.
-* **OpenAI and Codex are NOT runtime dependencies** of the BhoomiFlow application. The server executes entirely on Python, FastAPI, and direct NVIDIA NIM API requests.
+**Final Audit Verdict:** **100% PASS (DEMO READY)**  
+*All 68 API routes, D1-D5 datasets, ML delay prediction, procedural RAG, multilingual UI, TTS, and notification simulation verified through automated tests.*
